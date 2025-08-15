@@ -10,19 +10,32 @@
 
     body {
       font-family: 'Roboto', sans-serif;
-      background: url('assets/img/bg-texture.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+      color: #f0f0f0; /* texto más claro */
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+      background: #000;
     }
 
-    /* Header */
+    /* Fondo con parallax */
+    body::before {
+      content: "";
+      position: fixed;
+      top:0; left:0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/img/bg-texture.jpg') no-repeat center center;
+      background-size: cover;
+      z-index: -1;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    /* Header con logo a la izquierda */
     header {
       display: flex;
-      justify-content: flex-end; /* Logo a la derecha */
+      justify-content: flex-start; /* logo a la izquierda */
       align-items: center;
       padding: 20px 40px;
       background: rgba(20,20,20,0.85);
@@ -30,7 +43,7 @@
     }
 
     header img {
-      height: 150px; /* Logo grande */
+      height: 180px; /* logo más grande */
       transition: transform 0.3s;
     }
 
@@ -41,10 +54,10 @@
     /* Título productos */
     .titulo-productos {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: 2.8rem; /* más grande */
       font-weight: 700;
-      color: #ff5722;
-      margin: 40px 0 20px;
+      color: #00d4ff; /* color más claro y energético */
+      margin: 40px 0 30px;
       text-shadow: 2px 2px 8px #000;
       animation: fadeInDown 1s ease forwards;
       opacity: 0;
@@ -59,20 +72,20 @@
     .productos-destacados {
       display: flex;
       justify-content: center;
-      gap: 25px;
-      max-width: 1200px;
-      margin: 0 auto 50px;
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto 60px;
       padding: 0 20px;
       flex-wrap: wrap;
     }
 
     .producto {
-      flex: 1 1 300px;
+      flex: 1 1 350px; /* productos más grandes */
       text-align: center;
-      background: rgba(30,30,30,0.95);
-      padding: 20px;
+      background: rgba(40,40,40,0.95);
+      padding: 25px;
       border-radius: 15px;
-      box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
       transition: transform 0.4s, box-shadow 0.4s;
       opacity: 0;
       animation: fadeInUp 1s ease forwards;
@@ -82,23 +95,23 @@
     .producto:nth-child(2) { animation-delay: 0.5s; }
     .producto:nth-child(3) { animation-delay: 0.7s; }
 
-    .producto:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.7);
-    }
-
     @keyframes fadeInUp {
       from { transform: translateY(20px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
 
+    .producto:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.7);
+    }
+
     .producto img {
       width: 100%;
-      height: 280px;
+      height: 320px; /* imagen más grande */
       object-fit: contain;
       border-radius: 15px;
-      border: 2px solid #ff5722;
-      background-color: #000;
+      border: 2px solid #00d4ff; /* borde acorde al color claro */
+      background-color: #111;
       transition: transform 0.3s;
     }
 
@@ -107,28 +120,28 @@
     }
 
     .producto h3 {
-      margin: 15px 0 10px;
-      font-size: 1.5rem;
-      color: #ff5722;
+      margin: 15px 0 12px;
+      font-size: 1.6rem;
+      color: #00d4ff;
     }
 
     .producto p {
-      font-size: 1rem;
-      color: #ddd;
+      font-size: 1.1rem;
+      color: #e0e0e0;
     }
 
     /* Footer */
     footer {
       background: rgba(20,20,20,0.95);
-      color: #fff;
+      color: #f0f0f0;
       text-align: center;
-      padding: 40px 10px;
+      padding: 50px 10px;
       font-size: 1rem;
       margin-top: auto;
     }
 
     footer a {
-      color: #ff5722;
+      color: #00d4ff;
       font-weight: 700;
       text-decoration: none;
       margin: 0 8px;
@@ -142,19 +155,20 @@
 
     /* Responsive */
     @media (max-width: 1024px) {
-      header img { height: 120px; }
-      .producto img { height: 240px; }
-      .titulo-productos { font-size: 2rem; }
+      header img { height: 150px; }
+      .producto img { height: 280px; }
+      .titulo-productos { font-size: 2.4rem; }
     }
 
     @media (max-width: 768px) {
       header { justify-content: center; }
-      .producto img { height: 200px; }
+      .producto img { height: 240px; }
     }
 
     @media (max-width: 480px) {
-      .titulo-productos { font-size: 1.8rem; }
-      .producto img { height: 180px; }
+      .titulo-productos { font-size: 2rem; }
+      .producto img { height: 200px; }
+      .producto h3 { font-size: 1.4rem; }
     }
 
   </style>
@@ -200,6 +214,14 @@
       <a href="https://www.instagram.com/protein_power_lab" target="_blank">@protein_power_lab</a>
     </p>
   </footer>
+
+  <script>
+    // Parallax simple
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      document.body.style.backgroundPositionY = -(scrolled * 0.3) + 'px';
+    });
+  </script>
 
 </body>
 </html>
