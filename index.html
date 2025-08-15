@@ -3,181 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Protein Power Lab</title>
-  <meta name="description" content="Creatina, proteína y combos. 6 cuotas sin interés. Envío en zona norte. Protein Power Lab." />
-  <meta property="og:title" content="Protein Power Lab" />
-  <meta property="og:description" content="Creatina, proteína y combos al mejor precio. Contacto por WhatsApp." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/assets/img/og-cover.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Protein Power Lab - Landing</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0f0f10; --card:#141416; --muted:#b7b7c2; --brand:#ff4c4c; --ok:#25D366; --border:#2a2b31;
+    :root {
+      --bg:#0f0f10; 
+      --card:#141416; 
+      --muted:#b7b7c2; 
+      --brand:#ff4c4c; 
+      --ok:#25D366; 
+      --border:#2a2b31;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0}
-    body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background: var(--bg) url('/assets/img/bg-texture.jpg') center/cover fixed no-repeat;color:#fff;line-height:1.5}
-    a{color:inherit;text-decoration:none}
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:'Montserrat',sans-serif;background: var(--bg) url('assets/img/bg-texture.jpg') center/cover fixed no-repeat;color:#fff;line-height:1.5;}
+    a{color:inherit;text-decoration:none;}
 
-    /* Promo bar */
-    .promo{background:#1b1c21;border-bottom:1px solid var(--border);padding:10px 16px;text-align:center;font-weight:700;color:var(--brand);letter-spacing:.2px}
-
-    /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 16px;max-width:1200px;margin:0 auto}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:800}
-    .logo-mark{width:36px;height:36px;border-radius:10px;background:var(--brand);display:grid;place-items:center;font-weight:900}
-    nav{display:flex;gap:16px;font-weight:600;color:var(--muted)}
-    nav a:hover{color:#fff}
+    .container{max-width:1200px;margin:0 auto;padding:40px 16px;text-align:center;}
 
     /* Hero */
-    .hero{max-width:1200px;margin:8px auto 24px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;padding:0 16px}
-    .hero-card{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.65)), url('/assets/img/hero.jpg') center/cover;border:1px solid var(--border);border-radius:18px;padding:28px;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
-    .hero h1{font-size:clamp(28px,5vw,40px);margin:0 0 6px;font-weight:800}
-    .hero p{color:var(--muted);margin:0 0 18px}
-    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-    .badge{background:#191a20;border:1px solid var(--border);padding:8px 10px;border-radius:999px;font-size:.9rem;color:#e7e7ee}
+    .hero-card{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.65)), url('assets/img/hero.jpg') center/cover;border:1px solid var(--border);border-radius:18px;padding:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;margin-bottom:40px;}
+    .hero-card h1{font-size:clamp(28px,5vw,40px);margin:0;font-weight:800;}
+    .hero-card p{color:var(--muted);margin:0;}
+    .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ok);color:#fff;padding:14px 24px;border-radius:12px;font-weight:800;box-shadow:0 8px 20px rgba(37,211,102,.25);transition:transform .15s ease,filter .2s;text-decoration:none;}
+    .btn:hover{transform:translateY(-1px);filter:saturate(1.05);}
 
-    /* CTA btn */
-    .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ok);color:#fff;padding:12px 18px;border-radius:12px;font-weight:800;box-shadow:0 8px 20px rgba(37,211,102,.25);transition:transform .15s ease,filter .2s}
-    .btn:hover{transform:translateY(-1px);filter:saturate(1.05)}
-    .btn svg{width:20px;height:20px}
-
-    /* Product grid */
-    .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.15));border:1px solid var(--border);border-radius:16px;overflow:hidden;transform:translateY(8px);opacity:0;animation:rise .6s .1s forwards}
-    .card:nth-child(2){animation-delay:.2s}
-    .card:nth-child(3){animation-delay:.3s}
-    .thumb{aspect-ratio:4/3;background:#0c0c0e url('/assets/img/placeholder.jpg') center/cover}
-    .content{padding:16px}
-    .content h3{margin:0 0 6px;color:#fff;font-size:1.1rem}
-    .content p{margin:0 0 14px;color:var(--muted);font-size:.95rem}
-    .price{display:flex;align-items:center;justify-content:space-between}
-    .price strong{font-size:1.1rem}
-    .price small{color:var(--muted)}
+    /* Productos */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:40px;}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.15));border:1px solid var(--border);border-radius:16px;overflow:hidden;transform:translateY(8px);opacity:0;animation:rise .6s .1s forwards;}
+    .card:nth-child(2){animation-delay:.2s;}
+    .card:nth-child(3){animation-delay:.3s;}
+    .thumb{aspect-ratio:4/3;background:#0c0c0e center/cover no-repeat;}
+    .content{padding:16px;}
+    .content h3{margin:0 0 6px;color:#fff;font-size:1.1rem;}
+    .content p{margin:0 0 14px;color:var(--muted);font-size:.95rem;}
+    .price{display:flex;align-items:center;justify-content:space-between;}
+    .price strong{font-size:1.1rem;}
+    .price small{color:var(--muted);}
 
     /* Footer */
-    footer{max-width:1200px;margin:40px auto 20px;padding:0 16px;color:var(--muted);display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:16px;font-size:.95rem}
+    footer{max-width:1200px;margin:0 auto;padding:20px 16px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px;border-top:1px solid var(--border);font-size:.95rem;}
+    footer a{color:var(--ok);text-decoration:none;}
+    footer a:hover{text-decoration:underline;}
 
-    /* Animations & helpers */
-    @keyframes rise{to{opacity:1;transform:translateY(0)}}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @keyframes rise{to{opacity:1;transform:translateY(0);}}
 
     /* Responsive */
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr 1fr}
-    }
-    @media (max-width: 600px){
-      nav{display:none}
-      .grid{grid-template-columns:1fr}
-      .hero-card{min-height:240px}
-    }
+    @media(max-width:900px){.grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:600px){.grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
-  <!-- BARRA DE PROMO: editá el texto libremente -->
-  <div class="promo">⚡ ¡Hoy 6 cuotas sin interés + Envío gratis / 20% OFF por transferencia! ⚡</div>
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero-card">
+      <h1>Protein Power Lab</h1>
+      <p>Suplementos destacados para tu entrenamiento. Creatina y proteína con entrega en Zona Norte.</p>
+      <a href="https://wa.me/541123014207?text=Hola%20vengo%20de%20la%20landing%20y%20quiero%20info" class="btn" target="_blank">Contacto por WhatsApp</a>
+    </section>
 
-  <!-- HEADER -->
-  <header>
-    <a class="logo" href="#" aria-label="Inicio">
-      <span class="logo-mark">P</span>
-      <span>Protein Power Lab</span>
-    </a>
-    <nav>
-      <a href="#productos">Suplementos</a>
-      <a href="#combos">Combos</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="hero-card">
-      <h1>Creatina & Proteína de calidad</h1>
-      <p>Marcas confiables, stock inmediato y entregas en Zona Norte (Vicente López / San Isidro).</p>
-      <div class="badges">
-        <span class="badge">100% Monohidratada</span>
-        <span class="badge">Whey de rápida absorción</span>
-        <span class="badge">Retiro o envío</span>
-      </div>
-      <!-- REEMPLAZAR el número por el tuyo: 54911xxxxxxxx -->
-      <a class="btn" href="https://wa.me/54911XXXXXXX?text=Hola%20vengo%20de%20la%20web%20y%20quiero%20info" target="_blank" rel="noopener">
-        <!-- Ícono WhatsApp inline para no depender de archivos -->
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.51a6.91 6.91 0 0 1-1.06-.2c-.17-.06-.39-.24-.45-.33c-.17-.27-.33-.54-.54-.79c-.28-.33-.55-.67-.86-.97c-.49-.48-.6-.97-.28-1.6c.1-.2.22-.4.33-.6c.22-.38.24-.77-.04-1.14c-.32-.43-.67-.84-1.03-1.24c-.3-.33-.7-.46-1.14-.35c-.55.14-1.02.45-1.35.92c-.66.95-.78 2-.3 3.06c.35.8.87 1.49 1.45 2.14c1.06 1.2 2.29 2.19 3.78 2.84c.63.28 1.28.5 1.98.55c.82.06 1.54-.2 2.13-.78c.31-.31.5-.69.62-1.11c.1-.35.06-.68-.24-.94c-.39-.34-.8-.65-1.21-.96c-.33-.24-.65-.23-.96.03c-.19.15-.39.3-.58.44c-.19.14-.38.17-.59.1Z"/></svg>
-        Comprar por WhatsApp
-      </a>
-    </div>
-    <div class="hero-card" style="background-image:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.65)), url('/assets/img/hero-2.jpg')">
-      <h1>Combo Fuerza Total</h1>
-      <p>Creatina + Whey a precio especial. Ideal para empezar o romper estancamientos.</p>
-      <a class="btn" href="https://wa.me/54911XXXXXXX?text=Quiero%20el%20Combo%20Fuerza%20Total" target="_blank" rel="noopener">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.51a6.91 6.91 0 0 1-1.06-.2c-.17-.06-.39-.24-.45-.33c-.17-.27-.33-.54-.54-.79c-.28-.33-.55-.67-.86-.97c-.49-.48-.6-.97-.28-1.6c.1-.2.22-.4.33-.6c.22-.38.24-.77-.04-1.14c-.32-.43-.67-.84-1.03-1.24c-.3-.33-.7-.46-1.14-.35c-.55.14-1.02.45-1.35.92c-.66.95-.78 2-.3 3.06c.35.8.87 1.49 1.45 2.14c1.06 1.2 2.29 2.19 3.78 2.84c.63.28 1.28.5 1.98.55c.82.06 1.54-.2 2.13-.78c.31-.31.5-.69.62-1.11c.1-.35.06-.68-.24-.94c-.39-.34-.8-.65-1.21-.96c-.33-.24-.65-.23-.96.03c-.19.15-.39.3-.58.44c-.19.14-.38.17-.59.1Z"/></svg>
-        Ver Promoción
-      </a>
-    </div>
-  </section>
-
-  <!-- PRODUCTOS -->
-  <section class="wrap" id="productos" aria-labelledby="sec-products">
-    <h2 id="sec-products" class="sr-only">Productos destacados</h2>
-    <div class="grid">
+    <!-- Productos destacados -->
+    <section class="grid">
       <!-- CARD 1 -->
       <article class="card">
-        <!-- Reemplazá por /assets/img/creatina.jpg -->
-        <div class="thumb" style="background-image:url('/assets/img/creatina.jpg')"></div>
+        <div class="thumb" style="background-image:url('assets/img/creatina.jpg')"></div>
         <div class="content">
           <h3>Creatina Monohidratada</h3>
           <p>Micronizada, sin sabor. Mejora fuerza y rendimiento. 300g (60 porciones).</p>
           <div class="price">
             <strong>$ 73.000</strong>
-            <a class="btn" href="https://wa.me/54911XXXXXXX?text=Quiero%20la%20Creatina%20Monohidratada" target="_blank" rel="noopener">Comprar</a>
+            <a class="btn" href="https://wa.me/541123014207?text=Quiero%20la%20Creatina%20Monohidratada" target="_blank">Comprar</a>
           </div>
         </div>
       </article>
+
       <!-- CARD 2 -->
       <article class="card">
-        <!-- Reemplazá por /assets/img/whey.jpg -->
-        <div class="thumb" style="background-image:url('/assets/img/whey.jpg')"></div>
+        <div class="thumb" style="background-image:url('assets/img/whey.jpg')"></div>
         <div class="content">
           <h3>Whey Protein 2lbs</h3>
           <p>Proteína de suero. Excelente perfil de aminoácidos y disolución.</p>
           <div class="price">
             <strong>$ 78.000</strong>
-            <a class="btn" href="https://wa.me/54911XXXXXXX?text=Quiero%20la%20Whey%20Protein%202lbs" target="_blank" rel="noopener">Comprar</a>
+            <a class="btn" href="https://wa.me/541123014207?text=Quiero%20la%20Whey%20Protein%202lbs" target="_blank">Comprar</a>
           </div>
         </div>
       </article>
-      <!-- CARD 3 -->
-      <article class="card" id="combos">
-        <!-- Reemplazá por /assets/img/combo.jpg -->
-        <div class="thumb" style="background-image:url('/assets/img/combo.jpg')"></div>
-        <div class="content">
-          <h3>Combo Fuerza Total</h3>
-          <p>Creatina + Whey a precio promo. Ideal para volumen y performance.</p>
-          <div class="price">
-            <strong>$ 145.000</strong>
-            <a class="btn" href="https://wa.me/54911XXXXXXX?text=Quiero%20el%20Combo%20Fuerza%20Total" target="_blank" rel="noopener">Lo Quiero</a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer id="contacto">
-    <span>© 2025 Protein Power Lab</span>
-    <span>Villa Adelina • Vicente López / San Isidro</span>
-  </footer>
+      <!-- CARD 3 -->
+      <article class="card">
+        <div class="thumb" style="background-image:url('assets/img/omega3.jpg')"></div>
+        <div class="content">
+          <h3>Omega-3 1000mg</h3>
+          <p>Apoya la salud cardiovascular y articulaciones. 60 cápsulas.</p>
+          <div class="price">
+            <strong>$ 55.000</strong>
+            <a class="btn" href="https://wa.me/541123014207?text=Quiero%20el%20Omega3" target="_blank">Comprar</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <span>📧 <a href="mailto:proteinpowerlab@gmail.com">proteinpowerlab@gmail.com</a></span>
+      <span>📸 <a href="https://instagram.com/protein_power_lab" target="_blank">@protein_power_lab</a></span>
+      <span>© 2025 Protein Power Lab • Villa Adelina / Vicente López</span>
+    </footer>
+  </div>
 
   <script>
-    // Animación de aparición al hacer scroll
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{if(e.isIntersecting){e.target.style.animationPlayState='running';}})
-    },{threshold:.15});
+    // Animación de aparición
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){e.target.style.animationPlayState='running';} });
+    }, {threshold: 0.15});
     document.querySelectorAll('.card').forEach(el=>io.observe(el));
   </script>
 </body>
