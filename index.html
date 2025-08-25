@@ -9,34 +9,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root{
-      --bg:#0b0b0b;
-      --card:#121212;
-      --muted:#bdbdbd;
-      --brand:#ff4c4c;
-      --brand-2:#00d4ff;
+      --bg:#0b0b0b; --card:#121212; --muted:#bdbdbd;
+      --brand:#ff4c4c; --brand-2:#00d4ff;
       --ring:0 0 0 2px rgba(255,76,76,.25);
-      --radius:16px;
-      --shadow:0 20px 60px rgba(0,0,0,.55);
+      --radius:16px; --shadow:0 20px 60px rgba(0,0,0,.55);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#fff;overflow-x:hidden}
 
-    /* ====== BACKGROUND (textura + overlay) ====== */
-    .bg{
-      position:fixed;inset:0;z-index:-2;
-      background:url('assets/img/bg-texture.jpg') center/cover no-repeat;
-      filter:contrast(1.05) brightness(.55);
-      transform:translateZ(0);
-    }
-    .bg::after{
-      content:"";position:absolute;inset:0;z-index:-1;
+    .bg{position:fixed;inset:0;z-index:-2;background:url('./assets/img/bg-texture.jpg') center/cover no-repeat;filter:contrast(1.05) brightness(.55);transform:translateZ(0)}
+    .bg::after{content:"";position:absolute;inset:0;z-index:-1;
       background:radial-gradient(1200px 600px at 50% 0, rgba(255,76,76,.25), transparent 60%),
                  radial-gradient(1200px 600px at 50% 100%, rgba(0,212,255,.18), transparent 60%),
-                 linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.8));
-    }
+                 linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.8));}
 
-    /* ====== HEADER ====== */
     header{position:sticky;top:0;z-index:50;background:rgba(12,12,12,.7);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.06)}
     .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:20px;padding:14px 20px}
     .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff}
@@ -46,7 +33,6 @@
     .dot{width:8px;height:8px;border-radius:999px;background:var(--brand)}
     .pill small{color:#ddd}
 
-    /* ====== HERO ====== */
     .hero{max-width:1200px;margin:48px auto 0;padding:0 20px 28px;display:grid;gap:24px}
     .hero h1{font-size:clamp(2.2rem, 4vw, 3.4rem);line-height:1.1;font-weight:800;letter-spacing:.3px;text-shadow:0 6px 40px rgba(0,0,0,.6)}
     .hero p{color:var(--muted);max-width:70ch}
@@ -56,7 +42,6 @@
     .btn.alt{--accent:var(--brand-2);background:linear-gradient(180deg, var(--accent), #0bb7db);box-shadow:0 12px 24px rgba(11,183,219,.25)}
     .wa{display:inline-block;width:20px;height:20px}
 
-    /* ====== GRID ====== */
     .grid{max-width:1200px;margin:24px auto 80px;padding:0 20px;display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
     .card{grid-column:span 12;background:rgba(20,20,20,.85);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transform:translateY(12px);opacity:0;transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s}
     .card.in{transform:translateY(0);opacity:1}
@@ -69,135 +54,98 @@
     .price{margin-top:14px;font-weight:800;font-size:1.15rem;color:#fff}
     .actions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
 
-    /* columns responsive */
-    @media (min-width:768px){
-      .card{grid-column:span 6}
-      .card img{height:260px}
-    }
-    @media (min-width:1200px){
-      .card{grid-column:span 4}
-      .card img{height:240px}
-    }
+    @media (min-width:768px){ .card{grid-column:span 6} .card img{height:260px} }
+    @media (min-width:1200px){ .card{grid-column:span 4} .card img{height:240px} }
 
-    /* ====== FOOTER ====== */
     footer{border-top:1px solid rgba(255,255,255,.08);background:rgba(10,10,10,.85);backdrop-filter:blur(6px)}
     .foot{max-width:1200px;margin:0 auto;padding:36px 20px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
     .foot small{color:#b5b5b5}
     .foot a{color:#fff;text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.25)}
 
-    /* ====== UTIL ====== */
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .brand-grid{max-width:1200px;margin:8px auto 28px;padding:0 20px;display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+    .brand-card{grid-column:span 12;cursor:pointer;display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px;transition:transform .2s ease, box-shadow .2s ease}
+    .brand-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
+    .brand-card img{width:56px;height:56px;border-radius:12px;object-fit:cover;border:2px solid #222}
+    .brand-card h3{font-size:1.05rem}
+    @media(min-width:768px){ .brand-card{grid-column:span 6} }
+    @media(min-width:1200px){ .brand-card{grid-column:span 6} }
   </style>
 </head>
 <body>
   <div class="bg" aria-hidden="true"></div>
 
-  <!-- ====== HEADER ====== -->
+  <!-- HEADER -->
   <header>
     <nav class="nav">
       <a class="logo" href="#inicio" aria-label="Protein Power Lab">
-        <img src="assets/img/logo.jpg" alt="Logo Protein Power Lab" />
+        <img src="./assets/img/logo.jpg" alt="Logo Protein Power Lab" />
         <span class="brand">Protein Power Lab</span>
       </a>
       <span class="pill"><span class="dot"></span><small>Envíos en 24–72 h</small></span>
     </nav>
   </header>
 
-  <!-- ====== HERO ====== -->
+  <!-- HERO -->
   <section class="hero" id="inicio">
     <h1>Tu fuente de fuerza, poder y <span style="color:var(--brand)">resultados reales</span></h1>
     <p>Suplementos de marcas confiables y precios competitivos. Comprá por WhatsApp y coordiná entrega inmediata en CABA/GBA. Atendemos por DM e Instagram.</p>
     <div class="cta-wrap">
-      <a class="btn" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">
-        <svg class="wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.07c-.29-.15-1.69-.83-1.95-.92-.26-.1-.45-.15-.64.15-.19.29-.74.92-.91 1.11-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.15-.17.19-.29.29-.48.1-.19.05-.37-.02-.52-.07-.15-.64-1.55-.88-2.12-.23-.56-.47-.49-.64-.49h-.55c-.19 0-.52.07-.79.37-.26.29-1.01.98-1.01 2.4 0 1.41 1.03 2.77 1.17 2.96.15.19 2.04 3.11 4.94 4.36.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.69-.69 1.93-1.36.24-.67.24-1.25.17-1.36-.06-.11-.26-.18-.55-.33z"/><path d="M26.75 5.26A13 13 0 1 0 5.25 26.74L4 30.5l3.88-1.22A12.98 12.98 0 0 0 16 29a13 13 0 0 0 10.75-23.74zm-2.09 20.07A10.64 10.64 0 0 1 16 26.64a10.66 10.66 0 0 1-5.43-1.47l-.39-.23-2.88.9.95-2.81-.26-.41a10.66 10.66 0 1 1 16.66 2.72z"/></svg>
-        Comprar por WhatsApp
-      </a>
+      <a class="btn" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Comprar por WhatsApp</a>
       <a class="btn alt" href="https://www.instagram.com/protein_power_lab" target="_blank" rel="noopener">Ver Instagram</a>
     </div>
   </section>
 
-  <!-- ====== GRID DE PRODUCTOS ====== -->
+  <!-- MARCAS -->
+  <section class="brand-grid" aria-label="Elegí la marca">
+    <button class="brand-card" data-open-brand="Star Nutrition">
+      <img src="./assets/img/star.jpg" alt="Star Nutrition" />
+      <div><h3>Star Nutrition</h3><small style="color:#cfcfcf">Ver catálogo</small></div>
+    </button>
+    <button class="brand-card" data-open-brand="ENA">
+      <img src="./assets/img/ena.jpg" alt="ENA" />
+      <div><h3>ENA</h3><small style="color:#cfcfcf">Ver catálogo</small></div>
+    </button>
+  </section>
+
+  <!-- GRID DE PRODUCTOS -->
   <section class="grid" id="productos" aria-label="Productos destacados">
-    <!-- CREATINA STAR 300g -->
-    <article class="card" data-animate>
+    <article class="card" data-animate data-brand="Star Nutrition">
       <div class="media">
-        <img loading="lazy" src="assets/img/creatina.jpg" alt="Star Nutrition Creatina 300g" />
-        <span class="badge">Top Venta</span>
+        <img loading="lazy" src="./assets/img/creatina.jpg" alt="Creatina monohidratada" />
+        <span class="badge">Star Nutrition</span>
       </div>
       <div class="body">
-        <h3>Creatina Monohidrato 300g · Star Nutrition</h3>
-        <p>100% pura y micronizada. Más fuerza y potencia en tus entrenamientos.</p>
-        <div class="price">$ 26.250</div>
-        <div class="actions">
-          <a class="btn" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Creatina%20Star%20300g" target="_blank" rel="noopener">
-            <svg class="wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.07c-.29-.15-1.69-.83-1.95-.92-.26-.1-.45-.15-.64.15-.19.29-.74.92-.91 1.11-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.15-.17.19-.29.29-.48.1-.19.05-.37-.02-.52-.07-.15-.64-1.55-.88-2.12-.23-.56-.47-.49-.64-.49h-.55c-.19 0-.52.07-.79.37-.26.29-1.01.98-1.01 2.4 0 1.41 1.03 2.77 1.17 2.96.15.19 2.04 3.11 4.94 4.36.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.69-.69 1.93-1.36.24-.67.24-1.25.17-1.36-.06-.11-.26-.18-.55-.33z"/><path d="M26.75 5.26A13 13 0 1 0 5.25 26.74L4 30.5l3.88-1.22A12.98 12.98 0 0 0 16 29a13 13 0 0 0 10.75-23.74zm-2.09 20.07A10.64 10.64 0 0 1 16 26.64a10.66 10.66 0 0 1-5.43-1.47l-.39-.23-2.88.9.95-2.81-.26-.41a10.66 10.66 0 1 1 16.66 2.72z"/></svg>
-            Pedir por WhatsApp
-          </a>
-        </div>
+        <h3>Creatina Monohidratada</h3>
+        <p>100% pura y micronizada. Mejora fuerza, potencia y recuperación.</p>
+        <div class="price">$ Consultar</div>
       </div>
     </article>
 
-    <!-- PROTEÍNA STAR 2lb DOYPACK -->
-    <article class="card" data-animate>
+    <article class="card" data-animate data-brand="Star Nutrition">
       <div class="media">
-        <img loading="lazy" src="assets/img/proteina.jpg"
-             onerror="this.onerror=null;this.src='assets/img/bg-texture.jpg';"
-             alt="Whey Protein 2lb Star Nutrition" />
-        <span class="badge">Nuevo Lote</span>
+        <img loading="lazy" src="./assets/img/proteina.jpg" alt="Proteína whey" />
+        <span class="badge">Star Nutrition</span>
       </div>
       <div class="body">
-        <h3>Whey Protein 2 lb · Star Nutrition</h3>
-        <p>Concentrado de suero. Excelente sabor y disolución para tu post‑entreno.</p>
-        <div class="price">$ 33.483</div>
-        <div class="actions">
-          <a class="btn" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Whey%202lb%20Star%20Nutrition" target="_blank" rel="noopener">
-            <svg class="wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.07c-.29-.15-1.69-.83-1.95-.92-.26-.1-.45-.15-.64.15-.19.29-.74.92-.91 1.11-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.15-.17.19-.29.29-.48.1-.19.05-.37-.02-.52-.07-.15-.64-1.55-.88-2.12-.23-.56-.47-.49-.64-.49h-.55c-.19 0-.52.07-.79.37-.26.29-1.01.98-1.01 2.4 0 1.41 1.03 2.77 1.17 2.96.15.19 2.04 3.11 4.94 4.36.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.69-.69 1.93-1.36.24-.67.24-1.25.17-1.36-.06-.11-.26-.18-.55-.33z"/><path d="M26.75 5.26A13 13 0 1 0 5.25 26.74L4 30.5l3.88-1.22A12.98 12.98 0 0 0 16 29a13 13 0 0 0 10.75-23.74zm-2.09 20.07A10.64 10.64 0 0 1 16 26.64a10.66 10.66 0 0 1-5.43-1.47l-.39-.23-2.88.9.95-2.81-.26-.41a10.66 10.66 0 1 1 16.66 2.72z"/></svg>
-            Pedir por WhatsApp
-          </a>
-        </div>
+        <h3>Whey Protein</h3>
+        <p>Concentrado de suero con excelente disolución y sabor.</p>
+        <div class="price">$ Consultar</div>
       </div>
     </article>
 
-    <!-- OMEGA 3 STAR -->
-    <article class="card" data-animate>
+    <article class="card" data-animate data-brand="ENA">
       <div class="media">
-        <img loading="lazy" src="assets/img/omega3.jpg" alt="Omega 3 Star Nutrition 60 caps" />
-        <span class="badge">Salud</span>
+        <img loading="lazy" src="./assets/img/omega3.jpg" alt="Omega 3" />
+        <span class="badge">ENA</span>
       </div>
       <div class="body">
-        <h3>Omega 3 · Star Nutrition (60 caps)</h3>
-        <p>EPA/DHA para salud cardiovascular y cerebral. Calidad farmacéutica.</p>
-        <div class="price">$ 25.223</div>
-        <div class="actions">
-          <a class="btn" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Omega%203%20Star%2060%20caps" target="_blank" rel="noopener">
-            <svg class="wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.07c-.29-.15-1.69-.83-1.95-.92-.26-.1-.45-.15-.64.15-.19.29-.74.92-.91 1.11-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.15-.17.19-.29.29-.48.1-.19.05-.37-.02-.52-.07-.15-.64-1.55-.88-2.12-.23-.56-.47-.49-.64-.49h-.55c-.19 0-.52.07-.79.37-.26.29-1.01.98-1.01 2.4 0 1.41 1.03 2.77 1.17 2.96.15.19 2.04 3.11 4.94 4.36.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.69-.69 1.93-1.36.24-.67.24-1.25.17-1.36-.06-.11-.26-.18-.55-.33z"/><path d="M26.75 5.26A13 13 0 1 0 5.25 26.74L4 30.5l3.88-1.22A12.98 12.98 0 0 0 16 29a13 13 0 0 0 10.75-23.74zm-2.09 20.07A10.64 10.64 0 0 1 16 26.64a10.66 10.66 0 0 1-5.43-1.47l-.39-.23-2.88.9.95-2.81-.26-.41a10.66 10.66 0 1 1 16.66 2.72z"/></svg>
-            Pedir por WhatsApp
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <!-- CREATINA ENA 300g -->
-    <article class="card" data-animate>
-      <div class="media">
-        <img loading="lazy" src="assets/img/creatina.jpg" alt="ENA Creatina 300g" />
-        <span class="badge">Precio Competitivo</span>
-      </div>
-      <div class="body">
-        <h3>Creatina 300g · ENA (sin sabor)</h3>
-        <p>Micronizada, 100% pura. Relación precio/rendimiento excelente.</p>
-        <div class="price">$ 22.386</div>
-        <div class="actions">
-          <a class="btn" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Creatina%20ENA%20300g" target="_blank" rel="noopener">
-            <svg class="wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.07c-.29-.15-1.69-.83-1.95-.92-.26-.1-.45-.15-.64.15-.19.29-.74.92-.91 1.11-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.15-.17.19-.29.29-.48.1-.19.05-.37-.02-.52-.07-.15-.64-1.55-.88-2.12-.23-.56-.47-.49-.64-.49h-.55c-.19 0-.52.07-.79.37-.26.29-1.01.98-1.01 2.4 0 1.41 1.03 2.77 1.17 2.96.15.19 2.04 3.11 4.94 4.36.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.69-.69 1.93-1.36.24-.67.24-1.25.17-1.36-.06-.11-.26-.18-.55-.33z"/><path d="M26.75 5.26A13 13 0 1 0 5.25 26.74L4 30.5l3.88-1.22A12.98 12.98 0 0 0 16 29a13 13 0 0 0 10.75-23.74zm-2.09 20.07A10.64 10.64 0 0 1 16 26.64a10.66 10.66 0 0 1-5.43-1.47l-.39-.23-2.88.9.95-2.81-.26-.41a10.66 10.66 0 1 1 16.66 2.72z"/></svg>
-            Pedir por WhatsApp
-          </a>
-        </div>
+        <h3>Omega-3</h3>
+        <p>EPA/DHA para salud cardiovascular y cerebral.</p>
+        <div class="price">$ Consultar</div>
       </div>
     </article>
   </section>
 
-  <!-- ====== FOOTER ====== -->
   <footer>
     <div class="foot">
       <small>© 2025 Protein Power Lab. Todos los derechos reservados.</small>
@@ -206,19 +154,30 @@
   </footer>
 
   <script>
-    // Parallax ligero del background
+    // Parallax
     const bg = document.querySelector('.bg');
     window.addEventListener('scroll', () => {
       const y = window.pageYOffset * 0.25;
       bg.style.transform = `translate3d(0, ${y * -1}px, 0)`;
     });
 
-    // Animaciones de entrada on-scroll
+    // Animación entrada
     const cards = document.querySelectorAll('[data-animate]');
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     }, {threshold:.18});
     cards.forEach(c=>io.observe(c));
+
+    // Filtro por marca
+    const brandButtons = document.querySelectorAll('[data-open-brand]');
+    const productCards = [...document.querySelectorAll('[data-brand]')];
+    function showBrand(brand){
+      productCards.forEach(card=>{
+        card.style.display = (card.getAttribute('data-brand') === brand) ? '' : 'none';
+      });
+      document.querySelector('#productos').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    brandButtons.forEach(btn=>btn.addEventListener('click', ()=> showBrand(btn.dataset.openBrand)));
   </script>
 </body>
 </html>
