@@ -1,322 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Protein Power Lab</title>
-<meta name="theme-color" content="#000000" />
-<meta name="description" content="Suplementos deportivos: creatina, proteína, omega 3 y más. Comprá directo por WhatsApp." />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet"/>
-<style>
-  :root{
-    --bg:#0b0b0b; --card:#121212; --muted:#bdbdbd;
-    --brand:#ff4c4c; --brand-2:#00d4ff;
-    --radius:16px; --shadow:0 20px 60px rgba(0,0,0,.55);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0b0b;color:#fff;overflow-x:hidden}
-  .bg{position:fixed;inset:0;z-index:-2;background:url('assets/img/bg-texture.jpg') center/cover no-repeat;filter:contrast(1.05) brightness(.55)}
-  .bg::after{content:"";position:absolute;inset:0;background:
-    radial-gradient(1200px 600px at 50% 0, rgba(255,76,76,.25), transparent 60%),
-    radial-gradient(1200px 600px at 50% 100%, rgba(0,212,255,.18), transparent 60%),
-    linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.8));}
-  header{position:sticky;top:0;z-index:10;background:rgba(12,12,12,.75);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
-  .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:12px 18px}
-  .logo{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
-  .logo img{width:40px;height:40px;border-radius:10px;border:2px solid #222;object-fit:cover}
-  .brand{font-weight:700}
-  .pill{margin-left:auto;display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
-  .dot{width:8px;height:8px;border-radius:999px;background:var(--brand)}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Protein Power Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --muted:#bdbdbd;
+      --brand:#ff4c4c;
+      --radius:16px;
+      --shadow:0 20px 60px rgba(0,0,0,.55);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#fff;min-height:100vh;display:flex;flex-direction:column}
 
-  .hero{max-width:1200px;margin:36px auto 8px;padding:0 18px;display:grid;gap:10px}
-  .hero h1{font-size:clamp(2rem,4vw,3rem);line-height:1.1;font-weight:800}
-  .hero p{color:var(--muted)}
-  .cta-wrap{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
-  .btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg, var(--brand), #e04343);border:none;color:#fff;font-weight:700;padding:10px 14px;border-radius:12px;text-decoration:none;box-shadow:0 12px 24px rgba(255,76,76,.25);transition:transform .2s ease}
-  .btn:hover{transform:translateY(-2px)}
-  .btn.alt{background:linear-gradient(180deg, var(--brand-2), #0bb7db);box-shadow:0 12px 24px rgba(11,183,219,.25)}
+    /* HEADER */
+    header{background:rgba(12,12,12,.8);border-bottom:1px solid rgba(255,255,255,.1);padding:18px 20px;position:sticky;top:0;z-index:50}
+    .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:18px}
+    .logo img{width:64px;height:64px;border-radius:12px}
+    .brand{font-size:1.8rem;font-weight:800}
 
-  /* Brand selector */
-  .brand-grid{max-width:1200px;margin:20px auto 30px;padding:0 18px;display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-  .brand-card{grid-column:span 12;cursor:pointer;display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px;transition:transform .2s ease, box-shadow .2s ease}
-  .brand-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
-  .brand-card img{width:56px;height:56px;border-radius:12px;object-fit:cover;border:2px solid #222}
-  .brand-card h3{font-size:1.05rem}
-  @media(min-width:768px){ .brand-card{grid-column:span 6} }
+    /* HERO */
+    .hero{max-width:1200px;margin:40px auto;padding:0 20px;text-align:center}
+    .hero h1{font-size:clamp(2.5rem,5vw,3.5rem);margin-bottom:12px}
+    .hero p{color:var(--muted)}
 
-  /* Product grid */
-  .grid{max-width:1200px;margin:10px auto 60px;padding:0 18px;display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-  .card{grid-column:span 12;background:rgba(20,20,20,.9);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-  .media{position:relative}
-  .media img{width:100%;height:240px;object-fit:cover;background:#0f0f0f}
-  .badge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.6);padding:6px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:.8rem}
-  .body{padding:16px}
-  .body h3{font-size:1.1rem;margin-bottom:6px}
-  .body p{color:#d8d8d8}
-  .price{margin-top:12px;font-weight:800}
-  .actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
-  .btn.wa{background:linear-gradient(180deg, var(--brand-2), #0bb7db);box-shadow:0 12px 24px rgba(11,183,219,.25)}
-  @media(min-width:768px){ .card{grid-column:span 6} .media img{height:220px} }
-  @media(min-width:1200px){ .card{grid-column:span 4} .media img{height:200px} }
+    /* MARCAS */
+    .marcas{max-width:1200px;margin:60px auto;padding:0 20px;text-align:center}
+    .marcas h2{font-size:2rem;margin-bottom:30px}
+    .brand-grid{display:flex;gap:40px;flex-wrap:wrap;justify-content:center}
+    .brand-card{background:#fff;border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);transition:.3s;width:280px;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+    .brand-card img{max-width:160px;height:auto;margin-bottom:16px;object-fit:contain}
+    .brand-card span{font-size:1.2rem;font-weight:700;color:#000}
+    .brand-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.45)}
 
-  footer{border-top:1px solid rgba(255,255,255,.08);background:rgba(10,10,10,.85)}
-  .foot{max-width:1200px;margin:0 auto;padding:26px 18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-  .foot small{color:#bdbdbd}
-
-  /* Views */
-  .view{display:none}
-  .view.active{display:block}
-  .brand-hero{max-width:1200px;margin:22px auto 8px;padding:0 18px;display:flex;align-items:center;gap:14px}
-  .brand-hero img{width:56px;height:56px;border-radius:12px;border:2px solid #222;object-fit:cover}
-  .brand-hero h2{font-size:clamp(1.6rem,4vw,2.2rem)}
-  .backlink{margin-left:auto}
-</style>
+    /* FOOTER */
+    footer{margin-top:auto;background:#111;border-top:1px solid rgba(255,255,255,.1);padding:20px 0}
+    .foot{max-width:1200px;margin:0 auto;text-align:center;font-size:.9rem;color:#bbb}
+    .foot a{color:#fff;text-decoration:none}
+  </style>
 </head>
 <body>
-<div class="bg" aria-hidden="true"></div>
 
-<header>
-  <nav class="nav">
-    <a class="logo" href="#" data-goto="home">
-      <img src="assets/img/logo.jpg" alt="Protein Power Lab"/>
+  <!-- HEADER -->
+  <header>
+    <nav class="nav">
+      <a class="logo" href="#">
+        <img src="assets/img/logo.jpg" alt="Logo Protein Power Lab">
+      </a>
       <span class="brand">Protein Power Lab</span>
-    </a>
-    <span class="pill"><span class="dot"></span><small>Envíos en 24–72 h</small></span>
-  </nav>
-</header>
+    </nav>
+  </header>
 
-<!-- HOME -->
-<main id="home" class="view active">
+  <!-- HERO -->
   <section class="hero">
-    <h1>Tu fuente de fuerza, poder y <span style="color:#ff4c4c">resultados reales</span></h1>
-    <p>Suplementos de marcas confiables y precios competitivos. Comprá por WhatsApp y coordiná entrega inmediata en CABA/GBA. Atendemos por DM e Instagram.</p>
-    <div class="cta-wrap">
-      <a class="btn" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Comprar por WhatsApp</a>
-      <a class="btn alt" href="https://www.instagram.com/protein_power_lab" target="_blank" rel="noopener">Ver Instagram</a>
+    <h1>Elegí tu marca de suplementos</h1>
+    <p>Catálogos completos de Star Nutrition y ENA, con creatinas, proteínas, multivitamínicos, pre-entrenos y más.</p>
+  </section>
+
+  <!-- MARCAS -->
+  <section class="marcas">
+    <h2>Catálogos disponibles</h2>
+    <div class="brand-grid">
+      <a href="star.html" class="brand-card">
+        <img src="assets/img/star.jpg" alt="Star Nutrition">
+        <span>Star Nutrition</span>
+      </a>
+      <a href="ena.html" class="brand-card">
+        <img src="assets/img/ena.jpg" alt="ENA">
+        <span>ENA</span>
+      </a>
     </div>
   </section>
 
-  <section class="brand-grid" aria-label="Elegí la marca">
-    <button class="brand-card" data-open="star">
-      <img src="assets/img/star.jpg" alt="Star Nutrition"/>
-      <div><h3>Star Nutrition</h3><small style="color:#cfcfcf">Ver catálogo</small></div>
-    </button>
-    <button class="brand-card" data-open="ena">
-      <img src="assets/img/ena.jpg" alt="ENA"/>
-      <div><h3>ENA</h3><small style="color:#cfcfcf">Ver catálogo</small></div>
-    </button>
-  </section>
-</main>
-
-<!-- STAR VIEW -->
-<section id="view-star" class="view">
-  <div class="brand-hero">
-    <img src="assets/img/star.jpg" alt="Star Nutrition"/>
-    <div>
-      <h2>Catálogo · Star Nutrition</h2>
-      <p style="color:#bdbdbd">Elegí tu producto y pedilo por WhatsApp.</p>
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot">
+      © 2025 Protein Power Lab · Todos los derechos reservados · 
+      Contacto: <a href="mailto:proteinpowerlab@gmail.com">proteinpowerlab@gmail.com</a> · 
+      <a href="https://www.instagram.com/protein_power_lab" target="_blank">@protein_power_lab</a>
     </div>
-    <a class="btn backlink" href="#" data-goto="home">← Volver</a>
-  </div>
+  </footer>
 
-  <section class="grid" aria-label="Catálogo Star Nutrition">
-    <!-- Creatinas -->
-    <article class="card">
-      <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina Star 150g"/><span class="badge">Creatina</span></div>
-      <div class="body">
-        <h3>Creatina Monohidrato 150 g</h3><p>100% pura y micronizada. Ideal para empezar.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Creatina%20150g%20Star%20Nutrition">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina Star 300g"/><span class="badge">Creatina</span></div>
-      <div class="body">
-        <h3>Creatina Monohidrato 300 g</h3><p>Rinde 2–3 meses según uso.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Creatina%20300g%20Star%20Nutrition">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina Star 1kg"/><span class="badge">Creatina</span></div>
-      <div class="body">
-        <h3>Creatina Monohidrato 1 kg</h3><p>Formato económico para uso continuo.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Creatina%201kg%20Star%20Nutrition">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <!-- Proteínas -->
-    <article class="card">
-      <div class="media"><img src="assets/img/proteina.jpg" alt="Whey Star 1kg"/><span class="badge">Proteína</span></div>
-      <div class="body">
-        <h3>Whey Protein 1 kg</h3><p>Concentrado de suero. Gran sabor y disolución.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Whey%201kg%20Star%20Nutrition">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media"><img src="assets/img/proteina.jpg" alt="Whey Star 2lb"/><span class="badge">Proteína</span></div>
-      <div class="body">
-        <h3>Whey Protein 2 lb</h3><p>Formato práctico para post-entreno.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Whey%202lb%20Star%20Nutrition">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <!-- Salud / Pre -->
-    <article class="card">
-      <div class="media"><img src="assets/img/omega3.jpg" alt="Omega 3 Star"/><span class="badge">Salud</span></div>
-      <div class="body">
-        <h3>Omega-3 (EPA/DHA)</h3><p>Apoyo cardiovascular y cognitivo.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Omega%203%20Star%20Nutrition">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media"><img src="assets/img/proteina.jpg" alt="Multivitamínico Star"/><span class="badge">Vitaminas</span></div>
-      <div class="body">
-        <h3>Multivitamínico</h3><p>Micronutrientes esenciales diarios.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Multivitaminico%20Star%20Nutrition">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media"><img src="assets/img/proteina.jpg" alt="Pre Entreno Star"/><span class="badge">Pre-entreno</span></div>
-      <div class="body">
-        <h3>Pre-Entreno</h3><p>Energía, enfoque y bombeo.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Pre%20Entreno%20Star%20Nutrition">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-  </section>
-</section>
-
-<!-- ENA VIEW -->
-<section id="view-ena" class="view">
-  <div class="brand-hero">
-    <img src="assets/img/ena.jpg" alt="ENA"/>
-    <div>
-      <h2>Catálogo · ENA</h2>
-      <p style="color:#bdbdbd">Elegí tu producto y pedilo por WhatsApp.</p>
-    </div>
-    <a class="btn backlink" href="#" data-goto="home">← Volver</a>
-  </div>
-
-  <section class="grid" aria-label="Catálogo ENA">
-    <!-- Creatinas -->
-    <article class="card">
-      <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina ENA 150g"/><span class="badge">Creatina</span></div>
-      <div class="body">
-        <h3>Creatina Monohidrato 150 g</h3><p>Pura y micronizada. Gran relación precio/rendimiento.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Creatina%20150g%20ENA">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina ENA 300g"/><span class="badge">Creatina</span></div>
-      <div class="body">
-        <h3>Creatina Monohidrato 300 g</h3><p>Formato rendidor para 2–3 meses.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Creatina%20300g%20ENA">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina ENA 1kg"/><span class="badge">Creatina</span></div>
-      <div class="body">
-        <h3>Creatina Monohidrato 1 kg</h3><p>Opción económica para ciclos prolongados.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Creatina%201kg%20ENA">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <!-- Proteínas -->
-    <article class="card">
-      <div class="media"><img src="assets/img/proteina.jpg" alt="Whey ENA 1kg"/><span class="badge">Proteína</span></div>
-      <div class="body">
-        <h3>Whey Protein 1 kg</h3><p>Excelente disolución y sabores clásicos.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Whey%201kg%20ENA">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media"><img src="assets/img/proteina.jpg" alt="Whey ENA 2lb"/><span class="badge">Proteína</span></div>
-      <div class="body">
-        <h3>Whey Protein 2 lb</h3><p>Formato práctico para post-entreno.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Whey%202lb%20ENA">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <!-- Salud / Pre -->
-    <article class="card">
-      <div class="media"><img src="assets/img/omega3.jpg" alt="Omega 3 ENA"/><span class="badge">Salud</span></div>
-      <div class="body">
-        <h3>Omega-3 (EPA/DHA)</h3><p>Apoyo cardiovascular y cognitivo.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Omega%203%20ENA">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media"><img src="assets/img/proteina.jpg" alt="Multivitamínico ENA"/><span class="badge">Vitaminas</span></div>
-      <div class="body">
-        <h3>Multivitamínico</h3><p>Complejo de vitaminas y minerales diarios.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Multivitaminico%20ENA">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media"><img src="assets/img/proteina.jpg" alt="Pre Entreno ENA"/><span class="badge">Pre-entreno</span></div>
-      <div class="body">
-        <h3>Pre-Entreno</h3><p>Energía, enfoque y bombeo.</p>
-        <div class="price">$ Consultar</div>
-        <div class="actions"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/541123014207?text=Hola!%20Quiero%20Pre%20Entreno%20ENA">Pedir por WhatsApp</a></div>
-      </div>
-    </article>
-  </section>
-</section>
-
-<footer>
-  <div class="foot">
-    <small>© 2025 Protein Power Lab. Todos los derechos reservados.</small>
-    <small>Contacto: <a href="mailto:proteinpowerlab@gmail.com" style="color:#fff">proteinpowerlab@gmail.com</a> · Instagram: <a href="https://www.instagram.com/protein_power_lab" target="_blank" rel="noopener" style="color:#fff">@protein_power_lab</a></small>
-  </div>
-</footer>
-
-<script>
-  // SPA simple: cambiar vistas sin salir de la página
-  const views = {
-    home: document.getElementById('home'),
-    star: document.getElementById('view-star'),
-    ena: document.getElementById('view-ena'),
-  };
-
-  function show(id){
-    Object.values(views).forEach(v => v.classList.remove('active'));
-    (id==='home'?views.home:(id==='star'?views.star:views.ena)).classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-
-  // botones de marcas
-  document.querySelectorAll('[data-open]').forEach(btn=>{
-    btn.addEventListener('click', ()=> show(btn.dataset.open));
-  });
-
-  // links para volver / logo
-  document.querySelectorAll('[data-goto="home"]').forEach(el=>{
-    el.addEventListener('click', (e)=>{ e.preventDefault(); show('home'); });
-  });
-</script>
 </body>
 </html>
+
