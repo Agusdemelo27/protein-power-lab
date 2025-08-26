@@ -3,91 +3,39 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Protein Power Lab</title>
-
-  <!-- CLAVE para repos en subcarpeta de GitHub Pages -->
+  <title>Catálogo · ENA</title>
   <base href="/protein-power-lab/">
-
-  <meta name="theme-color" content="#000000"/>
-  <meta name="description" content="Suplementos de Star Nutrition y ENA. Creatina, proteína, pre-entreno y multivitamínicos. Comprá directo por WhatsApp."/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 
   <style>
-    :root{
-      --bg:#0b0b0b; --muted:#bdbdbd; --brand:#ff4c4c; --brand-2:#00d4ff;
-      --radius:16px; --shadow:0 20px 60px rgba(0,0,0,.55);
-    }
+    :root{--bg:#0b0b0b;--brand:#ff4c4c;--radius:16px;--shadow:0 20px 60px rgba(0,0,0,.55)}
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-    body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#fff;display:flex;flex-direction:column}
-
+    body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0b0b;color:#fff;display:flex;flex-direction:column}
     .bg{position:fixed;inset:0;z-index:-2;background:url('assets/img/bg-texture.jpg') center/cover no-repeat;filter:contrast(1.05) brightness(.55)}
     .bg::after{content:"";position:absolute;inset:0;background:
       radial-gradient(1200px 600px at 50% 0, rgba(255,76,76,.25), transparent 60%),
       radial-gradient(1200px 600px at 50% 100%, rgba(0,212,255,.18), transparent 60%),
       linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.85));}
-
     header{position:sticky;top:0;z-index:50;background:rgba(12,12,12,.7);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.06)}
     .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:14px 20px}
     .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff}
-    .logo img{height:56px;width:56px;border-radius:12px;object-fit:cover;border:2px solid #222}
-    .brand{font-weight:800;font-size:1.9rem}
-    .pill{margin-left:auto;display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.06)}
-    .dot{width:8px;height:8px;border-radius:999px;background:var(--brand)}
-    .pill small{color:#ddd}
-
-    main{flex:1;display:block}
-
-    /* Vistas */
-    .view{display:none}
-    .view.active{display:block}
-
-    /* Hero */
-    .hero{max-width:1200px;margin:48px auto 0;padding:0 20px 28px;display:grid;gap:16px}
-    .hero h1{font-size:clamp(2.2rem, 4vw, 3.4rem);line-height:1.1;font-weight:800}
-    .hero p{color:var(--muted);max-width:70ch}
-    .cta-wrap{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
-    .cta-tile{
-      width:220px;height:100px;border-radius:18px;background:#f0f1f3;
-      border:1px solid rgba(0,0,0,.08);display:inline-flex;align-items:center;justify-content:center;
-      box-shadow:0 10px 24px rgba(0,0,0,.35);transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-    }
-    .cta-tile:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.45);background:#e7e9ec}
-    .cta-tile img{max-width:88%;max-height:76%;object-fit:contain;display:block}
-
-    /* Selección de marca */
-    .brand-wrap{max-width:1000px;margin:28px auto 16px;padding:0 20px}
-    .brand-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-    .brand-card{
-      display:flex;flex-direction:column;align-items:center;gap:12px;
-      background:#f5f5f6;border:1px solid rgba(0,0,0,.08);border-radius:16px;box-shadow:0 8px 26px rgba(0,0,0,.28);
-      transition:transform .2s ease, box-shadow .2s ease;padding:28px 20px;min-height:220px;text-decoration:none;color:#000;cursor:pointer;
-    }
-    .brand-card:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(0,0,0,.4)}
-    .brand-card img{width:clamp(200px, 22vw, 260px);height:auto;object-fit:contain;background:#fff;border-radius:12px;padding:10px}
-    .brand-card h3{font-size:1.15rem}
-    .brand-card small{color:#444;display:block}
-    @media(max-width:700px){ .brand-grid{grid-template-columns:1fr} }
-
-    /* Título de catálogo + volver */
-    .section{max-width:1200px;margin:22px auto 40px;padding:0 20px}
+    .logo img{height:48px;width:48px;border-radius:12px;object-fit:cover;border:2px solid #222}
+    .brand{font-weight:800;font-size:1.4rem}
+    .section{max-width:1200px;margin:20px auto 40px;padding:0 20px}
     .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
     .titlebar{display:flex;align-items:center;gap:12px}
     .titlebar img{width:56px;height:56px;object-fit:contain;background:#fff;border-radius:12px;border:2px solid #222;padding:6px}
-    .titlebar h2{font-size:clamp(1.6rem,4vw,2.2rem)}
+    .titlebar h1{font-size:clamp(1.6rem,4vw,2.2rem)}
     .subtitle{color:#bdbdbd;margin-top:4px}
-    .backbtn{
-      display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;
-      padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:700;box-shadow:0 10px 24px rgba(255,76,76,.25);
-    }
+    .backbtn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:700;box-shadow:0 10px 24px rgba(255,76,76,.25)}
     .backbtn:hover{box-shadow:0 16px 34px rgba(255,76,76,.35);transform:translateY(-1px)}
-
-    /* Grid de productos */
+    .group{margin:18px 0 6px;font-weight:800;font-size:1.15rem;opacity:.95}
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
     .card{grid-column:span 12;background:rgba(20,20,20,.9);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transform:translateY(10px);opacity:0;transition:transform .6s, opacity .6s}
     .card.in{transform:translateY(0);opacity:1}
-    .media{position:relative;background:#0f0f0f;border-bottom:1px solid rgba(255,255,255,.06)}
-    .media img{display:block;width:100%;height:240px;object-fit:cover}
+    .media{position:relative;background:#fff;border-bottom:1px solid rgba(255,255,255,.06)}
+    .media img{display:block;width:100%;height:220px;object-fit:contain}
     .badge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.6);padding:6px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:.8rem}
     .body{padding:16px}
     .body h3{font-size:1.05rem;margin-bottom:6px}
@@ -95,9 +43,8 @@
     .price{margin-top:10px;font-weight:800}
     .btn{display:inline-block;margin-top:10px;background:linear-gradient(180deg,var(--brand),#e04343);color:#fff;text-decoration:none;padding:10px 14px;border-radius:12px;box-shadow:0 12px 24px rgba(255,76,76,.25)}
     .btn:hover{box-shadow:0 16px 34px rgba(255,76,76,.35);transform:translateY(-1px)}
-    @media(min-width:768px){ .card{grid-column:span 6}.media img{height:220px}}
-    @media(min-width:1200px){ .card{grid-column:span 4}.media img{height:200px}}
-
+    @media(min-width:768px){.card{grid-column:span 6}.media img{height:230px}}
+    @media(min-width:1200px){.card{grid-column:span 4}.media img{height:230px}}
     footer{margin-top:auto;border-top:1px solid rgba(255,255,255,.08);background:rgba(10,10,10,.85)}
     .foot{max-width:1200px;margin:0 auto;padding:26px 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
     .foot small{color:#bdbdbd}
@@ -109,186 +56,96 @@
 
   <header>
     <nav class="nav">
-      <a class="logo" href="#/home">
-        <img src="assets/img/logo.jpg" alt="Logo Protein Power Lab"/>
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.jpg" alt="Logo"/>
         <span class="brand">Protein Power Lab</span>
       </a>
-      <span class="pill"><span class="dot"></span><small>Envíos en 24–72 h</small></span>
+      <a class="backbtn" href="index.html">← Volver</a>
     </nav>
   </header>
 
-  <main>
-    <!-- HOME -->
-    <section id="view-home" class="view active">
-      <div class="hero">
-        <h1>Tu fuente de fuerza, poder y <span style="color:var(--brand)">resultados reales</span></h1>
-        <p>Suplementos de marcas confiables y precios competitivos. Comprá por WhatsApp y coordiná entrega inmediata en CABA/GBA. Atendemos por DM e Instagram.</p>
-
-        <div class="cta-wrap">
-          <a class="cta-tile" href="https://wa.me/541123014207" target="_blank" rel="noopener">
-            <img src="assets/img/whatsapp.jpg" alt="WhatsApp"/>
-          </a>
-          <a class="cta-tile" href="https://www.instagram.com/protein_power_lab" target="_blank" rel="noopener">
-            <img src="assets/img/instagram.jpg" alt="Instagram"/>
-          </a>
+  <section class="section">
+    <div class="topbar">
+      <div class="titlebar">
+        <img src="assets/img/ena.jpg" alt="ENA"/>
+        <div>
+          <h1>Catálogo · ENA</h1>
+          <div class="subtitle">Elegí tu producto y pedilo por WhatsApp.</div>
         </div>
       </div>
+    </div>
 
-      <div class="brand-wrap">
-        <div class="brand-grid">
-          <a class="brand-card" href="#/star">
-            <img src="assets/img/star.jpg" alt="Star Nutrition"/>
-            <h3>Star Nutrition</h3><small>Ver catálogo</small>
-          </a>
-          <a class="brand-card" href="#/ena">
-            <img src="assets/img/ena.jpg" alt="ENA"/>
-            <h3>ENA</h3><small>Ver catálogo</small>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- STAR -->
-    <section id="view-star" class="view">
-      <div class="section">
-        <div class="topbar">
-          <div class="titlebar">
-            <img src="assets/img/star.jpg" alt="Star"/>
-            <div>
-              <h2>Catálogo · Star Nutrition</h2>
-              <div class="subtitle">Elegí tu producto y pedilo por WhatsApp.</div>
-            </div>
-          </div>
-          <a class="backbtn" href="#/home">← Volver</a>
-        </div>
-        <div id="grid-star" class="grid"></div>
-      </div>
-    </section>
-
-    <!-- ENA -->
-    <section id="view-ena" class="view">
-      <div class="section">
-        <div class="topbar">
-          <div class="titlebar">
-            <img src="assets/img/ena.jpg" alt="ENA"/>
-            <div>
-              <h2>Catálogo · ENA</h2>
-              <div class="subtitle">Elegí tu producto y pedilo por WhatsApp.</div>
-            </div>
-          </div>
-          <a class="backbtn" href="#/home">← Volver</a>
-        </div>
-        <div id="grid-ena" class="grid"></div>
-      </div>
-    </section>
-  </main>
+    <div id="wrap"></div>
+  </section>
 
   <footer>
     <div class="foot">
-      <small>© 2025 Protein Power Lab. Todos los derechos reservados.</small>
-      <small>Contacto: <a href="mailto:proteinpowerlab@gmail.com">proteinpowerlab@gmail.com</a> · Instagram: <a href="https://www.instagram.com/protein_power_lab" target="_blank" rel="noopener">@protein_power_lab</a></small>
+      <small>© 2025 Protein Power Lab.</small>
+      <small>Contacto: <a href="mailto:proteinpowerlab@gmail.com">proteinpowerlab@gmail.com</a></small>
     </div>
   </footer>
 
   <script>
-    // ===== DATA: nombres EXACTOS de archivos en assets/img =====
-    const STAR_FILES = [
-      'All_in_One_Vitamin_60caps.jpg',
-      'Cafeína_200_X_30_CAPS.jpg',
-      'Colageno_360g.jpg',
-      'Creatina_150g.jpg',
-      'Creatina_1kg.jpg',
-      'Creatina_300g_doypack.jpg',
-      'Creatina_300g_pote.jpg',
-      'Creatina_500g.jpg',
-      'Magnesio_sin_sabor_500g.jpg',
-      'Magnesio_sin_sabor_60caps.jpg',
-      'Omega3_60caps.jpg',
-      'Pump_3D_Ripped_315g_lemon_strawberry_lemon.jpg',
-      'Pump_V8_285g_acai_lima_limon_grape_watermelon.jpg',
-      'Whey_Protein_2LB_vainilla_chocolate_frutilla_cookies_banana.jpg'
-    ];
-
-    const ENA_FILES = [
-      'ena_Colágeno_407g.jpg',
+    const FILES = [
+      // CREATINAS
       'ena_Creatina_300g.jpg',
-      'ena_Multivitamínico_60caps.jpg',
-      'ena_Whey_Protein_2LB_vainilla_chocolate_frutilla_cookies_banana.jpg'
+
+      // PROTEÍNAS
+      'ena_Whey_Protein_2LB_vainilla_chocolate_frutilla_cookies_banana.jpg',
+
+      // MULTIVIT / SALUD
+      'ena_Colágeno_407g.jpg',
+      'ena_Multivitamínico_60caps.jpg'
     ];
 
-    // ===== Helpers de clasificación y orden =====
-    const CAT_ORDER = { 'Creatina': 1, 'Proteína': 2, 'Pre-entreno': 3, 'Multivitamínico': 4, 'Otro': 9 };
+    const FLAVORS = {
+      'ena_Whey_Protein_2LB_vainilla_chocolate_frutilla_cookies_banana.jpg':
+        'banana, chocolate, frutilla, cookies, vainilla'
+    };
 
-    function getCategory(name){
+    const GROUPS = [
+      { name: 'Creatina', test: f => f.toLowerCase().includes('creatina') },
+      { name: 'Proteína', test: f => f.toLowerCase().includes('whey') || f.toLowerCase().includes('protein') },
+      { name: 'Pre-entreno', test: f => f.toLowerCase().includes('pump') }, // por si agregás pre-entrenos ENA
+      { name: 'Multivitamínico / Salud', test: f => f.toLowerCase().includes('colágeno') || f.toLowerCase().includes('multivit') }
+    ];
+
+    function sizeValue(name){
       const n = name.toLowerCase();
-      if(n.includes('creatina')) return 'Creatina';
-      if(n.includes('whey') || n.includes('protein')) return 'Proteína';
-      if(n.includes('pump')) return 'Pre-entreno';
-      if(n.includes('vitamin') || n.includes('multivit') || n.includes('vitamín')) return 'Multivitamínico';
-      return 'Otro';
+      const kg = n.match(/(\d+(?:[\.,]\d+)?)\s*kg/); if(kg) return parseFloat(kg[1].replace(',','.'))*1000;
+      const g  = n.match(/(\d+)\s*g/);               if(g)  return parseInt(g[1],10);
+      const lb = n.match(/(\d+(?:[\.,]\d+)?)\s*lb/);  if(lb) return parseFloat(lb[1].replace(',','.'))*453.592;
+      const caps = n.match(/(\d+)\s*caps/);          if(caps) return parseInt(caps[1],10);
+      return Number.POSITIVE_INFINITY;
     }
 
-    // intenta extraer un número de tamaño (g, kg, lb o caps) para ordenar dentro de la categoría
-    function extractSizeValue(name){
-      const n = name.toLowerCase();
+    function card(file){
+      const title = file.replace(/_/g,' ').replace(/\.jpg$/i,'');
+      const flavors = FLAVORS[file];
+      const shown = flavors ? `${title} (${flavors})` : title;
+      const src = 'assets/img/' + encodeURIComponent(file);
+      const wa  = 'https://wa.me/541123014207?text=' + encodeURIComponent('Hola! Quiero ' + shown);
 
-      // kg → convertir a gramos
-      const kg = n.match(/(\d+(?:[\.,]\d+)?)\s*kg/);
-      if(kg) return parseFloat(kg[1].replace(',', '.')) * 1000;
+      let cat = 'Producto';
+      if(GROUPS[0].test(file)) cat='Creatina';
+      else if(GROUPS[1].test(file)) cat='Proteína';
+      else if(GROUPS[2].test(file)) cat='Pre-entreno';
+      else if(GROUPS[3].test(file)) cat='Multivitamínico';
 
-      // g
-      const g = n.match(/(\d+)\s*g/);
-      if(g) return parseInt(g[1], 10);
-
-      // lb → 1 lb ≈ 453.592 g
-      const lb = n.match(/(\d+(?:[\.,]\d+)?)\s*lb/);
-      if(lb) return parseFloat(lb[1].replace(',', '.')) * 453.592;
-
-      // caps como “tamaño” (no comparable con g, pero sirve para ordenar)
-      const caps = n.match(/(\d+)\s*caps/);
-      if(caps) return parseInt(caps[1], 10);
-
-      return Number.POSITIVE_INFINITY; // si no hay tamaño, va al final del grupo
-    }
-
-    function sortProducts(files){
-      // mapeo a objetos con metadatos
-      const items = files.map(file => {
-        const title = file.replace(/_/g, ' ').replace(/\.jpg$/i,'');
-        const cat = getCategory(file);
-        const size = extractSizeValue(file);
-        return { file, title, cat, size };
-      });
-
-      // orden: categoría (según CAT_ORDER) y dentro de cada una, por tamaño ascendente
-      return items.sort((a,b)=>{
-        const ca = CAT_ORDER[a.cat] ?? 9;
-        const cb = CAT_ORDER[b.cat] ?? 9;
-        if(ca !== cb) return ca - cb;
-        return a.size - b.size;
-      });
-    }
-
-    function cardHTML(item){
-      const src = 'assets/img/' + item.file;
-      const safeSrc = encodeURI(src);
-      const badge = item.cat;
-      const wa = 'https://wa.me/541123014207?text=' + encodeURIComponent('Hola! Quiero ' + item.title);
       const desc =
-        badge === 'Creatina' ? 'Pura y micronizada.' :
-        badge === 'Proteína' ? 'Excelente disolución.' :
-        badge === 'Pre-entreno' ? 'Energía y enfoque para tu sesión.' :
-        badge === 'Multivitamínico' ? 'Vitaminas y minerales clave.' :
-        'Calidad de marca.';
+        cat==='Creatina'?'Pura y micronizada.':
+        cat==='Proteína'?'Excelente disolución.':
+        cat==='Pre-entreno'?'Energía y enfoque.':
+        cat==='Multivitamínico'?'Vitaminas y minerales clave.':'Calidad de marca.';
 
       return `
         <article class="card" data-animate>
           <div class="media">
-            <img src="${safeSrc}" alt="${item.title}" loading="lazy"/>
-            <span class="badge">${badge}</span>
+            <img src="${src}" alt="${shown}" loading="lazy"/>
+            <span class="badge">${cat}</span>
           </div>
           <div class="body">
-            <h3>${item.title}</h3>
+            <h3>${shown}</h3>
             <p>${desc}</p>
             <div class="price">$ Consultar</div>
             <a class="btn" href="${wa}" target="_blank" rel="noopener">Pedir por WhatsApp</a>
@@ -296,43 +153,28 @@
         </article>`;
     }
 
-    function renderGrid(containerId, files){
-      const list = sortProducts(files);
-      const el = document.getElementById(containerId);
-      el.innerHTML = list.map(cardHTML).join('');
+    function render(){
+      const wrap = document.getElementById('wrap');
+      let html = '';
 
-      // animación on-scroll
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, {threshold:.18});
-      el.querySelectorAll('[data-animate]').forEach(c=>io.observe(c));
+      GROUPS.forEach(group=>{
+        const items = FILES.filter(group.test).sort((a,b)=> sizeValue(a)-sizeValue(b));
+        if(!items.length) return;
+        html += `<div class="group">${group.name}</div><div class="grid">` + items.map(card).join('') + `</div>`;
+      });
+
+      const used = new Set(GROUPS.flatMap(g=> FILES.filter(g.test)));
+      const rest = FILES.filter(f=>!used.has(f));
+      if(rest.length){
+        html += `<div class="group">Otros</div><div class="grid">` + rest.map(card).join('') + `</div>`;
+      }
+
+      wrap.innerHTML = html;
+
+      const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.18});
+      wrap.querySelectorAll('[data-animate]').forEach(c=>io.observe(c));
     }
-
-    // ===== Router simple por hash =====
-    const views = {
-      home: document.getElementById('view-home'),
-      star: document.getElementById('view-star'),
-      ena: document.getElementById('view-ena')
-    };
-
-    function show(view){
-      Object.values(views).forEach(v=>v.classList.remove('active'));
-      views[view]?.classList.add('active');
-
-      if(view === 'star'){ renderGrid('grid-star', STAR_FILES); }
-      if(view === 'ena'){ renderGrid('grid-ena', ENA_FILES); }
-      window.scrollTo({top:0, behavior:'instant'});
-    }
-
-    function handleRoute(){
-      const hash = location.hash || '#/home';
-      const view = hash.replace('#/','');
-      if(!views[view]) return show('home');
-      show(view);
-    }
-
-    window.addEventListener('hashchange', handleRoute);
-    handleRoute();
+    render();
   </script>
 </body>
 </html>
