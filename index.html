@@ -17,7 +17,7 @@
     body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#fff;display:flex;flex-direction:column}
 
     /* ===== Fondo (parallax) ===== */
-    .bg{position:fixed;inset:0;z-index:-2;background:url('assets/img/bg-texture.jpg') center/cover no-repeat;filter:contrast(1.05) brightness(.55)}
+    .bg{position:fixed;inset:0;z-index:-2;background:url('./bg-texture.jpg') center/cover no-repeat;filter:contrast(1.05) brightness(.55)}
     .bg::after{content:"";position:absolute;inset:0;background:
       radial-gradient(1200px 600px at 50% 0, rgba(255,76,76,.25), transparent 60%),
       radial-gradient(1200px 600px at 50% 100%, rgba(0,212,255,.18), transparent 60%),
@@ -92,6 +92,7 @@
     .body h3{font-size:1.1rem;margin-bottom:6px}
     .body p{color:#d6d6d6}
     .price{margin-top:12px;font-weight:800}
+
     @media(min-width:768px){ .card{grid-column:span 6}.media img{height:220px}}
     @media(min-width:1200px){ .card{grid-column:span 4}.media img{height:200px}}
 
@@ -109,7 +110,7 @@
   <header>
     <nav class="nav">
       <a class="logo" href="#" data-goto="home" aria-label="Protein Power Lab">
-        <img src="assets/img/logo.jpg" alt="Logo Protein Power Lab" />
+        <img src="./logo.jpg" alt="Logo Protein Power Lab" />
         <span class="brand">Protein Power Lab</span>
       </a>
       <span class="pill"><span class="dot"></span><small>Envíos en 24–72 h</small></span>
@@ -124,11 +125,11 @@
 
       <!-- CTA: solo imagen -->
       <div class="cta-wrap">
-        <a class="cta-tile" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">
-          <img src="assets/img/whatsapp.jpg" alt="WhatsApp" />
+        <a class="cta-tile" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20hacer%20un%20%20pedido" target="_blank" rel="noopener">
+          <img src="./whatsapp.jpg" alt="WhatsApp" loading="lazy"/>
         </a>
         <a class="cta-tile" href="https://www.instagram.com/protein_power_lab" target="_blank" rel="noopener">
-          <img src="assets/img/instagram.jpg" alt="Instagram" />
+          <img src="./instagram.jpg" alt="Instagram" loading="lazy"/>
         </a>
       </div>
     </section>
@@ -137,12 +138,12 @@
     <section class="brand-wrap" aria-label="Elegí la marca">
       <div class="brand-grid">
         <button class="brand-card" data-open="star" aria-label="Abrir catálogo Star Nutrition">
-          <img src="assets/img/star.jpg" alt="Star Nutrition" />
+          <img src="./star.jpg" alt="Star Nutrition" loading="lazy"/>
           <h3>Star Nutrition</h3>
           <small>Ver catálogo</small>
         </button>
         <button class="brand-card" data-open="ena" aria-label="Abrir catálogo ENA">
-          <img src="assets/img/ena.jpg" alt="ENA" />
+          <img src="./ena.jpg" alt="ENA" loading="lazy"/>
           <h3>ENA</h3>
           <small>Ver catálogo</small>
         </button>
@@ -153,7 +154,7 @@
   <!-- ===== STAR ===== -->
   <section id="view-star" class="view" aria-label="Catálogo Star Nutrition">
     <div class="brand-hero">
-      <img src="assets/img/star.jpg" alt="Star Nutrition"/>
+      <img src="./star.jpg" alt="Star Nutrition">
       <div>
         <h2>Catálogo · Star Nutrition</h2>
         <p style="color:#bdbdbd">Elegí tu producto y pedilo por WhatsApp.</p>
@@ -163,15 +164,15 @@
 
     <section class="grid">
       <article class="card" data-animate>
-        <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina Star 150g"/><span class="badge">Creatina</span></div>
+        <div class="media"><img src="./creatina.jpg" alt="Creatina Star 150g" loading="lazy"/><span class="badge">Creatina</span></div>
         <div class="body"><h3>Creatina Monohidrato 150 g</h3><p>100% pura y micronizada.</p><div class="price">$ Consultar</div></div>
       </article>
       <article class="card" data-animate>
-        <div class="media"><img src="assets/img/proteina.jpg" alt="Whey Star 1kg"/><span class="badge">Proteína</span></div>
+        <div class="media"><img src="./proteina.jpg" alt="Whey Star 1kg" loading="lazy"/><span class="badge">Proteína</span></div>
         <div class="body"><h3>Whey Protein 1 kg</h3><p>Gran disolución y sabor.</p><div class="price">$ Consultar</div></div>
       </article>
       <article class="card" data-animate>
-        <div class="media"><img src="assets/img/omega3.jpg" alt="Omega 3 Star"/><span class="badge">Salud</span></div>
+        <div class="media"><img src="./omega3.jpg" alt="Omega 3 Star" loading="lazy"/><span class="badge">Salud</span></div>
         <div class="body"><h3>Omega-3 (EPA/DHA)</h3><p>Apoyo cardiovascular y cognitivo.</p><div class="price">$ Consultar</div></div>
       </article>
     </section>
@@ -180,7 +181,7 @@
   <!-- ===== ENA ===== -->
   <section id="view-ena" class="view" aria-label="Catálogo ENA">
     <div class="brand-hero">
-      <img src="assets/img/ena.jpg" alt="ENA"/>
+      <img src="./ena.jpg" alt="ENA">
       <div>
         <h2>Catálogo · ENA</h2>
         <p style="color:#bdbdbd">Elegí tu producto y pedilo por WhatsApp.</p>
@@ -190,15 +191,15 @@
 
     <section class="grid">
       <article class="card" data-animate>
-        <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina ENA 150g"/><span class="badge">Creatina</span></div>
+        <div class="media"><img src="./creatina.jpg" alt="Creatina ENA 150g" loading="lazy"/><span class="badge">Creatina</span></div>
         <div class="body"><h3>Creatina Monohidrato 150 g</h3><p>Pura y micronizada.</p><div class="price">$ Consultar</div></div>
       </article>
       <article class="card" data-animate>
-        <div class="media"><img src="assets/img/proteina.jpg" alt="Whey ENA 1kg"/><span class="badge">Proteína</span></div>
+        <div class="media"><img src="./proteina.jpg" alt="Whey ENA 1kg" loading="lazy"/><span class="badge">Proteína</span></div>
         <div class="body"><h3>Whey Protein 1 kg</h3><p>Excelente disolución.</p><div class="price">$ Consultar</div></div>
       </article>
       <article class="card" data-animate>
-        <div class="media"><img src="assets/img/omega3.jpg" alt="Omega 3 ENA"/><span class="badge">Salud</span></div>
+        <div class="media"><img src="./omega3.jpg" alt="Omega 3 ENA" loading="lazy"/><span class="badge">Salud</span></div>
         <div class="body"><h3>Omega-3 (EPA/DHA)</h3><p>Apoyo cardiovascular y cognitivo.</p><div class="price">$ Consultar</div></div>
       </article>
     </section>
@@ -213,7 +214,7 @@
   </footer>
 
   <script>
-    // Parallax leve (sin texto visible)
+    // Parallax leve
     (function(){
       const bg = document.querySelector('.bg');
       window.addEventListener('scroll', function(){
@@ -221,7 +222,7 @@
       });
     })();
 
-    // Animación de entrada de cards
+    // Animación de entrada
     (function(){
       const io = new IntersectionObserver(function(entries){
         entries.forEach(function(e){
