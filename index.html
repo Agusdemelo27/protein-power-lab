@@ -14,7 +14,7 @@
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-    body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#fff;display:flex;flex-direction:column}
+    body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#fff;display:flex;flex-direction:column}
 
     /* ===== Fondo (parallax) ===== */
     .bg{position:fixed;inset:0;z-index:-2;background:url('assets/img/bg-texture.jpg') center/cover no-repeat;filter:contrast(1.05) brightness(.55)}
@@ -34,13 +34,13 @@
     .pill small{color:#ddd}
 
     /* ===== Hero ===== */
-    .hero{max-width:1200px;margin:48px auto 0;padding:0 20px 28px;display:grid;gap:16px}
-    .hero h1{font-size:clamp(2.2rem, 4vw, 3.4rem);line-height:1.1;font-weight:800;text-shadow:0 6px 40px rgba(0,0,0,.6)}
-    .hero p{color:var(--muted);max-width:70ch}
-    .cta-wrap{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
-    .btn{--accent:var(--brand);display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg, var(--accent), #e04343);border:none;color:#fff;font-weight:700;padding:12px 18px;border-radius:12px;text-decoration:none;box-shadow:0 12px 24px rgba(255,76,76,.25);transition:transform .2s ease, box-shadow .2s ease}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(255,76,76,.35)}
-    .btn.alt{--accent:var(--brand-2);background:linear-gradient(180deg, var(--accent), #0bb7db);box-shadow:0 12px 24px rgba(11,183,219,.25)}
+    .hero{max-width:1200px;margin:48px auto 0;padding:0 20px 28px;display:grid;gap:16px;text-align:center}
+    .hero h1{font-size:clamp(2.2rem, 4vw, 3.4rem);font-weight:800;text-shadow:0 6px 40px rgba(0,0,0,.6)}
+    .hero p{color:var(--muted);max-width:70ch;margin:0 auto}
+    .cta-wrap{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+    .btn{--accent:var(--brand);display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg, var(--accent), #e04343);border:none;color:#fff;font-weight:700;padding:12px 18px;border-radius:12px;text-decoration:none;box-shadow:0 12px 24px rgba(255,76,76,.25);transition:transform .2s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .btn.alt{--accent:var(--brand-2);background:linear-gradient(180deg, var(--accent), #0bb7db);}
 
     /* ===== Cuadrados marcas (AJUSTADOS) ===== */
     .brand-wrap{max-width:820px;margin:24px auto 32px;padding:0 20px}
@@ -49,13 +49,13 @@
       display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
       background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;box-shadow:var(--shadow);
       cursor:pointer;transition:transform .2s ease, box-shadow .2s ease;
-      aspect-ratio:1/1; min-height:140px;  /* MÁS CHICOS */
+      aspect-ratio:1/1; min-height:120px;  /* MÁS CHICOS */
       padding:10px;
     }
     .brand-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,0,0,.4)}
     .brand-card img{
-      width:clamp(120px, 14vw, 180px);   /* LOGO MÁS GRANDE Y RESPONSIVE */
-      height:clamp(120px, 14vw, 180px);
+      width:clamp(150px, 16vw, 200px);   /* LOGOS MÁS GRANDES */
+      height:clamp(150px, 16vw, 200px);
       object-fit:contain;background:#fff;border-radius:12px
     }
     .brand-card h3{font-size:1.1rem;color:#000}
@@ -116,15 +116,15 @@
       </div>
     </section>
 
-    <!-- Selector de marcas (cuadrados) -->
+    <!-- Selector de marcas -->
     <section class="brand-wrap" aria-label="Elegí la marca">
       <div class="brand-grid">
-        <button class="brand-card" data-open="star" aria-label="Abrir catálogo Star Nutrition">
+        <button class="brand-card" data-open="star">
           <img src="assets/img/star.jpg" alt="Star Nutrition" />
           <h3>Star Nutrition</h3>
           <small>Ver catálogo</small>
         </button>
-        <button class="brand-card" data-open="ena" aria-label="Abrir catálogo ENA">
+        <button class="brand-card" data-open="ena">
           <img src="assets/img/ena.jpg" alt="ENA" />
           <h3>ENA</h3>
           <small>Ver catálogo</small>
@@ -143,19 +143,10 @@
       </div>
       <a class="btn backlink" href="#" data-goto="home">← Volver</a>
     </div>
-
     <section class="grid">
       <article class="card" data-animate>
         <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina Star 150g"/><span class="badge">Creatina</span></div>
         <div class="body"><h3>Creatina Monohidrato 150 g</h3><p>100% pura y micronizada.</p><div class="price">$ Consultar</div></div>
-      </article>
-      <article class="card" data-animate>
-        <div class="media"><img src="assets/img/proteina.jpg" alt="Whey Star 1kg"/><span class="badge">Proteína</span></div>
-        <div class="body"><h3>Whey Protein 1 kg</h3><p>Gran disolución y sabor.</p><div class="price">$ Consultar</div></div>
-      </article>
-      <article class="card" data-animate>
-        <div class="media"><img src="assets/img/omega3.jpg" alt="Omega 3 Star"/><span class="badge">Salud</span></div>
-        <div class="body"><h3>Omega-3 (EPA/DHA)</h3><p>Apoyo cardiovascular y cognitivo.</p><div class="price">$ Consultar</div></div>
       </article>
     </section>
   </section>
@@ -170,19 +161,10 @@
       </div>
       <a class="btn backlink" href="#" data-goto="home">← Volver</a>
     </div>
-
     <section class="grid">
       <article class="card" data-animate>
         <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina ENA 150g"/><span class="badge">Creatina</span></div>
         <div class="body"><h3>Creatina Monohidrato 150 g</h3><p>Pura y micronizada.</p><div class="price">$ Consultar</div></div>
-      </article>
-      <article class="card" data-animate>
-        <div class="media"><img src="assets/img/proteina.jpg" alt="Whey ENA 1kg"/><span class="badge">Proteína</span></div>
-        <div class="body"><h3>Whey Protein 1 kg</h3><p>Excelente disolución.</p><div class="price">$ Consultar</div></div>
-      </article>
-      <article class="card" data-animate>
-        <div class="media"><img src="assets/img/omega3.jpg" alt="Omega 3 ENA"/><span class="badge">Salud</span></div>
-        <div class="body"><h3>Omega-3 (EPA/DHA)</h3><p>Apoyo cardiovascular y cognitivo.</p><div class="price">$ Consultar</div></div>
       </article>
     </section>
   </section>
@@ -196,26 +178,16 @@
   </footer>
 
   <script>
-    // Parallax leve
-    const bg = document.querySelector('.bg');
-    window.addEventListener('scroll', ()=>{ bg.style.transform = `translate3d(0, ${window.pageYOffset * -0.25}px, 0)`; });
-
-    // Animación on-scroll
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, {threshold:.18});
-    document.querySelectorAll('[data-animate]').forEach(c=>io.observe(c));
-
-    // SPA: cambiar vistas
-    const views = {home:document.getElementById('home'), star:document.getElementById('view-star'), ena:document.getElementById('view-ena')};
-    function show(id){
-      Object.values(views).forEach(v=>v.classList.remove('active'));
-      (id==='star'?views.star:(id==='ena'?views.ena:views.home)).classList.add('active');
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
+    // SPA Navegación
+    const views={home:document.getElementById('home'),star:document.getElementById('view-star'),ena:document.getElementById('view-ena')};
+    function show(id){Object.values(views).forEach(v=>v.classList.remove('active'));views[id].classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
     document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.open)));
-    document.querySelectorAll('[data-goto="home"], .backlink').forEach(el=>el.addEventListener('click',(e)=>{e.preventDefault();show('home');}));
+    document.querySelectorAll('[data-goto="home"],.backlink').forEach(el=>el.addEventListener('click',(e)=>{e.preventDefault();show('home');}));
+
+    // Animación productos
+    const cards=document.querySelectorAll('[data-animate]');
+    const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.2});
+    cards.forEach(c=>io.observe(c));
   </script>
 </body>
 </html>
-
