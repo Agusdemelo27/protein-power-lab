@@ -16,14 +16,14 @@
     html,body{height:100%}
     body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#fff;display:flex;flex-direction:column}
 
-    /* Fondo */
-    .bg{position:fixed;inset:0;z-index:-2;background:url('./bg-texture.jpg') center/cover no-repeat;filter:contrast(1.05) brightness(.55)}
+    /* ===== Fondo (parallax) ===== */
+    .bg{position:fixed;inset:0;z-index:-2;background:url('assets/img/bg-texture.jpg') center/cover no-repeat;filter:contrast(1.05) brightness(.55)}
     .bg::after{content:"";position:absolute;inset:0;background:
       radial-gradient(1200px 600px at 50% 0, rgba(255,76,76,.25), transparent 60%),
       radial-gradient(1200px 600px at 50% 100%, rgba(0,212,255,.18), transparent 60%),
       linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.8));}
 
-    /* Header */
+    /* ===== Header ===== */
     header{position:sticky;top:0;z-index:50;background:rgba(12,12,12,.7);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.06)}
     .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:14px 20px}
     .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff}
@@ -33,12 +33,12 @@
     .dot{width:8px;height:8px;border-radius:999px;background:var(--brand)}
     .pill small{color:#ddd}
 
-    /* Hero */
+    /* ===== Hero ===== */
     .hero{max-width:1200px;margin:48px auto 0;padding:0 20px 28px;display:grid;gap:16px}
     .hero h1{font-size:clamp(2.2rem, 4vw, 3.4rem);line-height:1.1;font-weight:800;text-shadow:0 6px 40px rgba(0,0,0,.6)}
     .hero p{color:var(--muted);max-width:70ch}
 
-    /* CTAs imágenes */
+    /* ===== CTA: solo imágenes rectangulares grandes ===== */
     .cta-wrap{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;align-items:center}
     .cta-tile{
       width:220px;height:100px;border-radius:18px;background:#f0f1f3;
@@ -48,7 +48,7 @@
     .cta-tile:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.45);background:#e7e9ec}
     .cta-tile img{max-width:88%;max-height:76%;object-fit:contain;display:block}
 
-    /* Marcas */
+    /* ===== Selector de marcas (rectángulos) ===== */
     .brand-wrap{max-width:1000px;margin:28px auto 40px;padding:0 20px}
     .brand-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
     .brand-card{
@@ -62,14 +62,14 @@
     .brand-card small{color:#444}
     @media(max-width:700px){ .brand-grid{grid-template-columns:1fr} }
 
-    /* Vistas SPA */
+    /* ===== Vistas SPA ===== */
     .view{display:none}
     .view.active{display:block}
 
     .brand-hero{max-width:1200px;margin:22px auto 8px;padding:0 20px;display:flex;align-items:center;gap:14px}
     .brand-hero img{
       width:64px;height:64px;border-radius:12px;border:2px solid #222;
-      background:#fff;padding:6px;object-fit:contain;
+      background:#fff;padding:6px;object-fit:contain; /* no cortar */
     }
     .brand-hero h2{font-size:clamp(1.6rem,4vw,2.2rem)}
     .btn-red{
@@ -81,7 +81,7 @@
     }
     .btn-red:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(255,76,76,.35)}
 
-    /* Cards productos */
+    /* ===== Cards de productos ===== */
     .grid{max-width:1200px;margin:10px auto 60px;padding:0 20px;display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
     .card{grid-column:span 12;background:rgba(20,20,20,.9);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transform:translateY(8px);opacity:0;transition:.6s}
     .card.in{transform:translateY(0);opacity:1}
@@ -92,10 +92,10 @@
     .body h3{font-size:1.1rem;margin-bottom:6px}
     .body p{color:#d6d6d6}
     .price{margin-top:12px;font-weight:800}
-
     @media(min-width:768px){ .card{grid-column:span 6}.media img{height:220px}}
     @media(min-width:1200px){ .card{grid-column:span 4}.media img{height:200px}}
 
+    /* ===== Footer ===== */
     footer{margin-top:auto;border-top:1px solid rgba(255,255,255,.08);background:rgba(10,10,10,.85)}
     .foot{max-width:1200px;margin:0 auto;padding:26px 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
     .foot small{color:#bdbdbd}
@@ -105,72 +105,106 @@
 <body>
   <div class="bg" aria-hidden="true"></div>
 
+  <!-- ===== HEADER ===== -->
   <header>
     <nav class="nav">
       <a class="logo" href="#" data-goto="home" aria-label="Protein Power Lab">
-        <img src="./logo.jpg" alt="Logo Protein Power Lab" />
+        <img src="assets/img/logo.jpg" alt="Logo Protein Power Lab" />
         <span class="brand">Protein Power Lab</span>
       </a>
       <span class="pill"><span class="dot"></span><small>Envíos en 24–72 h</small></span>
     </nav>
   </header>
 
-  <!-- HOME -->
+  <!-- ===== HOME ===== -->
   <main id="home" class="view active" aria-label="Inicio">
     <section class="hero">
       <h1>Tu fuente de fuerza, poder y <span style="color:var(--brand)">resultados reales</span></h1>
       <p>Suplementos de marcas confiables y precios competitivos. Comprá por WhatsApp y coordiná entrega inmediata en CABA/GBA. Atendemos por DM e Instagram.</p>
 
+      <!-- CTA: solo imagen -->
       <div class="cta-wrap">
-        <a class="cta-tile" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20hacer%20un%20%20pedido" target="_blank" rel="noopener">
-          <img src="./whatsapp.jpg" alt="WhatsApp" loading="lazy"/>
+        <a class="cta-tile" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">
+          <img src="assets/img/whatsapp.jpg" alt="WhatsApp" />
         </a>
         <a class="cta-tile" href="https://www.instagram.com/protein_power_lab" target="_blank" rel="noopener">
-          <img src="./instagram.jpg" alt="Instagram" loading="lazy"/>
+          <img src="assets/img/instagram.jpg" alt="Instagram" />
         </a>
       </div>
     </section>
 
+    <!-- Selector de marcas -->
     <section class="brand-wrap" aria-label="Elegí la marca">
       <div class="brand-grid">
         <button class="brand-card" data-open="star" aria-label="Abrir catálogo Star Nutrition">
-          <img src="./star.jpg" alt="Star Nutrition" loading="lazy"/>
-          <h3>Star Nutrition</h3><small>Ver catálogo</small>
+          <img src="assets/img/star.jpg" alt="Star Nutrition" />
+          <h3>Star Nutrition</h3>
+          <small>Ver catálogo</small>
         </button>
         <button class="brand-card" data-open="ena" aria-label="Abrir catálogo ENA">
-          <img src="./ena.jpg" alt="ENA" loading="lazy"/>
-          <h3>ENA</h3><small>Ver catálogo</small>
+          <img src="assets/img/ena.jpg" alt="ENA" />
+          <h3>ENA</h3>
+          <small>Ver catálogo</small>
         </button>
       </div>
     </section>
   </main>
 
-  <!-- STAR -->
+  <!-- ===== STAR ===== -->
   <section id="view-star" class="view" aria-label="Catálogo Star Nutrition">
     <div class="brand-hero">
-      <img src="./star.jpg" alt="Star Nutrition">
+      <img src="assets/img/star.jpg" alt="Star Nutrition"/>
       <div>
         <h2>Catálogo · Star Nutrition</h2>
         <p style="color:#bdbdbd">Elegí tu producto y pedilo por WhatsApp.</p>
       </div>
       <a class="btn-red backlink" href="#" data-goto="home">← Volver</a>
     </div>
-    <section class="grid" id="grid-star"></section>
+
+    <section class="grid">
+      <article class="card" data-animate>
+        <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina Star 150g"/><span class="badge">Creatina</span></div>
+        <div class="body"><h3>Creatina Monohidrato 150 g</h3><p>100% pura y micronizada.</p><div class="price">$ Consultar</div></div>
+      </article>
+      <article class="card" data-animate>
+        <div class="media"><img src="assets/img/proteina.jpg" alt="Whey Star 1kg"/><span class="badge">Proteína</span></div>
+        <div class="body"><h3>Whey Protein 1 kg</h3><p>Gran disolución y sabor.</p><div class="price">$ Consultar</div></div>
+      </article>
+      <article class="card" data-animate>
+        <div class="media"><img src="assets/img/omega3.jpg" alt="Omega 3 Star"/><span class="badge">Salud</span></div>
+        <div class="body"><h3>Omega-3 (EPA/DHA)</h3><p>Apoyo cardiovascular y cognitivo.</p><div class="price">$ Consultar</div></div>
+      </article>
+    </section>
   </section>
 
-  <!-- ENA -->
+  <!-- ===== ENA ===== -->
   <section id="view-ena" class="view" aria-label="Catálogo ENA">
     <div class="brand-hero">
-      <img src="./ena.jpg" alt="ENA">
+      <img src="assets/img/ena.jpg" alt="ENA"/>
       <div>
         <h2>Catálogo · ENA</h2>
         <p style="color:#bdbdbd">Elegí tu producto y pedilo por WhatsApp.</p>
       </div>
       <a class="btn-red backlink" href="#" data-goto="home">← Volver</a>
     </div>
-    <section class="grid" id="grid-ena"></section>
+
+    <section class="grid">
+      <article class="card" data-animate>
+        <div class="media"><img src="assets/img/creatina.jpg" alt="Creatina ENA 150g"/><span class="badge">Creatina</span></div>
+        <div class="body"><h3>Creatina Monohidrato 150 g</h3><p>Pura y micronizada.</p><div class="price">$ Consultar</div></div>
+      </article>
+      <article class="card" data-animate>
+        <div class="media"><img src="assets/img/proteina.jpg" alt="Whey ENA 1kg"/><span class="badge">Proteína</span></div>
+        <div class="body"><h3>Whey Protein 1 kg</h3><p>Excelente disolución.</p><div class="price">$ Consultar</div></div>
+      </article>
+      <article class="card" data-animate>
+        <div class="media"><img src="assets/img/omega3.jpg" alt="Omega 3 ENA"/><span class="badge">Salud</span></div>
+        <div class="body"><h3>Omega-3 (EPA/DHA)</h3><p>Apoyo cardiovascular y cognitivo.</p><div class="price">$ Consultar</div></div>
+      </article>
+    </section>
   </section>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="foot">
       <small>© 2025 Protein Power Lab. Todos los derechos reservados.</small>
@@ -179,121 +213,25 @@
   </footer>
 
   <script>
-    // Parallax
+    // Parallax leve (sin texto visible)
     (function(){
       const bg = document.querySelector('.bg');
-      window.addEventListener('scroll', ()=>{ bg.style.transform = 'translate3d(0,'+(window.pageYOffset*-0.25)+'px,0)'; });
+      window.addEventListener('scroll', function(){
+        bg.style.transform = 'translate3d(0,' + (window.pageYOffset * -0.25) + 'px,0)';
+      });
     })();
 
-    // ========= LISTAS CON TUS NOMBRES EXACTOS (.jpg) =========
-    const starProducts = [
-      'All in One Vitamin 60caps.jpg',
-      'Cafeína 200 X 30 CAPS.jpg',
-      'Colageno 360g.jpg',
-      'Creatina 150g.jpg',
-      'Creatina 300g (doypack).jpg',
-      'Creatina 300g (pote).jpg',
-      'Creatina 500g.jpg',
-      'Magnesio sin sabor 500g.jpg',
-      'Magnesio sin sabor 60caps.jpg',
-      'Omega3 60caps.jpg',
-      'Pre-entreno TNT 240g (grape, citrus, blue razz, acai).jpg',
-      'Pump 3D Ripped 315g (lemon, strawberry-lemon).jpg',
-      'Pump V8 285g (acai, lima limon, grape, watermelon).jpg',
-      'Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana).jpg'
-    ];
-
-    const enaProducts = [
-      'ena Colágeno 407g.jpg',
-      'ena Creatina 300g.jpg',
-      'ena Multivitamínico 60caps.jpg',
-      'ena Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana).jpg'
-    ];
-
-    // ========= Loader robusto de imágenes =========
-    function safeImageURL(filename){
-      const tries = [
-        './' + filename,
-        './' + encodeURI(filename),
-        './' + encodeURIComponent(filename)
-      ];
-      return new Promise(resolve=>{
-        let i = 0; const img = new Image();
-        const next = () => {
-          if(i >= tries.length){ resolve(tries[0]); return; }
-          img.onload = ()=>resolve(tries[i]);
-          img.onerror = ()=>{ i++; next(); };
-          img.src = tries[i];
-        };
-        next();
-      });
-    }
-
-    const WAPP = 'https://wa.me/541123014207?text=';
-
-    function categoria(nombre){
-      const n = nombre.toLowerCase();
-      if(n.includes('creatina')) return 'Creatina';
-      if(n.includes('whey') || n.includes('protein')) return 'Proteína';
-      if(n.includes('omega')) return 'Salud';
-      if(n.includes('multivit') || n.includes('vitamin')) return 'Multivitamínico';
-      if(n.includes('colagen')) return 'Salud';
-      if(n.includes('cafe')) return 'Energía';
-      if(n.includes('magnesio')) return 'Salud';
-      if(n.includes('pre-entreno') || n.includes('pre entreno') || n.includes('pump')) return 'Pre-entreno';
-      return 'Producto';
-    }
-
-    function cardSkeleton(nombreArchivo){
-      const badge = categoria(nombreArchivo);
-      const titulo = nombreArchivo.replace(/\.jpg$/i,'');
-      const wa = WAPP + encodeURIComponent('Hola Protein Power Lab! Quiero comprar: ' + titulo);
-      return `
-        <article class="card" data-animate>
-          <div class="media">
-            <img data-file="${nombreArchivo}" alt="${titulo}" loading="lazy"/>
-            <span class="badge">${badge}</span>
-          </div>
-          <div class="body">
-            <h3>${titulo}</h3>
-            <p>${
-              badge === 'Proteína' ? 'Excelente disolución.' :
-              badge === 'Creatina' ? 'Pura y micronizada.' :
-              badge === 'Pre-entreno' ? 'Energía y enfoque para tu sesión.' :
-              'Calidad de marca.'
-            }</p>
-            <div class="price">$ Consultar</div>
-            <div style="margin-top:10px">
-              <a class="btn-red" href="${wa}" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            </div>
-          </div>
-        </article>`;
-    }
-
-    async function mountImages(scope){
-      const imgs = scope.querySelectorAll('img[data-file]');
-      for(const el of imgs){
-        const file = el.getAttribute('data-file');
-        el.src = await safeImageURL(file);
-      }
-    }
-
-    function renderGrid(containerId, list){
-      const el = document.getElementById(containerId);
-      el.innerHTML = list.map(cardSkeleton).join('');
-      // animaciones
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    // Animación de entrada de cards
+    (function(){
+      const io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+        });
       }, {threshold:.18});
-      el.querySelectorAll('[data-animate]').forEach(c=>io.observe(c));
-      // cargar imágenes de forma robusta
-      mountImages(el);
-    }
+      document.querySelectorAll('[data-animate]').forEach(function(c){ io.observe(c); });
+    })();
 
-    renderGrid('grid-star', starProducts);
-    renderGrid('grid-ena', enaProducts);
-
-    // SPA
+    // SPA: navegación entre vistas
     (function(){
       const views = {
         home: document.getElementById('home'),
@@ -301,15 +239,15 @@
         ena:  document.getElementById('view-ena')
       };
       function show(id){
-        Object.values(views).forEach(v=>v.classList.remove('active'));
+        Object.values(views).forEach(function(v){ v.classList.remove('active'); });
         (id==='star'?views.star:(id==='ena'?views.ena:views.home)).classList.add('active');
         window.scrollTo({top:0, behavior:'smooth'});
       }
-      document.querySelectorAll('[data-open]').forEach(btn=>{
-        btn.addEventListener('click', ()=>show(btn.dataset.open));
+      document.querySelectorAll('[data-open]').forEach(function(btn){
+        btn.addEventListener('click', function(){ show(btn.dataset.open); });
       });
-      document.querySelectorAll('[data-goto="home"], .backlink').forEach(el=>{
-        el.addEventListener('click', (e)=>{e.preventDefault();show('home');});
+      document.querySelectorAll('[data-goto="home"], .backlink').forEach(function(el){
+        el.addEventListener('click', function(e){ e.preventDefault(); show('home'); });
       });
     })();
   </script>
