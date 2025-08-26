@@ -69,7 +69,7 @@
     .brand-hero{max-width:1200px;margin:22px auto 8px;padding:0 20px;display:flex;align-items:center;gap:14px}
     .brand-hero img{
       width:64px;height:64px;border-radius:12px;border:2px solid #222;
-      background:#fff;padding:6px;object-fit:contain; /* no cortar */
+      background:#fff;padding:6px;object-fit:contain;
     }
     .brand-hero h2{font-size:clamp(1.6rem,4vw,2.2rem)}
     .btn-red{
@@ -162,20 +162,7 @@
       <a class="btn-red backlink" href="#" data-goto="home">← Volver</a>
     </div>
 
-    <section class="grid">
-      <article class="card" data-animate>
-        <div class="media"><img src="./creatina.jpg" alt="Creatina Star 150g" loading="lazy"/><span class="badge">Creatina</span></div>
-        <div class="body"><h3>Creatina Monohidrato 150 g</h3><p>100% pura y micronizada.</p><div class="price">$ Consultar</div></div>
-      </article>
-      <article class="card" data-animate>
-        <div class="media"><img src="./proteina.jpg" alt="Whey Star 1kg" loading="lazy"/><span class="badge">Proteína</span></div>
-        <div class="body"><h3>Whey Protein 1 kg</h3><p>Gran disolución y sabor.</p><div class="price">$ Consultar</div></div>
-      </article>
-      <article class="card" data-animate>
-        <div class="media"><img src="./omega3.jpg" alt="Omega 3 Star" loading="lazy"/><span class="badge">Salud</span></div>
-        <div class="body"><h3>Omega-3 (EPA/DHA)</h3><p>Apoyo cardiovascular y cognitivo.</p><div class="price">$ Consultar</div></div>
-      </article>
-    </section>
+    <section class="grid" id="grid-star"></section>
   </section>
 
   <!-- ===== ENA ===== -->
@@ -189,20 +176,7 @@
       <a class="btn-red backlink" href="#" data-goto="home">← Volver</a>
     </div>
 
-    <section class="grid">
-      <article class="card" data-animate>
-        <div class="media"><img src="./creatina.jpg" alt="Creatina ENA 150g" loading="lazy"/><span class="badge">Creatina</span></div>
-        <div class="body"><h3>Creatina Monohidrato 150 g</h3><p>Pura y micronizada.</p><div class="price">$ Consultar</div></div>
-      </article>
-      <article class="card" data-animate>
-        <div class="media"><img src="./proteina.jpg" alt="Whey ENA 1kg" loading="lazy"/><span class="badge">Proteína</span></div>
-        <div class="body"><h3>Whey Protein 1 kg</h3><p>Excelente disolución.</p><div class="price">$ Consultar</div></div>
-      </article>
-      <article class="card" data-animate>
-        <div class="media"><img src="./omega3.jpg" alt="Omega 3 ENA" loading="lazy"/><span class="badge">Salud</span></div>
-        <div class="body"><h3>Omega-3 (EPA/DHA)</h3><p>Apoyo cardiovascular y cognitivo.</p><div class="price">$ Consultar</div></div>
-      </article>
-    </section>
+    <section class="grid" id="grid-ena"></section>
   </section>
 
   <!-- ===== FOOTER ===== -->
@@ -222,17 +196,88 @@
       });
     })();
 
-    // Animación de entrada
-    (function(){
-      const io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-        });
-      }, {threshold:.18});
-      document.querySelectorAll('[data-animate]').forEach(function(c){ io.observe(c); });
-    })();
+    // Utilidades
+    const WAPP = 'https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20';
+    const encode = s => encodeURI(s);
 
-    // SPA: navegación entre vistas
+    function categoria(nombre){
+      const n = nombre.toLowerCase();
+      if(n.includes('creatina')) return 'Creatina';
+      if(n.includes('whey') || n.includes('protein')) return 'Proteína';
+      if(n.includes('omega')) return 'Salud';
+      if(n.includes('multivit') || n.includes('vitamin')) return 'Multivitamínico';
+      if(n.includes('colagen')) return 'Salud';
+      if(n.includes('cafe')) return 'Energía';
+      if(n.includes('magnesio')) return 'Salud';
+      if(n.includes('pre-entreno') || n.includes('pre entreno')) return 'Pre-entreno';
+      if(n.includes('pump')) return 'Pre-entreno';
+      return 'Producto';
+    }
+
+    function cardHTML(nombreArchivo){
+      const badge = categoria(nombreArchivo);
+      const imgSrc = './' + encode(nombreArchivo);
+      const titulo = nombreArchivo.replace(/\.jpg$/i,'');
+      const wa = WAPP + encodeURIComponent('comprar: ' + titulo);
+      return `
+        <article class="card" data-animate>
+          <div class="media">
+            <img src="${imgSrc}" alt="${titulo}" loading="lazy"/>
+            <span class="badge">${badge}</span>
+          </div>
+          <div class="body">
+            <h3>${titulo}</h3>
+            <p>${badge === 'Proteína' ? 'Excelente disolución.' :
+                 badge === 'Creatina' ? 'Pura y micronizada.' :
+                 badge === 'Pre-entreno' ? 'Energía y enfoque para tu sesión.' :
+                 'Calidad de marca.'}</p>
+            <div class="price">$ Consultar</div>
+            <div style="margin-top:10px">
+              <a class="btn-red" href="${wa}" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+            </div>
+          </div>
+        </article>`;
+    }
+
+    // Listas de productos (nombres EXACTOS .jpg en la raíz)
+    const starProducts = [
+      'All in One Vitamin 60caps.jpg',
+      'Cafeína 200 X 30 CAPS.jpg',
+      'Colageno 360g.jpg',
+      'Creatina 150g.jpg',
+      'Creatina 300g (doypack).jpg',
+      'Creatina 300g (pote).jpg',
+      'Creatina 500g.jpg',
+      'Magnesio sin sabor 500g.jpg',
+      'Magnesio sin sabor 60caps.jpg',
+      'Omega3 60caps.jpg',
+      'Pre-entreno TNT 240g (grape, citrus, blue razz, acai).jpg',
+      'Pump 3D Ripped 315g (lemon, strawberry-lemon).jpg',
+      'Pump V8 285g (acai, lima limon, grape, watermelon).jpg',
+      'Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana).jpg'
+    ];
+
+    const enaProducts = [
+      'ena Colágeno 407g.jpg',
+      'ena Creatina 300g.jpg',
+      'ena Multivitamínico 60caps.jpg',
+      'ena Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana).jpg'
+    ];
+
+    // Render de catálogos
+    function renderGrid(id, list){
+      const el = document.getElementById(id);
+      el.innerHTML = list.map(cardHTML).join('');
+      // animaciones on-scroll
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, {threshold:.18});
+      el.querySelectorAll('[data-animate]').forEach(c=>io.observe(c));
+    }
+    renderGrid('grid-star', starProducts);
+    renderGrid('grid-ena', enaProducts);
+
+    // SPA navegación
     (function(){
       const views = {
         home: document.getElementById('home'),
@@ -240,15 +285,15 @@
         ena:  document.getElementById('view-ena')
       };
       function show(id){
-        Object.values(views).forEach(function(v){ v.classList.remove('active'); });
+        Object.values(views).forEach(v=>v.classList.remove('active'));
         (id==='star'?views.star:(id==='ena'?views.ena:views.home)).classList.add('active');
         window.scrollTo({top:0, behavior:'smooth'});
       }
-      document.querySelectorAll('[data-open]').forEach(function(btn){
-        btn.addEventListener('click', function(){ show(btn.dataset.open); });
+      document.querySelectorAll('[data-open]').forEach(btn=>{
+        btn.addEventListener('click', ()=>show(btn.dataset.open));
       });
-      document.querySelectorAll('[data-goto="home"], .backlink').forEach(function(el){
-        el.addEventListener('click', function(e){ e.preventDefault(); show('home'); });
+      document.querySelectorAll('[data-goto="home"], .backlink').forEach(el=>{
+        el.addEventListener('click', (e)=>{e.preventDefault();show('home');});
       });
     })();
   </script>
