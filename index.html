@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Protein Power Lab</title>
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Suplementos deportivos: creatina, proteína, omega-3 y más. Comprá directo por WhatsApp." />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root{
@@ -53,8 +55,28 @@
     .brand-card h3{font-size:1.15rem;color:#000}
     .brand-card small{color:#444}
 
+    /* Productos */
+    .grid{max-width:1200px;margin:20px auto;padding:0 20px;display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+    .card{grid-column:span 12;background:rgba(20,20,20,.9);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;opacity:0;transform:translateY(10px);transition:.6s}
+    .card.in{opacity:1;transform:translateY(0)}
+    .media{position:relative}
+    .media img{width:100%;height:220px;object-fit:cover}
+    .badge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.6);padding:6px 10px;border-radius:999px;font-size:.8rem}
+    .body{padding:16px}
+    .body h3{margin-bottom:6px}
+    .price{margin-top:10px;font-weight:800}
+    @media(min-width:768px){.card{grid-column:span 6}}
+    @media(min-width:1200px){.card{grid-column:span 4}}
+
+    /* Vistas (SPA) */
+    .view{display:none}
+    .view.active{display:block}
+    .brand-hero{max-width:1200px;margin:22px auto 8px;padding:0 20px;display:flex;align-items:center;gap:14px}
+    .brand-hero img{width:56px;height:56px;background:#fff;border-radius:12px}
+    .backlink{margin-left:auto}
+
     /* Footer */
-    footer{margin-top:auto;border-top:1px solid rgba(255,255,255,.08);background:rgba(10,10,10,.85)}
+    footer{margin-top:auto;background:#111;border-top:1px solid rgba(255,255,255,.08)}
     .foot{max-width:1200px;margin:0 auto;padding:20px;text-align:center;color:#bbb;font-size:.9rem}
     .foot a{color:#fff;text-decoration:none}
   </style>
@@ -65,33 +87,41 @@
   <!-- Header -->
   <header>
     <nav class="nav">
-      <a class="logo" href="#"><img src="assets/img/logo.jpg" alt="Logo"><span class="brand">Protein Power Lab</span></a>
+      <a class="logo" href="#" data-goto="home"><img src="assets/img/logo.jpg" alt="Logo"><span class="brand">Protein Power Lab</span></a>
       <span class="pill"><span class="dot"></span><small>Envíos en 24–72 h</small></span>
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1>Tu fuente de fuerza, poder y <span style="color:var(--brand)">resultados reales</span></h1>
-    <p>Suplementos de marcas confiables y precios competitivos. Comprá por WhatsApp y coordiná entrega inmediata en CABA/GBA.</p>
-    <div class="cta-wrap">
-      <a class="btn" href="https://wa.me/541123014207" target="_blank">Comprar por WhatsApp</a>
-      <a class="btn alt" href="https://www.instagram.com/protein_power_lab" target="_blank">Ver Instagram</a>
-    </div>
+  <!-- Home -->
+  <main id="home" class="view active">
+    <section class="hero">
+      <h1>Tu fuente de fuerza, poder y <span style="color:var(--brand)">resultados reales</span></h1>
+      <p>Suplementos de marcas confiables y precios competitivos. Comprá por WhatsApp y coordiná entrega inmediata en CABA/GBA.</p>
+      <div class="cta-wrap">
+        <a class="btn" href="https://wa.me/541123014207" target="_blank">Comprar por WhatsApp</a>
+        <a class="btn alt" href="https://www.instagram.com/protein_power_lab" target="_blank">Ver Instagram</a>
+      </div>
+    </section>
+    <section class="brand-grid">
+      <button class="brand-card" data-open="star"><img src="assets/img/star.jpg" alt="Star"><h3>Star Nutrition</h3><small>Ver catálogo</small></button>
+      <button class="brand-card" data-open="ena"><img src="assets/img/ena.jpg" alt="ENA"><h3>ENA</h3><small>Ver catálogo</small></button>
+    </section>
+  </main>
+
+  <!-- Star -->
+  <section id="view-star" class="view">
+    <div class="brand-hero"><img src="assets/img/star.jpg" alt="Star"><h2>Catálogo · Star Nutrition</h2><a class="btn backlink" data-goto="home">← Volver</a></div>
+    <section class="grid">
+      <article class="card" data-animate><div class="media"><img src="assets/img/creatina.jpg"><span class="badge">Creatina</span></div><div class="body"><h3>Creatina 150 g</h3><p>Pura y micronizada.</p><div class="price">$ Consultar</div></div></article>
+    </section>
   </section>
 
-  <!-- Cuadrados de marcas -->
-  <section class="brand-grid">
-    <button class="brand-card">
-      <img src="assets/img/star.jpg" alt="Star Nutrition">
-      <h3>Star Nutrition</h3>
-      <small>Ver catálogo</small>
-    </button>
-    <button class="brand-card">
-      <img src="assets/img/ena.jpg" alt="ENA">
-      <h3>ENA</h3>
-      <small>Ver catálogo</small>
-    </button>
+  <!-- Ena -->
+  <section id="view-ena" class="view">
+    <div class="brand-hero"><img src="assets/img/ena.jpg" alt="ENA"><h2>Catálogo · ENA</h2><a class="btn backlink" data-goto="home">← Volver</a></div>
+    <section class="grid">
+      <article class="card" data-animate><div class="media"><img src="assets/img/creatina.jpg"><span class="badge">Creatina</span></div><div class="body"><h3>Creatina 150 g</h3><p>Pura y micronizada.</p><div class="price">$ Consultar</div></div></article>
+    </section>
   </section>
 
   <!-- Footer -->
@@ -102,5 +132,18 @@
       <a href="https://www.instagram.com/protein_power_lab" target="_blank">@protein_power_lab</a>
     </div>
   </footer>
+
+  <script>
+    // SPA Navegación
+    const views={home:document.getElementById('home'),star:document.getElementById('view-star'),ena:document.getElementById('view-ena')};
+    function show(id){Object.values(views).forEach(v=>v.classList.remove('active'));views[id].classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+    document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.open)));
+    document.querySelectorAll('[data-goto="home"],.backlink').forEach(el=>el.addEventListener('click',()=>show('home')));
+
+    // Animación productos
+    const cards=document.querySelectorAll('[data-animate]');
+    const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.2});
+    cards.forEach(c=>io.observe(c));
+  </script>
 </body>
 </html>
