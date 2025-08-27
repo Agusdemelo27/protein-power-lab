@@ -42,15 +42,24 @@
     .hero{max-width:1200px;margin:48px auto 0;padding:0 20px 28px;display:grid;gap:24px;text-align:center}
     .hero h1{font-size:clamp(2.2rem, 4vw, 3.4rem);font-weight:800;line-height:1.1;text-shadow:0 6px 30px rgba(0,0,0,.5)}
     .hero p{color:var(--muted);max-width:70ch;margin:0 auto}
-    .cta-wrap{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:16px}
+
+    /* BOTONES WHATSAPP / INSTAGRAM */
+    .cta-wrap{
+      display:flex;
+      justify-content:center;
+      gap:28px;
+      margin-top:24px;
+    }
     .cta-wrap a img{
-      width:64px;
-      height:64px;
+      width:72px;
+      height:72px;
       object-fit:contain;
       transition:transform .2s;
-      margin:0 10px;
+      filter:drop-shadow(0 4px 10px rgba(0,0,0,.6));
     }
-    .cta-wrap a img:hover{transform:scale(1.08)}
+    .cta-wrap a img:hover{
+      transform:scale(1.12);
+    }
 
     .brands{max-width:1200px;margin:36px auto 90px;padding:0 20px}
     .brand-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
