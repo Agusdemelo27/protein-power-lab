@@ -43,23 +43,39 @@
     .hero h1{font-size:clamp(2.2rem, 4vw, 3.4rem);font-weight:800;line-height:1.1;text-shadow:0 6px 30px rgba(0,0,0,.5)}
     .hero p{color:var(--muted);max-width:70ch;margin:0 auto}
 
-    /* BOTONES WHATSAPP / INSTAGRAM */
-    .cta-wrap{
-      display:flex;
-      justify-content:center;
-      gap:28px;
-      margin-top:24px;
-    }
-    .cta-wrap a img{
-      width:72px;
-      height:72px;
-      object-fit:contain;
-      transition:transform .2s;
-      filter:drop-shadow(0 4px 10px rgba(0,0,0,.6));
-    }
-    .cta-wrap a img:hover{
-      transform:scale(1.12);
-    }
+    /* BOTONES WHATSAPP / INSTAGRAM – forzado grande */
+.cta-wrap{
+  display:flex;
+  justify-content:center;
+  gap:28px;
+  margin-top:24px;
+}
+
+.cta-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:84px !important;
+  height:84px !important;
+  border-radius:18px;
+  background:rgba(255,255,255,.95);
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 14px 32px rgba(0,0,0,.35);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.cta-icon:hover{
+  transform:translateY(-2px) scale(1.04);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+}
+
+.cta-icon img{
+  width:44px !important;
+  height:44px !important;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.35));
+}
+
 
     .brands{max-width:1200px;margin:36px auto 90px;padding:0 20px}
     .brand-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
@@ -111,10 +127,14 @@
   </section>
 
   <footer>
-    <div class="foot">
-      <small>© 2025 Protein Power Lab. Todos los derechos reservados.</small>
-      <small>Contacto: <a href="mailto:proteinpowerlab@gmail.com">proteinpowerlab@gmail.com</a> · Instagram: <a href="https://www.instagram.com/protein_power_lab" target="_blank">@protein_power_lab</a></small>
-    </div>
+<div class="cta-wrap">
+  <a class="cta-icon" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20hacer%20un%20pedido" target="_blank" aria-label="WhatsApp">
+    <img src="assets/img/whatsapp.jpg" alt="WhatsApp">
+  </a>
+  <a class="cta-icon" href="https://www.instagram.com/protein_power_lab" target="_blank" aria-label="Instagram">
+    <img src="assets/img/instagram.jpg" alt="Instagram">
+  </a>
+</div>
   </footer>
 </body>
 </html>
