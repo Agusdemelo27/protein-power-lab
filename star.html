@@ -1,266 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Catálogo · Star Nutrition</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-  :root{
-    --bg:#0e0e0f;              /* negro carbón */
-    --bg-2:#141415;            /* panel cards */
-    --muted:#cfcfcf;
-    --text:#f3f3f3;
-    --accent:#FF6A00;          /* naranja del logo */
-    --ring:0 0 0 2px rgba(255,106,0,.25);
-    --radius:16px;
-    --shadow:0 20px 60px rgba(0,0,0,.55);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
-
-  /* BG un poco más claro que antes */
-  .bg{
-    position:fixed;inset:0;z-index:-2;
-    background:url('assets/img/bg-texture.jpg') center/cover no-repeat;
-    filter:contrast(1.02) brightness(.8);   /* antes .55 */
-    transform:translateZ(0);
-  }
-  .bg::after{
-    content:"";position:absolute;inset:0;z-index:-1;
-    background:radial-gradient(1200px 600px at 50% 0, rgba(255,106,0,.15), transparent 60%),
-               radial-gradient(1200px 600px at 50% 100%, rgba(255,255,255,.12), transparent 60%),
-               linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.6));
-  }
-
-  header{position:sticky;top:0;z-index:50;background:rgba(14,14,15,.6);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.06)}
-  .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:20px;padding:14px 20px}
-  .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff}
-  .logo img{height:44px;width:44px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,.1);background:#000}
-  .brand{font-weight:800;letter-spacing:.4px}
-  .right{margin-left:auto;display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.9rem}
-
-  main{max-width:1200px;margin:28px auto 80px;padding:0 20px}
-
-  .title{display:flex;gap:14px;align-items:center;margin:6px 0 16px}
-  .title img{height:42px;width:42px;object-fit:contain;filter:none}
-  .title h1{font-size:clamp(1.6rem,3.2vw,2.2rem);line-height:1.1;font-weight:800}
-  .title small{color:var(--muted)}
-
-  /* filtros */
-  .filters{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 8px}
-  .input,.select{background:#fff;color:#111;border:none;border-radius:12px;padding:12px 14px;font-weight:600;min-width:220px}
-  .input::placeholder{color:#6b6b6b}
-  select.select option{color:#111;background:#fff}
-
-  /* grupo por categoría */
-  .group{margin:30px 0 36px}
-  .group h2{font-weight:800;letter-spacing:.3px;margin:0 0 14px;color:#fff}
-  .group h2 .chip{display:inline-block;margin-left:8px;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.08);font-size:.8rem;color:var(--muted)}
-
-  /* grid de cards */
-  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-  .card{grid-column:span 12;background:rgba(20,20,21,.88);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transform:translateY(12px);opacity:0;transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s}
-  .card.in{transform:translateY(0);opacity:1}
-  .media{background:#0f0f10;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;min-height:220px}
-  .media img{
-    display:block;width:100%;height:260px;object-fit:contain; /* que se vea completa */
-    filter:none !important; opacity:1 !important;             /* quitar oscurecido */
-    background:#fff;                                          /* fondo blanco para etiquetas negras */
-  }
-  .badge{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.55);padding:6px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:.8rem}
-  .body{padding:18px}
-  .body h3{font-size:1.12rem;color:#fff;margin-bottom:6px;font-weight:800}
-  .body p{color:#d6d6d6;font-size:.98rem}
-  .price{margin-top:10px;font-weight:900;font-size:1.1rem;color:#fff}
-  .price .nostock{color:#ffcf9e;background:rgba(255,106,0,.14);padding:3px 8px;border-radius:8px;border:1px solid rgba(255,106,0,.3)}
-
-  @media(min-width:768px){ .card{grid-column:span 6} .media img{height:240px} }
-  @media(min-width:1200px){ .card{grid-column:span 4} .media img{height:220px} }
-
-  .foot{margin-top:36px;color:var(--muted);font-size:.9rem;text-align:center;border-top:1px solid rgba(255,255,255,.08);padding:22px 0}
-  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Star Nutrition - Catálogo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{--brand:#FF6A00;--brand-hover:#e85f00;--bg:#0e0e0f;--card:rgba(255,255,255,.06);--text:#f5f5f5;--muted:#cfcfcf;--radius:16px;}
+    body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);margin:0}
+    header{background:rgba(14,14,15,.6);padding:14px 20px}
+    .btn-back{background:var(--brand);color:#fff;padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none}
+    .btn-back:hover{background:var(--brand-hover)}
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin:20px}
+    .filters .control{background:#1a1a1a;color:#fff;border:1px solid var(--brand);padding:10px 14px;border-radius:10px}
+    .section-title{margin:30px 20px 10px;border-left:6px solid var(--brand);padding-left:10px;font-weight:800}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:0 20px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);overflow:hidden;text-align:center}
+    .card img{width:100%;height:200px;object-fit:contain;background:#111}
+    .card h3{margin:12px 0;font-size:1.1rem}
+    .price{margin-bottom:14px;font-weight:700}
+  </style>
 </head>
 <body>
-  <div class="bg" aria-hidden="true"></div>
-
   <header>
-    <nav class="nav">
-      <a class="logo" href="index.html" aria-label="Protein Power Lab">
-        <img src="assets/img/logo.jpg" alt="Protein Power Lab">
-        <span class="brand">Protein Power Lab</span>
-      </a>
-      <div class="right">Catálogo • <strong>Star Nutrition</strong></div>
-    </nav>
+    <a href="index.html#marcas" class="btn-back">← Volver</a>
   </header>
 
-  <main>
-    <div class="title">
-      <img src="assets/img/star.jpg" alt="Star Nutrition">
-      <div>
-        <h1>Catálogo · Star Nutrition</h1>
-        <small>Elegí tu producto. Los sabores están aclarados entre paréntesis. Precios en ARS.</small>
-      </div>
-    </div>
+  <div class="filters">
+    <input class="control" type="search" placeholder="Buscar...">
+    <select class="control">
+      <option value="">Todas las categorías</option>
+      <option value="creatina">Creatina</option>
+      <option value="proteina">Proteína</option>
+      <option value="pre">Pre-entreno</option>
+      <option value="multi">Multivitamínico / Salud</option>
+    </select>
+  </div>
 
-    <!-- Filtros -->
-    <div class="filters">
-      <input id="q" class="input" placeholder="Buscar... (ej: creatina, whey, v8)">
-      <select id="cat" class="select">
-        <option value="todas">Todas las categorías</option>
-        <option value="creatina">Creatina</option>
-        <option value="proteina">Proteína</option>
-        <option value="pre">Pre-entreno</option>
-        <option value="multi">Multivitamínico</option>
-        <option value="salud">Salud</option>
-      </select>
-      <select id="sort" class="select">
-        <option value="rec">Orden: recomendado</option>
-        <option value="precioAsc">Menor precio</option>
-        <option value="precioDesc">Mayor precio</option>
-        <option value="az">A-Z</option>
-      </select>
-    </div>
+  <h2 class="section-title">Creatinas</h2>
+  <section class="grid">
+    <div class="card"><img src="assets/img/Creatina 150g.jpg" alt=""><h3>Creatina 150g</h3><div class="price">$ Consultar</div></div>
+    <div class="card"><img src="assets/img/Creatina 300g (pote).jpg" alt=""><h3>Creatina 300g pote</h3><div class="price">Sin stock</div></div>
+    <div class="card"><img src="assets/img/Creatina 300g (doypack).jpg" alt=""><h3>Creatina 300g doypack</h3><div class="price">$ Consultar</div></div>
+    <div class="card"><img src="assets/img/Creatina 500g.jpg" alt=""><h3>Creatina 500g</h3><div class="price">Sin stock</div></div>
+    <div class="card"><img src="assets/img/Creatina 1kg.jpg" alt=""><h3>Creatina 1kg</h3><div class="price">$ Consultar</div></div>
+  </section>
 
-    <!-- Grupos por categoría (se llenan por JS) -->
-    <section class="group" id="g-creatina">
-      <h2>Creatina <span class="chip" id="c-creatina">0</span></h2>
-      <div class="grid" data-cat="creatina"></div>
-    </section>
+  <h2 class="section-title">Proteínas</h2>
+  <section class="grid">
+    <div class="card"><img src="assets/img/Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana).jpg" alt=""><h3>Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana)</h3><div class="price">$ Consultar</div></div>
+  </section>
 
-    <section class="group" id="g-proteina">
-      <h2>Proteína <span class="chip" id="c-proteina">0</span></h2>
-      <div class="grid" data-cat="proteina"></div>
-    </section>
+  <h2 class="section-title">Pre-entrenos</h2>
+  <section class="grid">
+    <div class="card"><img src="assets/img/Pump V8 285g (acai, lima limon, grape, watermelon).jpg" alt=""><h3>Pump V8 285g (acai, lima limon, grape, watermelon)</h3><div class="price">$ Consultar</div></div>
+    <div class="card"><img src="assets/img/Pump 3D Ripped 315g (lemon, strawberry-lemon).jpg" alt=""><h3>Pump 3D Ripped 315g (lemon, strawberry-lemon)</h3><div class="price">$ Consultar</div></div>
+  </section>
 
-    <section class="group" id="g-pre">
-      <h2>Pre-entreno <span class="chip" id="c-pre">0</span></h2>
-      <div class="grid" data-cat="pre"></div>
-    </section>
-
-    <section class="group" id="g-multi">
-      <h2>Multivitamínico <span class="chip" id="c-multi">0</span></h2>
-      <div class="grid" data-cat="multi"></div>
-    </section>
-
-    <section class="group" id="g-salud">
-      <h2>Salud <span class="chip" id="c-salud">0</span></h2>
-      <div class="grid" data-cat="salud"></div>
-    </section>
-
-    <div class="foot">© 2025 Protein Power Lab</div>
-  </main>
-
-<script>
-  // === Config ===
-  const IMG_BASE = 'assets/img/';
-
-  // Productos STAR (con precios que pasaste)
-  // stock: si no hay precio → Sin stock
-  const PRODUCTS = [
-    // CREATINAS
-    {cat:'creatina', name:'Creatina 150g', price:20000, img:'Creatina_150g.jpg', desc:'Pura y micronizada.'},
-    {cat:'creatina', name:'Creatina 300g (doypack)', price:33990, img:'Creatina_300g_doypack.jpg', desc:'Pura y micronizada.'},
-    {cat:'creatina', name:'Creatina 300g (pote)', price:35000, img:'Creatina_300g_pote.jpg', desc:'Pura y micronizada.'},
-    {cat:'creatina', name:'Creatina 500g', price:52000, img:'Creatina_500g.jpg', desc:'Pura y micronizada.'},
-    {cat:'creatina', name:'Creatina 1kg', price:89000, img:'Creatina_1kg.jpg', desc:'Pura y micronizada.'},
-
-    // PROTEÍNA
-    {cat:'proteina', name:'Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana)', price:40000, img:'Whey_Protein_2LB_vainilla_chocolate_frutilla_cookies_banana.jpg', desc:'Excelente disolución.'},
-
-    // PRE
-    {cat:'pre', name:'Pump V8 285g (acai, lima limon, grape, watermelon)', price:34000, img:'Pump_V8_285g_acai_lima_limon_grape_watermelon.jpg', desc:'Energía y enfoque para tu sesión.'},
-    {cat:'pre', name:'Pump 3D Ripped 315g (lemon, strawberry lemon)', price:null, img:'Pump_3D_Ripped_315g_lemon_strawberry_lemon.jpg', desc:'Energía y enfoque. 3D Ripped.'},
-
-    // MULTI / SALUD
-    {cat:'multi', name:'All in One Vitamin 60caps', price:null, img:'All_in_One_Vitamin_60caps.jpg', desc:'Vitaminas y minerales clave.'},
-    {cat:'salud', name:'Omega3 60caps', price:32000, img:'Omega3_60caps.jpg', desc:'EPA/DHA.'},
-    {cat:'salud', name:'Magnesio sin sabor 60caps', price:15500, img:'Magnesio_sin_sabor_60caps.jpg', desc:'Apoyo muscular.'}
-  ];
-
-  // ====== UI ======
-  const q = document.getElementById('q');
-  const cat = document.getElementById('cat');
-  const sort = document.getElementById('sort');
-
-  // Anim on scroll
-  const io = new IntersectionObserver((entries)=>entries.forEach(e=>{
-    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-  }), {threshold:.18});
-
-  function pesos(v){
-    return v.toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});
-  }
-
-  function card(p){
-    const priceHtml = (p.price && p.price>0)
-      ? `<div class="price">${pesos(p.price)}</div>`
-      : `<div class="price"><span class="nostock">Sin stock</span></div>`;
-
-    const el = document.createElement('article');
-    el.className = 'card';
-    el.innerHTML = `
-      <div class="media">
-        <img loading="lazy" src="${IMG_BASE + p.img}" alt="${p.name}">
-      </div>
-      <div class="body">
-        <div class="badge">${label(p.cat)}</div>
-        <h3>${p.name}</h3>
-        <p>${p.desc||''}</p>
-        ${priceHtml}
-      </div>
-    `;
-    io.observe(el);
-    return el;
-  }
-
-  function label(c){
-    return {creatina:'Creatina',proteina:'Proteína',pre:'Pre-entreno',multi:'Multivitamínico',salud:'Salud'}[c]||c;
-  }
-
-  function render(){
-    // limpiar grids
-    document.querySelectorAll('.grid').forEach(g=>g.innerHTML='');
-    const term = (q.value||'').trim().toLowerCase();
-    const catVal = cat.value;
-
-    let data = PRODUCTS.filter(p=>{
-      const byCat = (catVal==='todas') || (p.cat===catVal);
-      const byTerm = !term || (p.name.toLowerCase().includes(term) || (p.desc||'').toLowerCase().includes(term));
-      return byCat && byTerm;
-    });
-
-    // ordenar
-    if (sort.value==='precioAsc') data.sort((a,b)=>(a.price||1e12)-(b.price||1e12));
-    if (sort.value==='precioDesc') data.sort((a,b)=>(b.price||-1)-(a.price||-1));
-    if (sort.value==='az') data.sort((a,b)=>a.name.localeCompare(b.name));
-
-    // contadores
-    const counts = {creatina:0,proteina:0,pre:0,multi:0,salud:0};
-    data.forEach(p=>counts[p.cat]++);
-    Object.keys(counts).forEach(k=>{
-      const el = document.getElementById('c-'+k);
-      if (el) el.textContent = counts[k];
-      const sec = document.getElementById('g-'+k);
-      if (sec) sec.style.display = counts[k] ? '' : 'none';
-    });
-
-    // pintar en su grupo
-    data.forEach(p=>{
-      const g = document.querySelector(`.grid[data-cat="${p.cat}"]`);
-      if (g) g.appendChild(card(p));
-    });
-  }
-
-  q.addEventListener('input', render);
-  cat.addEventListener('change', render);
-  sort.addEventListener('change', render);
-
-  render();
-</script>
+  <h2 class="section-title">Multivitamínicos / Salud</h2>
+  <section class="grid">
+    <div class="card"><img src="assets/img/All in One Vitamin 60caps.jpg" alt=""><h3>All in One Vitamin 60 caps</h3><div class="price">$ Consultar</div></div>
+    <div class="card"><img src="assets/img/Cafeína 200 X 30 CAPS.jpg" alt=""><h3>Cafeína 200mg x30 caps</h3><div class="price">Sin stock</div></div>
+    <div class="card"><img src="assets/img/Magnesio sin sabor 60caps.jpg" alt=""><h3>Magnesio 60 caps</h3><div class="price">$ Consultar</div></div>
+    <div class="card"><img src="assets/img/Magnesio sin sabor 500g.jpg" alt=""><h3>Magnesio 500g</h3><div class="price">Sin stock</div></div>
+    <div class="card"><img src="assets/img/Colageno 360g.jpg" alt=""><h3>Colágeno 360g</h3><div class="price">$ Consultar</div></div>
+    <div class="card"><img src="assets/img/Omega3 60caps.jpg" alt=""><h3>Omega3 60 caps</h3><div class="price">Sin stock</div></div>
+  </section>
 </body>
 </html>
