@@ -1,171 +1,165 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Catálogo · ENA</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --brand:#FF6A00; --brand-2:#ff8d3a;
-    --bg:#0e0e10; --text:#f6f6f7; --muted:#cfd2d7;
-    --card:#16181c; --outline:rgba(255,255,255,.10);
-    --shadow:0 12px 30px rgba(0,0,0,.35); --radius:18px;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif}
-
-  /* Header + volver */
-  header{position:sticky;top:0;z-index:9;background:rgba(15,16,18,.75);backdrop-filter:blur(6px);border-bottom:1px solid var(--outline)}
-  .top{max-width:1200px;margin:auto;padding:12px 16px;display:flex;gap:12px;align-items:center}
-  .btn-back{
-    text-decoration:none;background:linear-gradient(90deg,var(--brand),var(--brand-2));
-    color:#fff;font-weight:800;border-radius:12px;padding:10px 14px;box-shadow:var(--shadow)
-  }
-  .title{font-size:1.1rem;font-weight:800;margin-left:4px}
-
-  /* Hero/encabezado */
-  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--outline)}
-  .hero .bg{position:absolute;inset:0;background:url('assets/img/bg-texture.jpg') center/cover no-repeat;filter:brightness(.92)}
-  .hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.30),rgba(0,0,0,.65))}
-  .hero .wrap{position:relative;max-width:1200px;margin:auto;padding:42px 18px 18px}
-  .hero h1{font-size:2rem;margin:0 0 8px;font-weight:800}
-  .hero p{margin:0;color:var(--muted)}
-
-  /* Filtros */
-  .filters{max-width:1200px;margin:16px auto 16px;padding:0 18px;display:flex;flex-wrap:wrap;gap:10px}
-  .control{
-    background:#1a1c20;border:1px solid var(--brand);color:#fff;
-    padding:10px 12px;border-radius:12px;outline:none;min-width:220px
-  }
-  .control::placeholder{color:#d8d8d8}
-  select.control option{color:#111;background:#fff}
-
-  /* Secciones */
-  .section-title{
-    max-width:1200px;margin:26px auto 8px;padding:0 18px;
-    font-weight:800;font-size:1.4rem;
-    border-left:6px solid var(--brand); padding-left:10px;
-  }
-
-  /* Grid productos */
-  .grid{max-width:1200px;margin:0 auto 26px;padding:0 18px;
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
-
-  .card{
-    background:var(--card);border:1px solid var(--outline);border-radius:var(--radius);
-    overflow:hidden;box-shadow:var(--shadow);
-  }
-  .pic{height:210px;background:#0f1114;display:flex;align-items:center;justify-content:center}
-  .pic img{width:86%;height:86%;object-fit:contain}
-  .info{padding:14px}
-  .tag{display:inline-block;font-size:.8rem;color:#fff;background:linear-gradient(90deg,var(--brand),var(--brand-2));padding:6px 10px;border-radius:999px;font-weight:800;margin-bottom:10px}
-  .name{margin:0 0 6px;font-weight:800}
-  .desc{margin:0 0 10px;color:var(--muted);font-size:.95rem}
-  .price{font-weight:800}
-  .nostock{display:inline-block;padding:3px 8px;border-radius:8px;border:1px solid rgba(255,106,0,.28);background:rgba(255,106,0,.14);color:#ffd7b3}
+  /* MISMO CSS QUE EN star.html (copiado tal cual) */
+  :root{--bg:#0e0e0f;--bg-2:#141415;--muted:#cfcfcf;--text:#f3f3f3;--accent:#FF6A00;--ring:0 0 0 2px rgba(255,106,0,.25);--radius:16px;--shadow:0 20px 60px rgba(0,0,0,.55)}
+  *{box-sizing:border-box;margin:0;padding:0} html,body{height:100%}
+  body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+  .bg{position:fixed;inset:0;z-index:-2;background:url('assets/img/bg-texture.jpg') center/cover no-repeat;filter:contrast(1.02) brightness(.8);transform:translateZ(0)}
+  .bg::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(1200px 600px at 50% 0, rgba(255,106,0,.15), transparent 60%),radial-gradient(1200px 600px at 50% 100%, rgba(255,255,255,.12), transparent 60%),linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.6))}
+  header{position:sticky;top:0;z-index:50;background:rgba(14,14,15,.6);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:20px;padding:14px 20px}
+  .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff}
+  .logo img{height:44px;width:44px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,.1);background:#000}
+  .brand{font-weight:800;letter-spacing:.4px}.right{margin-left:auto;display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.9rem}
+  main{max-width:1200px;margin:28px auto 80px;padding:0 20px}
+  .title{display:flex;gap:14px;align-items:center;margin:6px 0 16px}
+  .title img{height:42px;width:42px;object-fit:contain}
+  .title h1{font-size:clamp(1.6rem,3.2vw,2.2rem);line-height:1.1;font-weight:800}.title small{color:var(--muted)}
+  .filters{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 8px}
+  .input,.select{background:#fff;color:#111;border:none;border-radius:12px;padding:12px 14px;font-weight:600;min-width:220px}
+  .input::placeholder{color:#6b6b6b} select.select option{color:#111;background:#fff}
+  .group{margin:30px 0 36px}
+  .group h2{font-weight:800;letter-spacing:.3px;margin:0 0 14px;color:#fff}
+  .group h2 .chip{display:inline-block;margin-left:8px;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.08);font-size:.8rem;color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+  .card{grid-column:span 12;background:rgba(20,20,21,.88);border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.55);overflow:hidden;transform:translateY(12px);opacity:0;transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s}
+  .card.in{transform:translateY(0);opacity:1}
+  .media{background:#0f0f10;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;min-height:220px}
+  .media img{display:block;width:100%;height:260px;object-fit:contain;filter:none !important;opacity:1 !important;background:#fff}
+  .badge{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.55);padding:6px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:.8rem}
+  .body{padding:18px}.body h3{font-size:1.12rem;color:#fff;margin-bottom:6px;font-weight:800}.body p{color:#d6d6d6;font-size:.98rem}
+  .price{margin-top:10px;font-weight:900;font-size:1.1rem;color:#fff}.price .nostock{color:#ffcf9e;background:rgba(255,106,0,.14);padding:3px 8px;border-radius:8px;border:1px solid rgba(255,106,0,.3)}
+  @media(min-width:768px){ .card{grid-column:span 6} .media img{height:240px} }
+  @media(min-width:1200px){ .card{grid-column:span 4} .media img{height:220px} }
+  .foot{margin-top:36px;color:#cfcfcf;font-size:.9rem;text-align:center;border-top:1px solid rgba(255,255,255,.08);padding:22px 0}
 </style>
 </head>
 <body>
+<div class="bg" aria-hidden="true"></div>
 
 <header>
-  <div class="top">
-    <a class="btn-back" href="index.html#marcas">← Volver</a>
-    <span class="title">Catálogo · <span style="color:var(--brand)">ENA</span></span>
-  </div>
+  <nav class="nav">
+    <a class="logo" href="index.html"><img src="assets/img/logo.jpg" alt=""><span class="brand">Protein Power Lab</span></a>
+    <div class="right">Catálogo • <strong>ENA</strong></div>
+  </nav>
 </header>
 
-<section class="hero" aria-label="encabezado">
-  <div class="bg"></div><div class="shade"></div>
-  <div class="wrap">
-    <h1>Elegí tu producto</h1>
-    <p>Los sabores están aclarados entre paréntesis. Precios en ARS.</p>
+<main>
+  <div class="title">
+    <img src="assets/img/ena.jpg" alt="ENA">
+    <div>
+      <h1>Catálogo · ENA</h1>
+      <small>Elegí tu producto. Los sabores están aclarados entre paréntesis. Precios en ARS.</small>
+    </div>
   </div>
-</section>
 
-<!-- Filtros visuales (si querés funcionalidad, después te agrego JS como en versiones previas) -->
-<div class="filters">
-  <input class="control" type="search" placeholder="Buscar... (ej: creatina, whey)">
-  <select class="control">
-    <option value="">Todas las categorías</option>
-    <option value="creatina">Creatina</option>
-    <option value="proteina">Proteína</option>
-    <option value="multi">Multivitamínico / Salud</option>
-  </select>
-  <select class="control">
-    <option value="rec">Orden: recomendado</option>
-    <option value="menor">Menor precio</option>
-    <option value="mayor">Mayor precio</option>
-    <option value="az">A-Z</option>
-  </select>
-</div>
-
-<!-- ====== CREATINA ====== -->
-<h2 class="section-title">Creatina</h2>
-<section class="grid">
-  <article class="card">
-    <div class="pic">
-      <img src="assets/img/ena Creatina 300g.jpg" alt="ENA Creatina 300g">
-    </div>
-    <div class="info">
-      <span class="tag">Creatina</span>
-      <h3 class="name">ENA Creatina 300g</h3>
-      <p class="desc">Pura y micronizada.</p>
-      <div class="price"><span class="nostock">Sin stock</span></div>
-    </div>
-  </article>
-</section>
-
-<!-- ====== PROTEÍNAS ====== -->
-<h2 class="section-title">Proteína</h2>
-<section class="grid">
-  <article class="card">
-    <div class="pic">
-      <img src="assets/img/ena Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana).jpg" alt="ENA Whey Protein 2LB">
-    </div>
-    <div class="info">
-      <span class="tag">Proteína</span>
-      <h3 class="name">Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana)</h3>
-      <p class="desc">Excelente disolución y sabor.</p>
-      <div class="price"><span class="nostock">Sin stock</span></div>
-    </div>
-  </article>
-</section>
-
-<!-- ====== MULTIVITAMÍNICOS / SALUD ====== -->
-<h2 class="section-title">Multivitamínicos / Salud</h2>
-<section class="grid">
-  <article class="card">
-    <div class="pic">
-      <img src="assets/img/ena Multivitamínico 60caps.jpg" alt="ENA Multivitamínico 60caps">
-    </div>
-    <div class="info">
-      <span class="tag">Multivitamínico</span>
-      <h3 class="name">Multivitamínico 60caps</h3>
-      <p class="desc">Vitaminas y minerales esenciales.</p>
-      <div class="price"><span class="nostock">Sin stock</span></div>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="pic">
-      <img src="assets/img/ena Colágeno 407g.jpg" alt="ENA Colágeno 407g">
-    </div>
-    <div class="info">
-      <span class="tag">Salud</span>
-      <h3 class="name">Colágeno 407g</h3>
-      <p class="desc">Soporte articular y de la piel.</p>
-      <div class="price"><span class="nostock">Sin stock</span></div>
-    </div>
-  </article>
-</section>
-
-<footer style="border-top:1px solid var(--outline);background:#0b0c0e">
-  <div style="max-width:1200px;margin:auto;padding:22px 18px;color:var(--muted);text-align:center">
-    © 2025 Protein Power Lab
+  <div class="filters">
+    <input id="q" class="input" placeholder="Buscar...">
+    <select id="cat" class="select">
+      <option value="todas">Todas las categorías</option>
+      <option value="creatina">Creatina</option>
+      <option value="proteina">Proteína</option>
+      <option value="pre">Pre-entreno</option>
+      <option value="multi">Multivitamínico</option>
+      <option value="salud">Salud</option>
+    </select>
+    <select id="sort" class="select">
+      <option value="rec">Orden: recomendado</option>
+      <option value="precioAsc">Menor precio</option>
+      <option value="precioDesc">Mayor precio</option>
+      <option value="az">A-Z</option>
+    </select>
   </div>
-</footer>
 
+  <section class="group" id="g-creatina"><h2>Creatina <span class="chip" id="c-creatina">0</span></h2><div class="grid" data-cat="creatina"></div></section>
+  <section class="group" id="g-proteina"><h2>Proteína <span class="chip" id="c-proteina">0</span></h2><div class="grid" data-cat="proteina"></div></section>
+  <section class="group" id="g-pre"><h2>Pre-entreno <span class="chip" id="c-pre">0</span></h2><div class="grid" data-cat="pre"></div></section>
+  <section class="group" id="g-multi"><h2>Multivitamínico <span class="chip" id="c-multi">0</span></h2><div class="grid" data-cat="multi"></div></section>
+  <section class="group" id="g-salud"><h2>Salud <span class="chip" id="c-salud">0</span></h2><div class="grid" data-cat="salud"></div></section>
+
+  <div class="foot">© 2025 Protein Power Lab</div>
+</main>
+
+<script>
+  const IMG_BASE = 'assets/img/';
+
+  // Cargá los nombres EXACTOS que subiste (me baso en los que mostraste)
+  const PRODUCTS = [
+    {cat:'proteina', name:'ENA Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana)', price:null, img:'ena_Whey_Protein_2LB_vainilla_chocolate_frutilla_cookies_banana.jpg', desc:'Excelente disolución.'},
+    {cat:'creatina', name:'ENA Creatina 300g', price:null, img:'ena_Creatina_300g.jpg', desc:'Pura y micronizada.'},
+    {cat:'salud', name:'ENA Colágeno 407g', price:null, img:'ena_Colágeno_407g.jpg', desc:'Soporte articular y piel.'},
+    {cat:'multi', name:'ENA Multivitamínico 60caps', price:null, img:'ena_Multivitamínico_60caps.jpg', desc:'Vitaminas y minerales clave.'}
+    // agregá más ENA si querés, respetando {cat, name, price, img}
+  ];
+
+  const q = document.getElementById('q');
+  const cat = document.getElementById('cat');
+  const sort = document.getElementById('sort');
+
+  const io = new IntersectionObserver((entries)=>entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold:.18});
+
+  const label = c => ({creatina:'Creatina',proteina:'Proteína',pre:'Pre-entreno',multi:'Multivitamínico',salud:'Salud'}[c]||c);
+  const pesos = v => v.toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});
+
+  function card(p){
+    const priceHtml = (p.price && p.price>0) ? `<div class="price">${pesos(p.price)}</div>` : `<div class="price"><span class="nostock">Sin stock</span></div>`;
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `
+      <div class="media"><img loading="lazy" src="${IMG_BASE + p.img}" alt="${p.name}"></div>
+      <div class="body">
+        <div class="badge">${label(p.cat)}</div>
+        <h3>${p.name}</h3>
+        <p>${p.desc||''}</p>
+        ${priceHtml}
+      </div>`;
+    io.observe(el);
+    return el;
+  }
+
+  function render(){
+    document.querySelectorAll('.grid').forEach(g=>g.innerHTML='');
+    const term = (q.value||'').trim().toLowerCase();
+    const catVal = cat.value;
+
+    let data = PRODUCTS.filter(p=>{
+      const byCat = (catVal==='todas') || (p.cat===catVal);
+      const byTerm = !term || p.name.toLowerCase().includes(term) || (p.desc||'').toLowerCase().includes(term);
+      return byCat && byTerm;
+    });
+
+    if (sort.value==='precioAsc') data.sort((a,b)=>(a.price||1e12)-(b.price||1e12));
+    if (sort.value==='precioDesc') data.sort((a,b)=>(b.price||-1)-(a.price||-1));
+    if (sort.value==='az') data.sort((a,b)=>a.name.localeCompare(b.name));
+
+    const counts = {creatina:0,proteina:0,pre:0,multi:0,salud:0};
+    data.forEach(p=>counts[p.cat]++);
+    Object.keys(counts).forEach(k=>{
+      const el = document.getElementById('c-'+k);
+      if (el) el.textContent = counts[k];
+      const sec = document.getElementById('g-'+k);
+      if (sec) sec.style.display = counts[k] ? '' : 'none';
+    });
+
+    data.forEach(p=>{
+      const g = document.querySelector(`.grid[data-cat="${p.cat}"]`);
+      if (g) g.appendChild(card(p));
+    });
+  }
+
+  q.addEventListener('input', render);
+  cat.addEventListener('change', render);
+  sort.addEventListener('change', render);
+  render();
+</script>
 </body>
 </html>
-
