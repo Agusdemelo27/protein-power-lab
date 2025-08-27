@@ -2,94 +2,76 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Protein Power Lab</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root{
       --bg:#0e0e0f;
-      --text:#f3f3f3;
+      --card:#ffffff;
       --muted:#cfcfcf;
+      --text:#f3f3f3;
       --accent:#FF6A00;
-      --panel:#f3f4f6;      /* gris muy clarito de las tarjetas */
       --radius:18px;
-      --shadow:0 18px 50px rgba(0,0,0,.35);
+      --shadow:0 20px 60px rgba(0,0,0,.55);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 
-    /* Fondo más claro + luz naranja */
     .bg{
       position:fixed;inset:0;z-index:-2;
       background:url('assets/img/bg-texture.jpg') center/cover no-repeat;
-      filter:contrast(1.02) brightness(1.05);
+      filter:contrast(1.02) brightness(.8);
     }
     .bg::after{
       content:"";position:absolute;inset:0;z-index:-1;
+      /* halo naranja arriba, luz suave abajo, y un leve oscurecido general */
       background:
         radial-gradient(1200px 600px at 50% 0, rgba(255,106,0,.18), transparent 60%),
-        radial-gradient(1200px 600px at 50% 100%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.38));
+        radial-gradient(1200px 600px at 50% 100%, rgba(255,255,255,.12), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.6));
     }
 
-    header{
-      position:sticky;top:0;z-index:50;
-      background:rgba(14,14,15,.55);
-      backdrop-filter:blur(6px);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:12px 20px}
-    .logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
-    .logo img{height:46px;width:46px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,.1);background:#000}
-    .brand{font-weight:800}
-    .pill{margin-left:auto;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:var(--muted);font-size:.9rem}
+    header{position:sticky;top:0;z-index:50;background:rgba(14,14,15,.6);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:20px;padding:14px 20px}
+    .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff}
+    .logo img{height:48px;width:48px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,.1);background:#000}
+    .brand{font-weight:800;letter-spacing:.4px}
+    .pill{margin-left:auto;display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);font-size:.9rem;color:var(--muted)}
 
-    .hero{max-width:1200px;margin:44px auto 16px;padding:0 20px;text-align:center}
-    .hero h1{font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.1;font-weight:800;text-shadow:0 6px 28px rgba(0,0,0,.45)}
-    .hero p{color:var(--muted);max-width:70ch;margin:14px auto}
+    .hero{max-width:1200px;margin:48px auto 0;padding:0 20px 28px;display:grid;gap:24px;text-align:center}
+    .hero h1{font-size:clamp(2.2rem, 4vw, 3.4rem);font-weight:800;line-height:1.1;text-shadow:0 6px 30px rgba(0,0,0,.5)}
+    .hero p{color:var(--muted);max-width:70ch;margin:0 auto}
 
-    /* Tarjetas de marcas (gris muy claro) */
-    .brands{max-width:1200px;margin:28px auto 90px;padding:0 20px}
-    .brand-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
-    @media(max-width:768px){.brand-grid{grid-template-columns:1fr}}
-    .brand-card{
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-      min-height:220px;padding:26px;background:var(--panel);
-      border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);box-shadow:var(--shadow);
-      text-decoration:none;color:#111;transition:transform .2s, box-shadow .2s
-    }
-    .brand-card:hover{transform:translateY(-2px);box-shadow:0 22px 50px rgba(0,0,0,.25)}
-    .brand-logo{width:clamp(160px,40vw,280px);object-fit:contain;filter:brightness(0.96)} /* blanco hueso */
-    .brand-card h3{margin-top:6px;font-size:1.1rem;font-weight:800;color:#111}
+    .brands{max-width:1200px;margin:36px auto 90px;padding:0 20px}
+    .brand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+    @media(max-width:980px){.brand-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.brand-grid{grid-template-columns:1fr}}
+    .brand-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:220px;padding:24px;background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);box-shadow:var(--shadow);text-decoration:none;color:#111;transition:transform .2s, box-shadow .2s}
+    .brand-card:hover{transform:translateY(-2px);box-shadow:0 24px 50px rgba(0,0,0,.25)}
+    .brand-card .brand-logo{width:clamp(140px,40vw,260px);object-fit:contain;filter:contrast(.96) brightness(.96);} /* blanco hueso leve */
+    .brand-card h3{margin-top:8px;font-size:1.1rem;font-weight:800;color:#111}
     .brand-card small{color:#555;font-weight:600}
 
-    /* WhatsApp flotante (como ENA) */
-    .fab-whatsapp{
-      position:fixed;right:18px;bottom:22px;z-index:60;
-      width:60px;height:60px;border-radius:50%;
-      background:#25D366;display:flex;align-items:center;justify-content:center;
-      box-shadow:0 12px 30px rgba(0,0,0,.35);text-decoration:none;
-    }
-    .fab-whatsapp img{width:28px;height:28px;display:block}
-
-    /* Footer con contacto a la izquierda e iconos a la derecha */
-    footer{
-      border-top:1px solid rgba(255,255,255,.08);
-      background:rgba(10,10,10,.85);backdrop-filter:blur(6px);
-    }
-    .foot{
-      max-width:1200px;margin:0 auto;padding:22px 20px;
-      display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
-    }
-    .foot small{color:#b8b8b8}
+    footer{border-top:1px solid rgba(255,255,255,.08);background:rgba(10,10,10,.85);backdrop-filter:blur(6px)}
+    .foot{max-width:1200px;margin:0 auto;padding:32px 20px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+    .foot small{color:#b5b5b5}
     .foot a{color:#fff;text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.25)}
-    .social{display:flex;gap:12px}
-    .social img{
-      width:42px;height:42px;border-radius:50%;background:#eee;padding:6px;
-      transition:transform .2s;display:block
+
+    /* botones flotantes abajo derecha (IG + FB) */
+    .fab{
+      position:fixed;right:16px;bottom:16px;z-index:60;display:flex;flex-direction:column;gap:12px
     }
-    .social img:hover{transform:scale(1.12)}
+    .fab a{
+      display:flex;align-items:center;justify-content:center;
+      width:48px;height:48px;border-radius:14px;
+      background:rgba(255,255,255,.14);backdrop-filter:blur(6px);
+      border:1px solid rgba(255,255,255,.2);
+      transition:transform .15s ease, background .15s ease;
+    }
+    .fab a:hover{transform:translateY(-2px);background:rgba(255,255,255,.22)}
+    .fab img{width:24px;height:24px;object-fit:contain}
   </style>
 </head>
 <body>
@@ -110,37 +92,39 @@
   <section class="brands" id="marcas">
     <div class="brand-grid">
       <a class="brand-card" href="star.html">
-        <img class="brand-logo" src="assets/img/star.jpg" alt="Star Nutrition"/>
+        <img class="brand-logo" src="assets/img/star.jpg" alt="Star Nutrition" />
         <h3>Star Nutrition</h3>
         <small>Ver catálogo</small>
       </a>
+
       <a class="brand-card" href="ena.html">
-        <img class="brand-logo" src="assets/img/ena.jpg" alt="ENA"/>
+        <img class="brand-logo" src="assets/img/ena.jpg" alt="ENA" />
         <h3>ENA</h3>
+        <small>Ver catálogo</small>
+      </a>
+
+      <a class="brand-card" href="dymatize.html">
+        <img class="brand-logo" src="assets/img/dymatize.jpg" alt="Dymatize" />
+        <h3>Dymatize</h3>
         <small>Ver catálogo</small>
       </a>
     </div>
   </section>
 
-  <!-- Botón WhatsApp flotante -->
-  <a class="fab-whatsapp"
-     href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20hacer%20un%20pedido"
-     target="_blank" aria-label="Escribir por WhatsApp">
-    <img src="assets/img/whatsapp.jpg" alt="WhatsApp">
-  </a>
+  <!-- Botones flotantes: Instagram / Facebook -->
+  <div class="fab" aria-label="Links redes">
+    <a href="https://www.instagram.com/protein_power_lab" target="_blank" title="Instagram">
+      <img src="assets/img/instagram.jpg" alt="Instagram">
+    </a>
+    <a href="https://www.facebook.com" target="_blank" title="Facebook">
+      <img src="assets/img/facebook.jpg" alt="Facebook">
+    </a>
+  </div>
 
   <footer>
     <div class="foot">
       <small>© 2025 Protein Power Lab. Todos los derechos reservados.</small>
       <small>Contacto: <a href="mailto:proteinpowerlab@gmail.com">proteinpowerlab@gmail.com</a></small>
-      <div class="social">
-        <a href="https://www.instagram.com/protein_power_lab" target="_blank" aria-label="Instagram">
-          <img src="assets/img/instagram.jpg" alt="Instagram">
-        </a>
-        <a href="https://www.facebook.com/protein_power_lab" target="_blank" aria-label="Facebook">
-          <img src="assets/img/facebook.jpg" alt="Facebook">
-        </a>
-      </div>
     </div>
   </footer>
 </body>
