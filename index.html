@@ -1,153 +1,86 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Protein Power Lab</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0e0e0f;
-    --text:#f3f3f3;
-    --muted:#cfcfcf;
-    --accent:#ff6a00;
-    --card:#efe8df; /* “blanco hueso” para las cartas */
-    --radius:18px;
-    --shadow:0 20px 60px rgba(0,0,0,.55);
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Protein Power Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f0f10;
+      --text:#f6f6f6;
+      --muted:#cfcfcf;
+      --accent:#ff6a00;
+      --card:#f3eee6;            /* “hueso” para las tarjetas de marcas */
+      --cardText:#0f0f10;
+      --radius:18px;
+      --shadow:0 20px 60px rgba(0,0,0,.55);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{
-    font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-    color:var(--text);
-    background:var(--bg);
-    display:flex;
-    flex-direction:column;
-    min-height:100vh;
-    overflow-x:hidden;
-  }
+    /* Fondo con luz naranja (como pediste) */
+    .bg{
+      position:fixed;inset:0;z-index:-2;
+      background:url('assets/img/bg-texture.jpg') center/cover no-repeat;
+      filter:contrast(1.02) brightness(.9);
+    }
+    .bg::after{
+      content:"";position:absolute;inset:0;z-index:-1;
+      background:
+        radial-gradient(60% 35% at 50% 12%, rgba(255,106,0,.28), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.75));
+    }
 
-  /* Fondo con luz naranja */
-  .bg{
-    position:fixed;inset:0;z-index:-2;
-    background:url('assets/img/bg-texture.jpg') center/cover no-repeat;
-    filter:contrast(1.02) brightness(.82);
-  }
-  .bg::after{
-    content:"";position:absolute;inset:0;z-index:-1;
-    background:
-      radial-gradient(1200px 600px at 50% 0, rgba(255,106,0,.20), transparent 60%),
-      radial-gradient(1200px 600px at 50% 100%, rgba(255,255,255,.10), transparent 60%),
-      linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.65));
-  }
+    header{position:sticky;top:0;z-index:40;background:rgba(15,15,16,.55);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:12px 18px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+    .brand img{width:42px;height:42px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,.12)}
+    .brand span{font-weight:800;letter-spacing:.3px}
+    .pill{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);color:var(--muted);font-weight:600}
 
-  /* Header */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:rgba(14,14,15,.55);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid rgba(255,255,255,.06);
-  }
-  .nav{
-    max-width:1200px;margin:0 auto;padding:12px 18px;
-    display:flex;align-items:center;gap:14px;
-  }
-  .brand{
-    display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;
-    font-weight:800;letter-spacing:.4px
-  }
-  .brand img{width:44px;height:44px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,.1);background:#000}
-  .ship{
-    margin-left:auto;
-    padding:8px 14px;border-radius:999px;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.12);
-    color:#eaeaea;font-weight:600;font-size:.9rem
-  }
+    .hero{max-width:1200px;margin:42px auto 8px;padding:0 18px;text-align:center}
+    .hero h1{font-size:clamp(2.1rem,4vw,3.4rem);line-height:1.1;font-weight:800}
+    .hero .strong{color:var(--accent)}
+    .hero p{margin-top:12px;color:var(--muted)}
 
-  main{flex:1 0 auto}
-  .hero{
-    max-width:1200px;margin:28px auto 18px;padding:0 18px;
-    text-align:center;display:grid;gap:16px;
-  }
-  .hero h1{
-    font-size:clamp(1.8rem,3.8vw,3.4rem);
-    font-weight:800;line-height:1.1
-  }
-  .hero .accent{color:var(--accent)}
-  .hero p{color:var(--muted)}
+    .brands{max-width:1200px;margin:26px auto 80px;padding:0 18px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    @media(max-width:980px){.grid{grid-template-columns:1fr}}
+    .card{
+      display:flex;flex-direction:column;align-items:center;gap:12px;
+      padding:26px 18px;background:var(--card);color:var(--cardText);
+      border-radius:var(--radius);border:1px solid rgba(0,0,0,.08);box-shadow:var(--shadow);
+      text-decoration:none;transition:transform .15s ease, box-shadow .15s ease;
+      cursor:pointer;
+    }
+    .card:hover{transform:translateY(-3px);box-shadow:0 24px 50px rgba(0,0,0,.28)}
+    .logo{width:min(70%,260px);height:86px;object-fit:contain;filter:none}
+    .title{font-weight:800}
+    .view{color:#333;text-decoration:underline;font-weight:700}
 
-  /* Cartas de marcas */
-  .brands{max-width:1200px;margin:18px auto 46px;padding:0 18px}
-  .grid{display:grid;gap:22px;grid-template-columns:repeat(12,1fr)}
-  @media(min-width:900px){.grid>*{grid-column:span 4}}
-  @media(max-width:899px){.grid>*{grid-column:span 12}}
+    footer{border-top:1px solid rgba(255,255,255,.08);background:rgba(10,10,10,.82);backdrop-filter:blur(6px)}
+    .foot{max-width:1200px;margin:0 auto;padding:18px;display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap}
+    .foot small{color:#bfbfbf}
+    .contact{display:flex;align-items:center;gap:14px}
+    .contact a.mail{color:#fff;text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.35)}
+    /* Íconos cuadrados (sin borde redondo ni “medallón”) */
+    .social{display:flex;align-items:center;gap:10px}
+    .social a{display:inline-flex;width:28px;height:28px}
+    .social img{display:block;width:100%;height:100%;object-fit:contain;border-radius:4px}
 
-  .card{
-    background:var(--card);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    border:1px solid rgba(0,0,0,.08);
-    padding:22px 18px;
-    display:flex;flex-direction:column;align-items:center;gap:12px;
-    text-align:center;
-  }
-  .card a.card-link{display:block;width:100%;text-decoration:none;color:inherit}
-  .logo{
-    width:min(78%,340px);
-    display:block;margin:0 auto 6px;
-    object-fit:contain;
-    filter:none !important;opacity:1 !important;
-    background:#fff; /* fondo blanco para logos negros */
-    border-radius:12px;
-    border:1px solid rgba(0,0,0,.08);
-  }
-  .cta{
-    display:inline-block;margin-top:2px;
-    font-weight:800;text-decoration:none;
-    color:#111;background:#fff;border:1px solid rgba(0,0,0,.10);
-    border-radius:12px;padding:10px 16px
-  }
-  .cta:hover{filter:brightness(.96)}
-
-  /* Footer pegado abajo */
-  footer{
-    flex-shrink:0;
-    border-top:1px solid rgba(255,255,255,.08);
-    background:rgba(10,10,10,.88);
-    backdrop-filter:blur(4px);
-  }
-  .foot{
-    max-width:1200px;margin:0 auto;padding:14px 18px;
-    display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap
-  }
-  .foot small{color:#c9c9c9}
-
-  .contact{
-    display:flex;align-items:center;gap:12px;flex-wrap:wrap
-  }
-  .contact a.mail{color:#eaeaea;text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.35)}
-  .social{display:flex;align-items:center;gap:10px}
-  .social a{display:inline-block;line-height:0}
-  .social img{
-    width:28px;height:28px;object-fit:cover;
-    border-radius:6px; /* cuadrados con puntas suaves */
-    border:1px solid rgba(255,255,255,.18);
-    box-shadow:0 4px 16px rgba(0,0,0,.35);
-    background:transparent;
-  }
-
-  /* WhatsApp FAB (círculo) */
-  .wa{
-    position:fixed;right:18px;bottom:18px;z-index:60;
-    width:56px;height:56px;border-radius:999px;
-    background:#25D366;display:grid;place-items:center;
-    box-shadow:0 18px 40px rgba(0,0,0,.45);
-    border:2px solid rgba(255,255,255,.25)
-  }
-  .wa img{width:30px;height:30px;object-fit:contain}
-</style>
+    /* Botón WhatsApp flotante como ENA */
+    .wa{
+      position:fixed;right:18px;bottom:18px;z-index:50;
+      width:58px;height:58px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:#25D366;border:2px solid #128C7E;box-shadow:0 10px 30px rgba(0,0,0,.4);
+      text-decoration:none;
+    }
+    .wa img{width:60%;height:60%;object-fit:contain;filter:none}
+  </style>
 </head>
 <body>
   <div class="bg" aria-hidden="true"></div>
@@ -158,44 +91,36 @@
         <img src="assets/img/logo.jpg" alt="Protein Power Lab">
         <span>Protein Power Lab</span>
       </a>
-      <span class="ship">Envíos en 24–72 h</span>
+      <span class="pill">Envíos en 24–72 h</span>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1>Tu fuente de fuerza, poder y <span class="accent">resultados reales</span></h1>
-      <p>Suplementos de marcas confiables y precios competitivos. Comprá fácil y rápido, con entregas en CABA/GBA.</p>
-    </section>
+  <section class="hero">
+    <h1>Tu fuente de fuerza, poder y <span class="strong">resultados reales</span></h1>
+    <p>Suplementos de marcas confiables y precios competitivos. Comprá fácil y rápido, con entregas en CABA/GBA.</p>
+  </section>
 
-    <section class="brands" id="marcas">
-      <div class="grid">
-        <!-- STAR -->
-        <article class="card">
-          <a class="card-link" href="star.html" aria-label="Ver catálogo Star Nutrition">
-            <img class="logo" src="assets/img/star.jpg" alt="Star Nutrition">
-          </a>
-          <a class="cta" href="star.html">Ver catálogo</a>
-        </article>
+  <section class="brands" id="marcas">
+    <div class="grid">
+      <a class="card" href="star.html">
+        <img class="logo" src="assets/img/star.jpg" alt="Star Nutrition">
+        <div class="title">Star Nutrition</div>
+        <div class="view">Ver catálogo</div>
+      </a>
 
-        <!-- ENA -->
-        <article class="card">
-          <a class="card-link" href="ena.html" aria-label="Ver catálogo ENA">
-            <img class="logo" src="assets/img/ena.jpg" alt="ENA">
-          </a>
-          <a class="cta" href="ena.html">Ver catálogo</a>
-        </article>
+      <a class="card" href="ena.html">
+        <img class="logo" src="assets/img/ena.jpg" alt="ENA">
+        <div class="title">ENA</div>
+        <div class="view">Ver catálogo</div>
+      </a>
 
-        <!-- DYMATIZE -->
-        <article class="card">
-          <a class="card-link" href="dymatize.html" aria-label="Ver catálogo Dymatize">
-            <img class="logo" src="assets/img/dymatize.jpg" alt="Dymatize">
-          </a>
-          <a class="cta" href="dymatize.html">Ver catálogo</a>
-        </article>
-      </div>
-    </section>
-  </main>
+      <a class="card" href="dymatize.html">
+        <img class="logo" src="assets/img/dymatize.jpg" alt="Dymatize">
+        <div class="title">Dymatize</div>
+        <div class="view">Ver catálogo</div>
+      </a>
+    </div>
+  </section>
 
   <footer>
     <div class="foot">
@@ -216,8 +141,8 @@
   </footer>
 
   <!-- WhatsApp flotante -->
-  <a class="wa" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!" target="_blank" aria-label="WhatsApp">
-    <img src="assets/img/whatsapp.jpg" alt="">
+  <a class="wa" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">
+    <img src="assets/img/whatsapp.jpg" alt="WhatsApp">
   </a>
 </body>
 </html>
