@@ -1,264 +1,141 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Protein Power Lab</title>
-
-  <!-- Tipografías -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --hueso:#F1E9DD;
-      --negro:#000;
-      --blanco:#fff;
-      --naranja:#FF7A00;
-      --whatsapp:#25D366;
+    :root {
+      --bg:#0e0e0f;
+      --card:#f0f0f0;
+      --text:#111;
+      --accent:#FF6A00;
+      --radius:18px;
+      --shadow:0 20px 60px rgba(0,0,0,.55);
     }
-
     *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);}
 
-    html,body{
-      height:100%;
+    .bg {
+      position:fixed;inset:0;z-index:-2;
+      background:url("assets/img/bg-texture.jpg") center/cover no-repeat;
+      filter:contrast(1.05) brightness(.9);
     }
-
-    body{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--blanco);
-      background:
-        radial-gradient(1200px 600px at 55% 10%, rgba(255,122,0,.22), transparent 60%),
-        radial-gradient(1200px 600px at 45% 5%, rgba(255,122,0,.12), transparent 65%),
-        linear-gradient(180deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.65) 100%),
-        url("assets/img/bg-texture.jpg") center/cover no-repeat fixed;
+    .bg::after {
+      content:"";position:absolute;inset:0;
+      background:radial-gradient(1200px 600px at 50% 0, rgba(255,106,0,.2), transparent 60%);
     }
 
-    /* Vignette sutil en los bordes */
-    body::after{
-      content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(1200px 700px at 50% -10%, rgba(255,122,0,.18), transparent 55%),
-        radial-gradient(800px 400px at 80% 0%, rgba(255,122,0,.12), transparent 65%),
-        radial-gradient(1400px 900px at 50% 100%, rgba(0,0,0,.35), transparent 60%);
-      z-index:0;
+    header {
+      position:sticky;top:0;z-index:10;
+      background:rgba(14,14,15,.6);backdrop-filter:blur(6px);
+      border-bottom:1px solid rgba(255,255,255,.1);
     }
+    .nav {
+      max-width:1200px;margin:0 auto;
+      display:flex;align-items:center;gap:20px;
+      padding:14px 20px;
+    }
+    .logo {display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
+    .logo img{height:48px;width:48px;object-fit:cover;border-radius:10px}
+    .brand{font-weight:800}
 
-    /* HEADER */
-    header{
-      position:relative;
-      z-index:2;
-      background:rgba(0,0,0,.72);
-      backdrop-filter:saturate(120%) blur(2px);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:14px 24px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .brand{
-      display:flex; align-items:center; gap:14px;
-    }
-    .brand img{
-      height:48px; width:auto; border-radius:10px; box-shadow:0 6px 14px rgba(0,0,0,.35);
-    }
-    .brand .name{
-      font-weight:800; font-size:20px; letter-spacing:.2px;
-    }
-    .envio{
-      background:#2b2b2b;
-      color:#eaeaea;
-      padding:8px 14px;
-      border-radius:22px;
-      font-size:13px;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
-    }
+    .pill{margin-left:auto;padding:8px 14px;border-radius:999px;
+      background:rgba(255,255,255,.1);color:#eee;font-size:.9rem}
 
-    /* HERO */
-    .hero{
-      position:relative; z-index:1;
-      text-align:center;
-      padding:64px 18px 26px;
+    .hero {
+      max-width:1200px;margin:60px auto;text-align:center;padding:0 20px;
     }
-    .hero h1{
-      font-size:44px; line-height:1.12; font-weight:800;
-      text-shadow:0 6px 18px rgba(0,0,0,.55);
-    }
-    .hero h1 .accent{ color:var(--naranja); }
-    .hero p{
-      margin-top:16px; color:#e9e9e9; opacity:.92;
-    }
+    .hero h1 {font-size:2.8rem;font-weight:800;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+    .hero p {color:#ccc;margin-top:12px}
 
-    /* GRID MARCAS */
-    main{ flex:1; display:flex; align-items:flex-start; justify-content:center; }
-    .marcas{
-      position:relative; z-index:1;
-      width:100%; max-width:1200px;
-      display:grid;
-      grid-template-columns:repeat(3, minmax(240px, 1fr));
-      gap:26px;
-      padding:36px 24px 28px;
-      margin:0 auto;
+    .brands {
+      max-width:1200px;margin:50px auto;padding:0 20px;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;
     }
+    .brand-card {
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      padding:20px;background:var(--card);border-radius:var(--radius);
+      box-shadow:var(--shadow);text-decoration:none;color:var(--text);
+    }
+    .brand-card img {width:200px;object-fit:contain;margin-bottom:12px}
+    .brand-card small {margin-top:auto;font-weight:700;font-size:.95rem}
 
-    .card{
-      background:var(--hueso);
-      color:var(--negro);
-      border-radius:16px;
-      box-shadow:
-        0 18px 36px rgba(0,0,0,.35),
-        inset 0 0 0 1px rgba(0,0,0,.05);
-      display:flex; flex-direction:column;
-      align-items:center; justify-content:flex-start;
-      padding:22px 18px 16px;
-      min-height:220px;
+    footer {
+      background:#000;color:#ccc;margin-top:50px;
     }
+    .foot {
+      max-width:1200px;margin:0 auto;
+      padding:20px;display:flex;justify-content:space-between;align-items:center;
+    }
+    .social {display:flex;gap:14px}
+    .social img {width:34px;height:34px;object-fit:cover;border-radius:6px}
 
-    /* Alineamos visualmente las tres marcas */
-    .card .logo{
-      flex:0 0 auto;
-      display:flex; align-items:center; justify-content:center;
-      width:100%;
-      height:110px;            /* misma “caja” para todos */
-      margin:0 0 18px;
+    /* WhatsApp flotante */
+    .whatsapp-float {
+      position:fixed;bottom:20px;right:20px;z-index:50;
     }
-    .card .logo img{
-      max-height:100%; max-width:88%;
-      object-fit:contain; display:block; filter:drop-shadow(0 2px 0 rgba(0,0,0,.08));
-    }
-
-    /* “Ver catálogo” simple, negro, pegado abajo */
-    .ver{
-      margin-top:auto;
-      font-weight:700;
-      color:#111;
-      text-decoration:none;
-      letter-spacing:.2px;
-      padding-bottom:6px;
-    }
-
-    /* FOOTER SIEMPRE ABAJO */
-    footer{
-      position:relative; z-index:2;
-      background:var(--negro);
-      color:#cfcfcf;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:20px;
-      padding:14px 22px;
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-    footer .copy{ font-size:13px; }
-
-    footer .contacto{
-      display:flex; align-items:center; gap:14px; flex-wrap:wrap;
-    }
-    .mail{
-      color:#e9e9e9; text-decoration:none; font-weight:600;
-    }
-    .social{
-      display:flex; gap:10px; align-items:center;
-    }
-    .social a{
-      width:40px; height:40px;
-      border-radius:50%;
-      display:inline-flex; align-items:center; justify-content:center;
-      background:#111; box-shadow:0 6px 14px rgba(0,0,0,.35);
-      overflow:hidden;
-    }
-    .social img{
-      width:100%; height:100%; object-fit:cover; display:block;
-    }
-
-    /* WHATSAPP flotante (como tu foto) */
-    .wa{
-      position:fixed; right:22px; bottom:92px; z-index:5;
-      width:68px; height:68px; border-radius:50%;
-      background:var(--whatsapp);
-      display:flex; align-items:center; justify-content:center;
-      box-shadow:0 14px 32px rgba(0,0,0,.45), inset 0 -6px 10px rgba(0,0,0,.12);
-    }
-    .wa img{ width:36px; height:36px; display:block; }
-
-    /* Responsive */
-    @media (max-width:1024px){
-      .hero h1{ font-size:40px; }
-      .marcas{ grid-template-columns:repeat(2, minmax(240px, 1fr)); }
-    }
-    @media (max-width:680px){
-      .hero h1{ font-size:34px; }
-      .marcas{ grid-template-columns:1fr; }
-      .wa{ right:18px; bottom:88px; width:64px; height:64px; }
-      .wa img{ width:34px; height:34px; }
+    .whatsapp-float img {
+      width:60px;height:60px;border-radius:50%;
+      box-shadow:0 4px 15px rgba(0,0,0,.4);
     }
   </style>
 </head>
 <body>
+  <div class="bg"></div>
 
-  <!-- HEADER -->
   <header>
-    <div class="brand">
-      <img src="assets/img/logo.jpg" alt="Logo Protein Power Lab">
-      <div class="name">Protein Power Lab</div>
-    </div>
-    <div class="envio">Envíos en 24–72 h</div>
+    <nav class="nav">
+      <a href="index.html" class="logo">
+        <img src="assets/img/logo.jpg" alt="Logo">
+        <span class="brand">Protein Power Lab</span>
+      </a>
+      <span class="pill">Envíos 24–72 h</span>
+    </nav>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
-    <h1>Tu fuente de fuerza, poder y <span class="accent">resultados reales</span></h1>
-    <p>Suplementos de marcas confiables y precios competitivos. Comprá fácil y rápido, con entregas en CABA/GBA.</p>
+    <h1>Tu fuente de fuerza, poder y <span style="color:var(--accent)">resultados reales</span></h1>
+    <p>Suplementos de marcas confiables y precios competitivos. Comprá fácil y rápido.</p>
   </section>
 
-  <!-- CARDS MARCAS -->
-  <main>
-    <div class="marcas">
+  <section class="brands">
+    <a class="brand-card" href="star.html">
+      <img src="assets/img/star.jpg" alt="Star Nutrition">
+      <small>Ver catálogo</small>
+    </a>
+    <a class="brand-card" href="ena.html">
+      <img src="assets/img/ena.jpg" alt="ENA">
+      <small>Ver catálogo</small>
+    </a>
+    <a class="brand-card" href="dymatize.html">
+      <img src="assets/img/dymatize.jpg" alt="Dymatize">
+      <small>Ver catálogo</small>
+    </a>
+  </section>
 
-      <article class="card">
-        <div class="logo">
-          <img src="assets/img/star.jpg" alt="Star Nutrition">
-        </div>
-        <a class="ver" href="star.html">Ver catálogo</a>
-      </article>
-
-      <article class="card">
-        <div class="logo">
-          <img src="assets/img/ena.jpg" alt="ENA">
-        </div>
-        <a class="ver" href="ena.html">Ver catálogo</a>
-      </article>
-
-      <article class="card">
-        <div class="logo">
-          <!-- Cambiá el nombre si lo tenés como dymatize.jpg o dymatize.jpg -->
-          <img src="assets/img/dymatize.jpg" alt="Dymatize">
-        </div>
-        <a class="ver" href="dymatize.html">Ver catálogo</a>
-      </article>
-
-    </div>
-  </main>
-
-  <!-- FOOTER (SIEMPRE ABAJO) -->
- 
   <footer>
     <div class="foot">
       <small>© 2025 Protein Power Lab. Todos los derechos reservados.</small>
       <small>Contacto: proteinpowerlab@gmail.com</small>
-      <div class="icons">
-        <a href="https://www.instagram.com/protein_power_lab" target="_blank"><img src="assets/img/instagram.jpg" alt="Instagram"></a>
-        <a href="https://www.facebook.com" target="_blank"><img src="assets/img/facebook.jpg" alt="Facebook"></a>
+      <div class="social">
+        <a href="https://www.instagram.com/protein_power_lab" target="_blank">
+          <img src="assets/img/instagram.jpg" alt="Instagram">
+        </a>
+        <a href="https://facebook.com" target="_blank">
+          <img src="assets/img/facebook.jpg" alt="Facebook">
+        </a>
+        <a href="mailto:proteinpowerlab@gmail.com">
+          <img src="assets/img/gmail.jpg" alt="Gmail">
+        </a>
       </div>
     </div>
   </footer>
 
-  <!-- WHATSAPP FLOTTANTE (VERDE REDONDO) -->
-  <a class="wa" href="https://wa.me/5491123456789" target="_blank" aria-label="WhatsApp">
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/541123014207" class="whatsapp-float" target="_blank">
     <img src="assets/img/whatsapp.jpg" alt="WhatsApp">
   </a>
-
 </body>
 </html>
