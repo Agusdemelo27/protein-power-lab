@@ -1,97 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Protein Power Lab</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0e0e0f;
-      --card:#f2f2f2; /* gris hueso */
-      --muted:#cfcfcf;
-      --text:#111;
-      --accent:#111; /* negro para los botones */
-      --radius:18px;
-      --shadow:0 20px 60px rgba(0,0,0,.25);
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family:'Roboto', sans-serif;
+      background: url("assets/img/bg-texture.jpg") no-repeat center center fixed;
+      background-size:cover;
+      color:#fff;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 
-    .bg{
-      position:fixed;inset:0;z-index:-2;
-      background:url('assets/img/bg-texture.jpg') center/cover no-repeat;
-      filter:contrast(1.02) brightness(.85);
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 30px;
+      background:rgba(0,0,0,0.7);
     }
-    header{position:sticky;top:0;z-index:50;background:rgba(14,14,15,.6);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:20px;padding:14px 20px;color:white}
-    .logo img{height:50px;width:50px;object-fit:cover;border-radius:10px;background:#fff}
-    .brand{font-weight:800}
-    .pill{margin-left:auto;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:8px 14px;border-radius:999px;color:#fff}
 
-    .brands{max-width:1200px;margin:50px auto;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-    @media(max-width:900px){.brands{grid-template-columns:1fr}}
-    .brand-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:20px;transition:.2s;text-decoration:none}
-    .brand-card:hover{transform:translateY(-4px)}
-    .brand-card img{width:180px;height:100px;object-fit:contain}
-    .btn{margin-top:auto;background:var(--accent);color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:700;display:inline-block}
-    .btn:hover{opacity:.8}
+    header img { height:40px; }
 
-    footer{background:#000;color:#ccc;padding:20px 0;margin-top:60px}
-    .foot{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:10px}
-    .foot small{color:#ccc}
-    .icons{display:flex;gap:18px;margin-top:8px}
-    .icons a{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#222}
-    .icons img{width:22px;height:22px;object-fit:contain}
-
-    /* WhatsApp flotante */
-    .whatsapp-float{
-      position:fixed;bottom:20px;right:20px;z-index:999;
-      width:60px;height:60px;border-radius:50%;
-      background:#25d366;display:flex;align-items:center;justify-content:center;
-      box-shadow:0 4px 15px rgba(0,0,0,.4);
+    header .envio { 
+      background:#333; 
+      color:#fff; 
+      padding:8px 15px; 
+      border-radius:20px; 
+      font-size:14px; 
     }
-    .whatsapp-float img{width:34px;height:34px;object-fit:contain}
+
+    .hero {
+      text-align:center;
+      padding:60px 20px 40px;
+    }
+
+    .hero h1 { font-size:42px; font-weight:700; }
+    .hero h1 span { color:orange; }
+
+    .marcas {
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      padding:40px 20px;
+    }
+
+    .card {
+      background:#f2ebdf; /* hueso */
+      border-radius:12px;
+      padding:20px;
+      width:260px;
+      text-align:center;
+      box-shadow:0 4px 10px rgba(0,0,0,0.4);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .card img {
+      max-width:180px;
+      margin:0 auto 20px;
+      display:block;
+    }
+
+    .card a {
+      color:#000;
+      font-weight:bold;
+      text-decoration:none;
+      margin-top:auto;
+      display:block;
+      padding:10px 0;
+    }
+
+    footer {
+      background:#000;
+      color:#fff;
+      padding:15px 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:relative;
+    }
+
+    footer .social {
+      display:flex;
+      gap:12px;
+    }
+
+    footer .social a img {
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      object-fit:cover;
+      background:#000; /* para evitar bordes blancos */
+    }
+
+    .whatsapp-float {
+      position:fixed;
+      bottom:80px;
+      right:20px;
+      width:60px;
+      height:60px;
+      background:#25D366;
+      color:#fff;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 4px 6px rgba(0,0,0,0.3);
+      z-index:1000;
+    }
+
+    .whatsapp-float img {
+      width:35px;
+      height:35px;
+    }
   </style>
 </head>
 <body>
-  <div class="bg"></div>
-
   <header>
-    <nav class="nav">
-      <a class="logo" href="index.html"><img src="assets/img/logo.jpg" alt="Logo"></a>
-      <span class="brand">Protein Power Lab</span>
-      <span class="pill">Envíos en 24–72 h</span>
-    </nav>
+    <img src="assets/img/logo.jpg" alt="Protein Power Lab">
+    <div class="envio">Envíos en 24–72 h</div>
   </header>
 
-  <section class="brands">
-    <a class="brand-card" href="star.html">
+  <section class="hero">
+    <h1>Tu fuente de fuerza, poder y <span>resultados reales</span></h1>
+    <p>Suplementos de marcas confiables y precios competitivos. Comprá fácil y rápido, con entregas en CABA/GBA.</p>
+  </section>
+
+  <section class="marcas">
+    <div class="card">
       <img src="assets/img/star.jpg" alt="Star Nutrition">
-      <a href="star.html" class="btn">Ver catálogo</a>
-    </a>
-    <a class="brand-card" href="ena.html">
+      <a href="star.html">Ver catálogo</a>
+    </div>
+    <div class="card">
       <img src="assets/img/ena.jpg" alt="ENA">
-      <a href="ena.html" class="btn">Ver catálogo</a>
-    </a>
-    <a class="brand-card" href="dymatize.html">
+      <a href="ena.html">Ver catálogo</a>
+    </div>
+    <div class="card">
       <img src="assets/img/dymatize.jpg" alt="Dymatize">
-      <a href="dymatize.html" class="btn">Ver catálogo</a>
-    </a>
+      <a href="dymatize.html">Ver catálogo</a>
+    </div>
   </section>
 
   <footer>
-    <div class="foot">
-      <small>© 2025 Protein Power Lab. Todos los derechos reservados.</small>
-      <small>Contacto: proteinpowerlab@gmail.com</small>
-      <div class="icons">
-        <a href="https://www.instagram.com/protein_power_lab" target="_blank"><img src="assets/img/instagram.jpg" alt="Instagram"></a>
-        <a href="https://www.facebook.com" target="_blank"><img src="assets/img/facebook.jpg" alt="Facebook"></a>
-      </div>
+    <p>© 2025 Protein Power Lab. Todos los derechos reservados. · Contacto: proteinpowerlab@gmail.com</p>
+    <div class="social">
+      <a href="https://instagram.com/tuusuario" target="_blank">
+        <img src="assets/img/instagram.jpg" alt="Instagram">
+      </a>
+      <a href="https://facebook.com/tuusuario" target="_blank">
+        <img src="assets/img/facebook.jpg" alt="Facebook">
+      </a>
     </div>
   </footer>
 
-  <a href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!" class="whatsapp-float" target="_blank">
+  <a href="https://wa.me/5491123456789" target="_blank" class="whatsapp-float">
     <img src="assets/img/whatsapp.jpg" alt="WhatsApp">
   </a>
 </body>
