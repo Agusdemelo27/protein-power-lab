@@ -1,220 +1,208 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Protein Power Lab</title>
-
-  <style>
-    /* === RESET BÁSICO ================================== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Arial', sans-serif;
-      background: #000;
-      color: #fff;
-    }
-
-    /* === HEADER ======================================== */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background: rgba(0,0,0,0.85);
-    }
-
-    header img {
-      height: 40px;  /* tamaño del logo */
-    }
-
-    /* === HERO ========================================== */
-    .hero {
-      position: relative;
-      text-align: center;
-      color: #fff;
-      background: url("assets/img/bg-texture.jpg") center/cover no-repeat;
-      padding: 80px 20px;
-    }
-
-    .hero h1 {
-      font-size: 2.6rem;              /* tamaño del título */
-      font-weight: bold;
-    }
-
-    .hero h1 span {
-      color: orange;                  /* palabra destacada */
-    }
-
-    .hero p {
-      margin-top: 12px;
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-
-    /* === CARDS DE MARCAS =============================== */
-    .brands {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 40px 0;
-      flex-wrap: wrap;
-    }
-
-    .brand-card {
-      background: #f5f5f5;
-      border-radius: 12px;
-      width: 260px;
-      height: 180px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .brand-card img {
-      max-height: 60px;   /* los tres logos alineados */
-      margin-bottom: 20px;
-    }
-
-    .brand-card a {
-      text-decoration: none;
-      font-weight: bold;
-      color: #000;
-      font-size: 15px;
-    }
-
-    /* === FOOTER ======================================== */
-    footer {
-      background: #111;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-    }
-
-    footer p {
-      margin: 6px 0;
-      color: #ccc;
-    }
-
-    .socials {
-      margin-top: 12px;
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    /* ÍCONOS: cuadrados con esquinas redondeadas */
-    .socials a {
-      width: 46px;
-      height: 46px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;  /* esquinas suavemente redondeadas */
-    }
-
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+  <meta charset="UTF-8"> <!-- Configura la codificación a UTF-8 -->  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Escala la página en móviles -->  
+  <title>Protein Power Lab</title>  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">  
+  <style>  
+    /* === VARIABLES DE COLOR Y ESTILOS GLOBALES =============================== */  
+    :root{  
+      --bg:#0e0e0f;  
+      --card:#f0f0f0;  
+      --muted:#cfcfcf;  
+      --text:#f3f3f3;  
+      --accent:#FF6A00;  
+      --radius:18px;  
+      --shadow:0 20px 60px rgba(0,0,0,.55);  
+    }  
+    *{box-sizing:border-box;margin:0;padding:0}  
+    body{  
+      font-family:'Montserrat',sans-serif;  
+      background:var(--bg);  
+      color:var(--text);  
+      overflow-x:hidden;  
+    }  
+  
+    /* === FONDO ================================================ */  
+    .bg{  
+      position:fixed;inset:0;z-index:-2;  
+      background:url('assets/img/bg-texture.jpg') center/cover no-repeat;  
+      filter:contrast(1.02) brightness(.8);  
+    }  
+  
+    /* === HEADER =========================================== */  
+    header{  
+      position:sticky;top:0;z-index:50;  
+      background:rgba(14,14,15,.6);  
+      backdrop-filter:blur(6px);  
+      border-bottom:1px solid rgba(255,255,255,.06);  
+    }  
+    .nav{  
+      max-width:1200px;margin:0 auto;  
+      display:flex;align-items:center;gap:20px;  
+      padding:14px 20px;  
+    }  
+    .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff}  
+    .logo img{height:50px;width:50px;object-fit:contain}  
+    .brand{font-weight:800}  
+    .pill{  
+      margin-left:auto;  
+      display:inline-flex;align-items:center;gap:10px;  
+      padding:10px 14px;border-radius:999px;  
+      background:rgba(255,255,255,.08);  
+      border:1px solid rgba(255,255,255,.1);  
+      font-size:.9rem;color:var(--muted);  
+    }  
+  
+    /* === HERO =================================== */  
+    .hero{  
+      max-width:1200px;margin:48px auto 0;  
+      padding:0 20px 28px;text-align:center  
+    }  
+    .hero h1{  
+      font-size:clamp(2.4rem,4vw,3.6rem);  
+      font-weight:800;line-height:1.1  
+    }  
+    .hero p{color:var(--muted);margin-top:12px}  
+  
+    /* === MARCAS ================================================ */  
+    .brands{max-width:1200px;margin:36px auto 90px;padding:0 20px}  
+    .brand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}  
+    .brand-card{  
+      display:flex;flex-direction:column;  
+      align-items:center;justify-content:center;  
+      gap:12px;padding:24px;  
+      background:var(--card);  
+      border-radius:var(--radius);  
+      box-shadow:var(--shadow);  
+      text-decoration:none;color:#111;  
+      transition:.2s  
+    }  
+    .brand-card:hover{transform:translateY(-2px)}  
+    .brand-card .brand-logo{  
+      width:clamp(140px,40vw,220px);  
+      height:100px;  
+      object-fit:contain;  
+      display:block;  
+    }  
+    .brand-card small{font-weight:600;color:#333}  
+  
+    /* === FOOTER ============================================ */  
+    footer{  
+      border-top:1px solid rgba(255,255,255,.08);  
+      background:rgba(10,10,10,.9);  
+      backdrop-filter:blur(6px);  
+      margin-top:40px  
+    }  
+    .foot{  
+      max-width:1200px;margin:0 auto;  
+      padding:28px 20px;  
+      display:flex;flex-wrap:wrap;  
+      align-items:center;justify-content:space-between;gap:16px  
+    }  
+    .foot small{color:#b5b5b5}  
+  
+    /* === REDES ============================================= */  
+    .socials{display:flex;gap:12px}  
+    .socials a{  
+      width:46px;height:46px;  
+      display:flex;align-items:center;justify-content:center;  
+      border-radius:8px;   /* 🔹 cuadrados con puntas redondeadas */  
+    }  
     /* Facebook */
     .socials a.facebook { background:#1877F2; }
     .socials a.facebook svg { fill:#fff; width:24px; height:24px; }
-
     /* Instagram */
     .socials a.instagram {
-      background: radial-gradient(circle at 30% 107%,
-        #fdf497 0%, #fdf497 5%, #fd5949 45%,
+      background: radial-gradient(circle at 30% 107%,  
+        #fdf497 0%, #fdf497 5%, #fd5949 45%,  
         #d6249f 60%, #285AEB 90%);
     }
     .socials a.instagram svg { fill:#fff; width:24px; height:24px; }
-
-    /* === WHATSAPP FLOTANTE ============================== */
-    .whatsapp-fab {
-      position: fixed;     
-      right: 18px;        
-      bottom: 18px;       
-      z-index: 9999;      
-      width: 68px;        
-      height: 68px;       
-      border-radius: 50%; 
-      background: #25D366;
-      box-shadow:
-        0 6px 18px rgba(0,0,0,.35),
-        inset 0 -2px 0 rgba(0,0,0,.08);
-      display: grid;
-      place-items: center;
-      text-decoration: none;
-      transition: transform .15s ease;
-    }
-
-    .whatsapp-fab:hover {
-      transform: translateY(-2px);
-    }
-
-    .whatsapp-fab svg {
-      width: 36px;
-      height: 36px;
-      fill: #ffffff;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- HEADER -->
-  <header>
-    <img src="assets/img/logo.jpg" alt="Protein Power Lab">
-    <div>Envíos 24–72 h</div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Tu fuente de fuerza, poder y <span>resultados reales</span></h1>
-    <p>Suplementos de marcas confiables y precios competitivos. Comprá fácil y rápido, con entregas en CABA/GBA.</p>
-  </section>
-
-  <!-- MARCAS -->
-  <section class="brands">
-    <div class="brand-card">
-      <img src="assets/img/star.jpg" alt="Star Nutrition">
-      <a href="star.html">Ver catálogo</a>
-    </div>
-    <div class="brand-card">
-      <img src="assets/img/ena.jpg" alt="ENA">
-      <a href="ena.html">Ver catálogo</a>
-    </div>
-    <div class="brand-card">
-      <img src="assets/img/dymatize.jpg" alt="Dymatize">
-      <a href="dymatize.html">Ver catálogo</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Protein Power Lab. Todos los derechos reservados.</p>
-    <p>Contacto: proteinpowerlab@gmail.com</p>
-
-    <div class="socials">
-      <!-- Facebook -->
-      <a href="https://www.facebook.com" target="_blank" class="facebook">
-        <svg viewBox="0 0 24 24">
-          <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.8h2.5l-.4 3h-2.1v7A10 10 0 0 0 22 12"/>
-        </svg>
-      </a>
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/protein_power_lab" target="_blank" class="instagram">
-        <svg viewBox="0 0 24 24">
-          <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 1 0 .1 10.1A5 5 0 0 0 12 7zm0 2a3 3 0 1 1-.1 6.1A3 3 0 0 1 12 9zm4.8-3.4a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z"/>
-        </svg>
-      </a>
-    </div>
-  </footer>
-
-  <!-- WHATSAPP -->
-  <a href="https://wa.me/5491122334455" target="_blank" class="whatsapp-fab">
-    <!-- Ícono oficial de WhatsApp en SVG -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-      <path d="M16.003 3c-7.168 0-13 5.832-13 13 0 2.294.61 4.534 1.767 6.503L3 29l6.68-1.74A12.9 12.9 0 0 0 16.003 29c7.168 0 13-5.832 13-13s-5.832-13-13-13zm0 23.64a10.57 10.57 0 0 1-5.378-1.48l-.385-.228-3.965 1.034 1.06-3.87-.25-.397A10.56 10.56 0 0 1 5.43 16c0-5.832 4.74-10.57 10.573-10.57 2.823 0 5.474 1.1 7.467 3.095a10.55 10.55 0 0 1 3.106 7.475c0 5.833-4.74 10.57-10.573 10.57zm5.79-7.94c-.316-.158-1.868-.922-2.156-1.026-.29-.105-.5-.158-.71.158-.21.316-.815 1.027-1 1.238-.184.21-.368.237-.684.079-.316-.158-1.333-.492-2.54-1.571-.94-.84-1.574-1.876-1.758-2.192-.184-.316-.02-.486.138-.644.143-.142.316-.368.474-.552.158-.184.21-.316.316-.526.105-.21.052-.395-.026-.553-.079-.158-.71-1.71-.974-2.34-.256-.61-.518-.526-.71-.537-.184-.009-.395-.011-.605-.011-.21 0-.553.079-.843.395-.29.316-1.105 1.08-1.105 2.635s1.132 3.056 1.29 3.272c.158.21 2.23 3.403 5.402 4.77.754.325 1.342.518 1.8.663.756.24 1.444.206 1.987.125.606-.09 1.868-.762 2.133-1.497.263-.737.263-1.368.184-1.496-.079-.13-.29-.21-.605-.368z"/>
-    </svg>
-  </a>
-
-</body>
+  
+    /* === WHATSAPP ==================================== */  
+    .whatsapp-fab {                       
+      position: fixed; right: 18px; bottom: 18px; z-index: 9999;  
+      width: 68px; height: 68px; border-radius: 50%;  
+      background: #25D366;  
+      box-shadow:0 6px 18px rgba(0,0,0,.35),inset 0 -2px 0 rgba(0,0,0,.08);  
+      display: grid; place-items: center;  
+      text-decoration: none; transition: transform .15s ease;  
+    }  
+    .whatsapp-fab:hover {transform: translateY(-2px);}  
+    .whatsapp-fab svg {  
+      width: 36px; height: 36px;  
+      fill: #fff;  
+      display: block;  
+    }  
+  </style>  
+</head>  
+<body>  
+  <div class="bg" aria-hidden="true"></div>  
+  
+  <!-- HEADER -->  
+  <header>  
+    <nav class="nav">  
+      <a class="logo" href="index.html">  
+        <img src="assets/img/logo.jpg" alt="">  
+        <span class="brand">Protein Power Lab</span>  
+      </a>  
+      <span class="pill">Envíos en 24–72 h</span>  
+    </nav>  
+  </header>  
+  
+  <!-- HERO -->  
+  <section class="hero">  
+    <h1>Tu fuente de fuerza, poder y <span style="color:var(--accent)">resultados reales</span></h1>  
+    <p>Suplementos de marcas confiables y precios competitivos.</p>  
+  </section>  
+  
+  <!-- MARCAS -->  
+  <section class="brands">  
+    <div class="brand-grid">  
+      <a class="brand-card" href="star.html">  
+        <img class="brand-logo" src="assets/img/star.jpg" alt="Star Nutrition">  
+        <small>Ver catálogo</small>  
+      </a>  
+      <a class="brand-card" href="ena.html">  
+        <img class="brand-logo" src="assets/img/ena.jpg" alt="ENA">  
+        <small>Ver catálogo</small>  
+      </a>  
+      <a class="brand-card" href="dymatize.html">  
+        <img class="brand-logo" src="assets/img/dymatize.jpg" alt="Dymatize">  
+        <small>Ver catálogo</small>  
+      </a>  
+    </div>  
+  </section>  
+  
+  <!-- FOOTER -->  
+  <footer>  
+    <div class="foot">  
+      <small>© 2025 Protein Power Lab. Todos los derechos reservados. · Contacto: proteinpowerlab@gmail.com</small>  
+      <div class="socials">  
+        <!-- Facebook cuadrado redondeado -->
+        <a href="https://www.facebook.com/" target="_blank" class="facebook">
+          <svg viewBox="0 0 24 24">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.8h2.5l-.4 3h-2.1v7A10 10 0 0 0 22 12"/>
+          </svg>
+        </a>
+        <!-- Instagram cuadrado redondeado -->
+        <a href="https://www.instagram.com/protein_power_lab" target="_blank" class="instagram">
+          <svg viewBox="0 0 24 24">
+            <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 1 0 .1 10.1A5 5 0 0 0 12 7zm0 2a3 3 0 1 1-.1 6.1A3 3 0 0 1 12 9zm4.8-3.4a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z"/>
+          </svg>
+        </a>
+      </div>  
+    </div>  
+  </footer>  
+  
+  <!-- WHATSAPP -->  
+  <a class="whatsapp-fab" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!" target="_blank" aria-label="WhatsApp">  
+    <svg viewBox="0 0 32 32">  
+      <path d="M16 .5C7.6.5.5 7.6.5 16c0 2.8.7 5.5 2 7.9L.6 31.5l7-1.8c2.3 1.3 5 2 7.9 2 8.4 0 15.5-7.1 15.5-15.5S24.4.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.1 1 1.1-4-.3-.5c-1.2-2-1.8-4.3-1.8-6.7 0-7 5.7-12.7 12.7-12.7S28.7 9 28.7 16c0 7-5.7 12.8-12.7 12.8z"/>  
+      <path d="M23.5 19.4c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.2.4-1 1.2-1.2 1.4-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.3-2-1.2-1-2-2.3-2.2-2.7-.2-.4 0-.6.1-.8.1-.1.2-.3.3-.5.1-.1.1-.2.2-.4.1-.2.1-.4 0-.6-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.3 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 3s1.2 3.5 1.4 3.7c.2.3 2.3 3.6 5.6 5 3.3 1.4 3.9 1.1 4.6 1 .7-.1 2.3-1 2.6-1.9.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/>  
+    </svg>  
+  </a>  
+</body>  
 </html>
