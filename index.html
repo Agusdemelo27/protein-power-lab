@@ -52,12 +52,13 @@
       display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;
     }
     .brand-card {
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      padding:20px;background:var(--card);border-radius:var(--radius);
+      display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+      padding:20px;height:260px;
+      background:var(--card);border-radius:var(--radius);
       box-shadow:var(--shadow);text-decoration:none;color:var(--text);
     }
-    .brand-card img {width:200px;object-fit:contain;margin-bottom:12px}
-    .brand-card small {margin-top:auto;font-weight:700;font-size:.95rem;color:#000}
+    .brand-card img {width:200px;object-fit:contain;margin-top:auto;margin-bottom:auto;}
+    .brand-card small {margin-bottom:5px;font-weight:700;font-size:.95rem;color:#000;text-decoration:none}
 
     footer {
       background:#000;color:#ccc;margin-top:auto;
@@ -66,7 +67,7 @@
       max-width:1200px;margin:0 auto;
       padding:20px;display:flex;justify-content:space-between;align-items:center;
     }
-    .social {display:flex;gap:14px}
+    .social {display:flex;gap:14px;align-items:center;}
     .social img {width:34px;height:34px;object-fit:cover;border-radius:6px}
 
     /* WhatsApp flotante */
@@ -116,16 +117,14 @@
 
   <footer>
     <div class="foot">
-      <small>© 2025 Protein Power Lab</small>
+      <small>© 2025 Protein Power Lab. Todos los derechos reservados.</small>
       <div class="social">
+        <span>Contacto: proteinpowerlab@gmail.com</span>
         <a href="https://www.instagram.com/protein_power_lab" target="_blank">
           <img src="assets/img/instagram.jpg" alt="Instagram">
         </a>
         <a href="https://facebook.com" target="_blank">
           <img src="assets/img/facebook.jpg" alt="Facebook">
-        </a>
-        <a href="mailto:proteinpowerlab@gmail.com">
-          <img src="assets/img/gmail.jpg" alt="Gmail">
         </a>
       </div>
     </div>
