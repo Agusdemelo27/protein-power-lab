@@ -3,66 +3,86 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Catálogo · Dimatice</title>
+<title>Catálogo · Dymatize</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0f0f10; --text:#f3f3f3; --muted:#cfcfcf; --accent:#FF6A00;
-    --panel:#191a1c; --card:#1f2023; --radius:16px; --shadow:0 18px 50px rgba(0,0,0,.45);
+    --bg:#0e0e0f; --text:#f4f4f4; --muted:#cfcfcf; --accent:#ff6a00;
+    --radius:16px; --shadow:0 22px 70px rgba(0,0,0,.45);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
-  header{position:sticky;top:0;z-index:20;background:rgba(14,14,15,.6);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
-  .nav{max-width:1100px;margin:0 auto;display:flex;gap:12px;align-items:center;padding:12px 18px}
-  .nav a{color:#fff;text-decoration:none;font-weight:700}
-  .crumb{color:#cfcfcf;font-weight:600}
-  main{max-width:1100px;margin:24px auto 60px;padding:0 18px}
-  h1{font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:800;margin-bottom:8px}
-  .hint{color:var(--muted)}
-  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:18px}
-  .card{grid-column:span 12;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-  @media(min-width:900px){ .card{grid-column:span 6} }
-  .media{background:#0f0f10;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;min-height:260px}
-  .media img{display:block;max-width:100%;height:260px;object-fit:contain;background:#fff}
+  body{font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+  .bg{position:fixed; inset:0; z-index:-1;
+      background: radial-gradient(900px 420px at 50% 10%, rgba(255,106,0,.22), transparent 60%),
+                  linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.75));}
+
+  header{position:sticky;top:0;z-index:10;background:rgba(14,14,15,.6);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav{max-width:1200px;margin:0 auto;display:flex;gap:16px;align-items:center;padding:14px 20px}
+  .brand{font-weight:800}
+  .right{margin-left:auto;color:#cfcfcf}
+
+  main{max-width:1200px;margin:26px auto 80px;padding:0 20px}
+  .title{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+  .title img{width:44px;height:44px;object-fit:contain}
+  .title h1{font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:800}
+  .title small{color:#cfcfcf}
+
+  /* Tarjeta de producto */
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:16px}
+  .card{grid-column:span 12;background:rgba(20,20,21,.88);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+  @media(min-width:900px){ .card{grid-column:span 12} }
+
+  .media{
+    background:#fff;                  /* PANEL BLANCO para la foto */
+    border-bottom:1px solid rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;min-height:340px;
+  }
+  .media img{width:100%;max-width:480px;height:320px;object-fit:contain;display:block}
+
   .body{padding:18px}
-  .badge{display:inline-block;margin-bottom:8px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-size:.85rem}
-  h3{font-size:1.1rem;margin-bottom:6px}
-  .desc{color:#d6d6d6}
-  .price{margin-top:12px;font-size:1.12rem;font-weight:900}
-  .back{display:inline-block;margin-top:20px;color:#fff;text-decoration:none;border:2px solid #fff;padding:8px 12px;border-radius:12px;font-weight:800}
-  .back:hover{background:#fff;color:#000}
+  .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);font-size:.85rem}
+  h3{margin:10px 0 4px;font-size:1.2rem;font-weight:800}
+  p{color:#d7d7d7}
+  .price{margin-top:10px;font-weight:900;font-size:1.12rem}
+  .back{margin-top:18px;display:inline-block;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;text-decoration:none}
 </style>
 </head>
 <body>
-  <header>
-    <nav class="nav">
-      <a href="index.html">Protein Power Lab</a>
-      <span class="crumb">· Catálogo Dimatice</span>
-    </nav>
-  </header>
+<div class="bg" aria-hidden="true"></div>
 
-  <main>
-    <h1>Catálogo · Dimatice</h1>
-    <p class="hint">Precios en ARS. Sabores entre paréntesis (si aplica).</p>
+<header>
+  <nav class="nav">
+    <div class="brand">Protein Power Lab</div>
+    <div class="right">Catálogo • <strong>Dymatize</strong></div>
+  </nav>
+</header>
 
-    <section class="grid">
-      <!-- ÚNICO PRODUCTO -->
-      <article class="card">
-        <div class="media">
-          <!-- Tu archivo de imagen -->
-          <img src="assets/img/iso-100-proteina.jpg" alt="ISO100 Hidrolizada 5 lb - Vainilla Gourmet">
-        </div>
-        <div class="body">
-          <span class="badge">Proteína</span>
-          <h3>ISO100 Hidrolizada 5 lb (Vainilla Gourmet)</h3>
-          <p class="desc">100% proteína de suero aislada e hidrolizada. Disolución excelente.</p>
-          <div class="price">$ 400.000</div>
-        </div>
-      </article>
-    </section>
+<main>
+  <div class="title">
+    <img src="dymatize.jpg" alt="Dymatize">
+    <div>
+      <h1>Catálogo · Dymatize</h1>
+      <small>Precios en ARS. Sabores entre paréntesis (si aplica).</small>
+    </div>
+  </div>
 
-    <a class="back" href="index.html">← Volver</a>
-  </main>
+  <section class="grid">
+    <article class="card">
+      <div class="media">
+        <!-- Nombre EXACTO del archivo .jpg -->
+        <img src="iso-100-proteina.jpg" alt="Dymatize ISO100 Hydrolyzed Whey 5 lb Vainilla Gourmet">
+      </div>
+      <div class="body">
+        <span class="badge">Proteína</span>
+        <h3>Dymatize ISO100 Hydrolyzed Whey (Vainilla Gourmet, 5 lb / 2,3 kg)</h3>
+        <p>100% proteína de suero aislada e hidrolizada. Disolución excelente.</p>
+        <div class="price">$ 400.000</div>
+        <a class="back" href="index.html">← Volver</a>
+      </div>
+    </article>
+  </section>
+</main>
 </body>
 </html>
