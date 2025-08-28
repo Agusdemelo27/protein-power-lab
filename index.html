@@ -45,42 +45,49 @@
     .hero h1{font-size:clamp(2.4rem, 4.4vw, 3.8rem);font-weight:800;line-height:1.1;text-shadow:0 6px 30px rgba(0,0,0,.5)}
     .hero p{color:var(--muted);max-width:70ch;margin:0 auto}
 
-    /* === CARDS DE MARCAS ============================================== */
-    .brands{max-width:1200px;margin:36px auto 90px;padding:0 20px}
-    .brand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px} /* 3 columnas: Star, Ena, Dimatize */
-    @media(max-width:768px){.brand-grid{grid-template-columns:1fr}}
-    .brand-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:220px;padding:24px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);text-decoration:none;color:#111;transition:transform .2s, box-shadow .2s}
-    .brand-card:hover{transform:translateY(-2px);box-shadow:0 24px 50px rgba(0,0,0,.25)}
-    .brand-card .brand-logo{width:clamp(140px,40vw,240px);object-fit:contain}
-    .brand-card small{text-align:center;color:#333;font-weight:700;margin-top:auto}
+    /* === Alinear logos de las 3 tarjetas (Star / ENA / Dymatize) === */
+.brand-card .brand-logo{
+  display:block;          /* elimina espacios “fantasma” */
+  margin: 0 auto;         /* centra el logo dentro de la card */
+  height: 110px;          /* alto uniforme para los 3 logos */
+  width: auto;            /* conserva proporción */
+  object-fit: contain;    /* no deforma */
+}
 
-    /* === FOOTER ======================================================= */
-    footer{border-top:1px solid rgba(255,255,255,.08);background:rgba(10,10,10,.9);backdrop-filter:blur(6px)}
-    .foot{max-width:1200px;margin:0 auto;padding:22px 20px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
-    .foot small{color:#b5b5b5}
+/* === Footer: íconos cuadrados FB/IG (se vuelven a ver) ======== */
+.footer-social{
+  display:flex; gap:14px; align-items:center;
+}
+.footer-social img{
+  width:36px; height:36px; 
+  border-radius:8px;      /* cuadrados con puntita redondeada */
+  display:block;
+}
 
-    /* === WHATSAPP FLOTANTE (solo este bloque) ========================== */
-    .whatsapp-fab {                     /* Nombre de la clase del botón */
-      position: fixed;                  /* Fijado para que flote sobre la página */
-      right: 18px;                      /* Distancia al borde derecho */
-      bottom: 18px;                     /* Distancia al borde inferior */
-      z-index: 9999;                    /* Encima de todo */
-      width: 68px;                      /* Ancho del botón (diámetro del círculo) */
-      height: 68px;                     /* Alto del botón (diámetro del círculo) */
-      border-radius: 50%;               /* Lo hace perfectamente circular */
-      background: #25D366;              /* COLOR DE FONDO VERDE del botón */
-      box-shadow:                       /* Sombras para que “flote” */
-        0 6px 18px rgba(0,0,0,.35),
-        inset 0 -2px 0 rgba(0,0,0,.08); /* Sombrado interior suave */
-      display: grid;                    /* Centrado del ícono interno */
-      place-items: center;              /* Ícono bien al centro */
-      text-decoration: none;            /* Sin subrayado en el link */
-      transition: transform .15s ease;  /* Animación al pasar el mouse */
-    }
-    .whatsapp-fab:hover {transform: translateY(-2px);} /* Efecto sutil */
-    .whatsapp-fab svg {
-      width: 36px; height: 36px; fill: #ffffff; display:block;
-    }
+/* === WHATSAPP FLOTANTE ======================================== */
+/* Contenedor del botón flotante (link que abre WhatsApp) */
+.whatsapp-fab{                 /* Nombre de la clase del botón */
+  position: fixed;             /* Fijado para que flote sobre la página */
+  right: 18px;                 /* Distancia al borde derecho */
+  bottom: 18px;                /* Distancia al borde inferior */
+  z-index: 9999;               /* Encima de todo */
+  width: 68px;                 /* Ancho del botón (diámetro del círculo) */
+  height: 68px;                /* Alto del botón (diámetro del círculo) */
+  border-radius: 50%;          /* Círculo perfecto */
+  background: #25D366;        /* VERDE WhatsApp */
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.35),
+    inset 0 -2px 0 rgba(0,0,0,.08);
+  display:grid; place-items:center;
+  text-decoration:none;
+  transition: transform .15s ease;
+}
+.whatsapp-fab:hover{ transform: translateY(-2px); }
+
+/* Ícono blanco (SVG) dentro del botón */
+.whatsapp-fab svg{
+  width:36px; height:36px; fill:#fff; display:block;
+}
   </style>
 </head>
 <body>
