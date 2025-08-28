@@ -1,133 +1,223 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Protein Power Lab</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root{
-      --bg:#0f0f10;
-      --text:#f3f3f3;
-      --muted:#cfcfcf;
-      --accent:#FF6A00;
-      --card:#efe7dd;              /* “hueso” */
-      --radius:18px;
-      --shadow:0 18px 60px rgba(0,0,0,.45);
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Protein Power Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0e0f;
+    --text:#f3f3f3;
+    --muted:#cfcfcf;
+    --accent:#ff6a00;
+    --card:#efe8df; /* “blanco hueso” para las cartas */
+    --radius:18px;
+    --shadow:0 20px 60px rgba(0,0,0,.55);
+  }
 
-    /* Fondo como antes: textura + glow naranja */
-    .bg{
-      position:fixed;inset:0;z-index:-2;
-      background:url('assets/img/bg-texture.jpg') center/cover no-repeat;
-      filter:brightness(.85) contrast(1.03);
-    }
-    .bg::after{
-      content:"";position:absolute;inset:0;z-index:-1;
-      background:
-        radial-gradient(900px 420px at 50% 15%, rgba(255,106,0,.20), transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.65));
-    }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
 
-    header{position:sticky;top:0;z-index:10;background:rgba(15,15,16,.55);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
-    .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:14px 20px}
-    .brand{font-weight:800;letter-spacing:.3px}
+  /* Fondo con luz naranja */
+  .bg{
+    position:fixed;inset:0;z-index:-2;
+    background:url('assets/img/bg-texture.jpg') center/cover no-repeat;
+    filter:contrast(1.02) brightness(.82);
+  }
+  .bg::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:
+      radial-gradient(1200px 600px at 50% 0, rgba(255,106,0,.20), transparent 60%),
+      radial-gradient(1200px 600px at 50% 100%, rgba(255,255,255,.10), transparent 60%),
+      linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.65));
+  }
 
-    .hero{max-width:1200px;margin:34px auto 0;padding:0 20px 8px;text-align:center}
-    .hero h1{font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.1;font-weight:800;text-shadow:0 8px 34px rgba(0,0,0,.55)}
-    .hero .accent{color:var(--accent)}
-    .hero p{margin-top:10px;color:var(--muted)}
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(14,14,15,.55);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .nav{
+    max-width:1200px;margin:0 auto;padding:12px 18px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;
+    font-weight:800;letter-spacing:.4px
+  }
+  .brand img{width:44px;height:44px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,.1);background:#000}
+  .ship{
+    margin-left:auto;
+    padding:8px 14px;border-radius:999px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    color:#eaeaea;font-weight:600;font-size:.9rem
+  }
 
-    /* Marcas */
-    .brands{max-width:1200px;margin:28px auto 80px;padding:0 20px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-    @media(max-width:980px){.grid{grid-template-columns:1fr}}
-    .card{
-      display:block;text-decoration:none;color:#111;background:var(--card);
-      border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 18px;
-      transition:transform .18s ease, box-shadow .18s ease; text-align:center;
-    }
-    .card:hover{transform:translateY(-2px);box-shadow:0 24px 60px rgba(0,0,0,.36)}
-    .card img{display:block;margin:8px auto 14px;max-width:240px;width:100%;height:80px;object-fit:contain;filter:grayscale(100%) brightness(.13)}
-    .card h3{font-weight:800;margin-bottom:4px}
-    .card small{color:#444;font-weight:700;text-decoration:underline}
+  main{flex:1 0 auto}
+  .hero{
+    max-width:1200px;margin:28px auto 18px;padding:0 18px;
+    text-align:center;display:grid;gap:16px;
+  }
+  .hero h1{
+    font-size:clamp(1.8rem,3.8vw,3.4rem);
+    font-weight:800;line-height:1.1
+  }
+  .hero .accent{color:var(--accent)}
+  .hero p{color:var(--muted)}
 
-    footer{border-top:1px solid rgba(255,255,255,.08);background:rgba(10,10,10,.82);backdrop-filter:blur(6px)}
-    .foot{max-width:1200px;margin:0 auto;display:flex;gap:14px;align-items:center;justify-content:space-between;padding:18px 20px;flex-wrap:wrap}
-    .foot small{color:#bdbdbd}
-    .social{display:flex;align-items:center;gap:12px}
-    .social a{display:inline-flex;width:28px;height:28px;border-radius:999px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.35)}
-    .social img{width:100%;height:100%;object-fit:cover}
+  /* Cartas de marcas */
+  .brands{max-width:1200px;margin:18px auto 46px;padding:0 18px}
+  .grid{display:grid;gap:22px;grid-template-columns:repeat(12,1fr)}
+  @media(min-width:900px){.grid>*{grid-column:span 4}}
+  @media(max-width:899px){.grid>*{grid-column:span 12}}
 
-    /* FAB WhatsApp */
-    .fab{
-      position:fixed;right:22px;bottom:22px;z-index:20;
-      width:58px;height:58px;border-radius:999px;overflow:hidden;
-      box-shadow:0 12px 28px rgba(0,0,0,.4);
-      background:#25D366;display:grid;place-items:center;
-    }
-    .fab img{width:58px;height:58px;object-fit:cover}
-    .fab:active{transform:scale(.98)}
-  </style>
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    border:1px solid rgba(0,0,0,.08);
+    padding:22px 18px;
+    display:flex;flex-direction:column;align-items:center;gap:12px;
+    text-align:center;
+  }
+  .card a.card-link{display:block;width:100%;text-decoration:none;color:inherit}
+  .logo{
+    width:min(78%,340px);
+    display:block;margin:0 auto 6px;
+    object-fit:contain;
+    filter:none !important;opacity:1 !important;
+    background:#fff; /* fondo blanco para logos negros */
+    border-radius:12px;
+    border:1px solid rgba(0,0,0,.08);
+  }
+  .cta{
+    display:inline-block;margin-top:2px;
+    font-weight:800;text-decoration:none;
+    color:#111;background:#fff;border:1px solid rgba(0,0,0,.10);
+    border-radius:12px;padding:10px 16px
+  }
+  .cta:hover{filter:brightness(.96)}
+
+  /* Footer pegado abajo */
+  footer{
+    flex-shrink:0;
+    border-top:1px solid rgba(255,255,255,.08);
+    background:rgba(10,10,10,.88);
+    backdrop-filter:blur(4px);
+  }
+  .foot{
+    max-width:1200px;margin:0 auto;padding:14px 18px;
+    display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap
+  }
+  .foot small{color:#c9c9c9}
+
+  .contact{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap
+  }
+  .contact a.mail{color:#eaeaea;text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.35)}
+  .social{display:flex;align-items:center;gap:10px}
+  .social a{display:inline-block;line-height:0}
+  .social img{
+    width:28px;height:28px;object-fit:cover;
+    border-radius:6px; /* cuadrados con puntas suaves */
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 4px 16px rgba(0,0,0,.35);
+    background:transparent;
+  }
+
+  /* WhatsApp FAB (círculo) */
+  .wa{
+    position:fixed;right:18px;bottom:18px;z-index:60;
+    width:56px;height:56px;border-radius:999px;
+    background:#25D366;display:grid;place-items:center;
+    box-shadow:0 18px 40px rgba(0,0,0,.45);
+    border:2px solid rgba(255,255,255,.25)
+  }
+  .wa img{width:30px;height:30px;object-fit:contain}
+</style>
 </head>
 <body>
   <div class="bg" aria-hidden="true"></div>
 
   <header>
-    <nav class="nav"><strong class="brand">Protein Power Lab</strong></nav>
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.jpg" alt="Protein Power Lab">
+        <span>Protein Power Lab</span>
+      </a>
+      <span class="ship">Envíos en 24–72 h</span>
+    </nav>
   </header>
 
-  <section class="hero">
-    <h1>Tu fuente de fuerza, poder y <span class="accent">resultados reales</span></h1>
-    <p>Suplementos de marcas confiables y precios competitivos. Comprá fácil y rápido, con entregas en CABA/GBA.</p>
-  </section>
+  <main>
+    <section class="hero">
+      <h1>Tu fuente de fuerza, poder y <span class="accent">resultados reales</span></h1>
+      <p>Suplementos de marcas confiables y precios competitivos. Comprá fácil y rápido, con entregas en CABA/GBA.</p>
+    </section>
 
-  <section class="brands" id="marcas">
-    <div class="grid">
-      <!-- STAR -->
-      <a class="card" href="star.html" aria-label="Ver catálogo Star Nutrition">
-        <img src="assets/img/star.jpg" alt="Star Nutrition" />
-        <h3>Star Nutrition</h3>
-        <small>Ver catálogo</small>
-      </a>
+    <section class="brands" id="marcas">
+      <div class="grid">
+        <!-- STAR -->
+        <article class="card">
+          <a class="card-link" href="star.html" aria-label="Ver catálogo Star Nutrition">
+            <img class="logo" src="assets/img/star.jpg" alt="Star Nutrition">
+          </a>
+          <a class="cta" href="star.html">Ver catálogo</a>
+        </article>
 
-      <!-- ENA -->
-      <a class="card" href="ena.html" aria-label="Ver catálogo ENA">
-        <img src="assets/img/ena.jpg" alt="ENA" />
-        <h3>ENA</h3>
-        <small>Ver catálogo</small>
-      </a>
+        <!-- ENA -->
+        <article class="card">
+          <a class="card-link" href="ena.html" aria-label="Ver catálogo ENA">
+            <img class="logo" src="assets/img/ena.jpg" alt="ENA">
+          </a>
+          <a class="cta" href="ena.html">Ver catálogo</a>
+        </article>
 
-      <!-- DYMATIZE (con Y y Z) -->
-      <a class="card" href="dymatize.html" aria-label="Ver catálogo Dymatize">
-        <img src="assets/img/dymatize.jpg" alt="Dymatize" />
-        <h3>Dymatize</h3>
-        <small>Ver catálogo</small>
-      </a>
-    </div>
-  </section>
-
-  <!-- WhatsApp flotante -->
-  <a class="fab" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">
-    <img src="assets/img/whatsapp.jpg" alt="WhatsApp" />
-  </a>
+        <!-- DYMATIZE -->
+        <article class="card">
+          <a class="card-link" href="dymatize.html" aria-label="Ver catálogo Dymatize">
+            <img class="logo" src="assets/img/dymatize.jpg" alt="Dymatize">
+          </a>
+          <a class="cta" href="dymatize.html">Ver catálogo</a>
+        </article>
+      </div>
+    </section>
+  </main>
 
   <footer>
     <div class="foot">
       <small>© 2025 Protein Power Lab. Todos los derechos reservados.</small>
-      <div class="social">
-        <small>Contacto: <a href="mailto:proteinpowerlab@gmail.com" style="color:#fff;text-decoration:underline">proteinpowerlab@gmail.com</a></small>
-        <a href="https://www.instagram.com/protein_power_lab" target="_blank" rel="noopener" title="Instagram">
-          <img src="assets/img/instagram.jpg" alt="Instagram">
-        </a>
-        <a href="https://www.facebook.com/" target="_blank" rel="noopener" title="Facebook">
-          <img src="assets/img/facebook.jpg" alt="Facebook">
-        </a>
+
+      <div class="contact">
+        <a class="mail" href="mailto:proteinpowerlab@gmail.com">proteinpowerlab@gmail.com</a>
+        <div class="social">
+          <a href="https://www.instagram.com/protein_power_lab" target="_blank" rel="noopener">
+            <img src="assets/img/instagram.jpg" alt="Instagram">
+          </a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener">
+            <img src="assets/img/facebook.jpg" alt="Facebook">
+          </a>
+        </div>
       </div>
     </div>
   </footer>
+
+  <!-- WhatsApp flotante -->
+  <a class="wa" href="https://wa.me/541123014207?text=Hola%20Protein%20Power%20Lab!" target="_blank" aria-label="WhatsApp">
+    <img src="assets/img/whatsapp.jpg" alt="">
+  </a>
 </body>
 </html>
