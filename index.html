@@ -16,24 +16,15 @@
       --shadow:0 20px 60px rgba(0,0,0,.55);
     }
     *{box-sizing:border-box;margin:0;padding:0}
-
-    /* 👇 Fix para que el footer quede abajo */
     body{
       font-family:'Montserrat',sans-serif;
       background:var(--bg);
       color:var(--text);
       overflow-x:hidden;
-      min-height:100vh;       /* ocupa toda la altura */
-      display:flex;           /* usamos flexbox */
-      flex-direction:column;  /* apila header, contenido, footer */
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
     }
-    footer{
-      border-top:1px solid rgba(255,255,255,.08);
-      background:rgba(10,10,10,.9);
-      backdrop-filter:blur(6px);
-      margin-top:auto;        /* manda el footer al fondo */
-    }
-
     .bg{position:fixed;inset:0;z-index:-2;
       background:url('assets/img/bg-texture.jpg') center/cover no-repeat;
       filter:contrast(1.02) brightness(.8);
@@ -43,14 +34,18 @@
       backdrop-filter:blur(6px);
       border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .nav{max-width:1200px;margin:0 auto;
+    .nav{
+      max-width:1240px;      /* más ancho */
+      margin:0 auto;
       display:flex;align-items:center;gap:20px;
-      padding:14px 20px;
+      padding:14px 28px 14px 12px; /* izq más cerca, der más ancho */
     }
     .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff}
     .logo img{height:50px;width:50px;object-fit:contain}
     .brand{font-weight:800}
-    .pill{margin-left:auto;display:inline-flex;align-items:center;gap:10px;
+    .pill{
+      margin-left:auto;
+      display:inline-flex;align-items:center;gap:10px;
       padding:10px 14px;border-radius:999px;
       background:rgba(255,255,255,.08);
       border:1px solid rgba(255,255,255,.1);
@@ -68,20 +63,29 @@
       border-radius:var(--radius);box-shadow:var(--shadow);
       text-decoration:none;color:#111;transition:.2s}
     .brand-card:hover{transform:translateY(-2px)}
-    .brand-card .brand-logo{width:clamp(140px,40vw,220px);height:100px;
-      object-fit:contain;display:block;}
+    .brand-card .brand-logo{width:clamp(140px,40vw,220px);height:100px;object-fit:contain;display:block;}
     .brand-card small{font-weight:600;color:#333}
+    /* Dymatize igual que Star y ENA */
     .brand-card.brand--dymatize .brand-logo{
       filter: grayscale(1) brightness(0) contrast(110%);
       height:100px;max-width:220px;
     }
-    .foot{max-width:1200px;margin:0 auto;
-      padding:28px 20px;display:flex;flex-wrap:wrap;
-      align-items:center;justify-content:space-between;gap:16px}
-    .foot small{color:#b5b5b5}
-    .socials{display:flex;gap:12px}
-    .socials a{width:46px;height:46px;display:flex;
-      align-items:center;justify-content:center;border-radius:8px}
+    footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      background:rgba(10,10,10,.9);
+      backdrop-filter:blur(6px);
+      margin-top:auto;
+    }
+    .foot{
+      max-width:1240px;
+      margin:0 auto;
+      padding:28px 28px 28px 16px; /* izq más cerca */
+      display:flex;flex-wrap:wrap;
+      align-items:center;justify-content:space-between;gap:16px
+    }
+    .foot small{color:#b5b5b5;margin-right:auto;} /* texto más a la izq */
+    .socials{display:flex;gap:12px;margin-left:auto;margin-right:96px;} /* redes a la derecha */
+    .socials a{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:8px}
     .socials a.facebook { background:#1877F2; }
     .socials a.facebook svg { fill:#fff; width:24px; height:24px; }
     .socials a.instagram {
@@ -94,6 +98,9 @@
       display: grid; place-items: center; text-decoration: none; transition: transform .15s ease;}
     .whatsapp-fab:hover {transform: translateY(-2px);}
     .whatsapp-fab svg {width: 36px; height: 36px;fill: #fff;display: block;}
+    @media (max-width: 680px){
+      .socials{margin-right:84px;} /* que no lo tape whatsapp en mobile */
+    }
     html { -webkit-text-size-adjust: 100%; }
   </style>
 </head>
@@ -154,4 +161,3 @@
   </a>
 </body>
 </html>
-
