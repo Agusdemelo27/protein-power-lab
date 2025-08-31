@@ -26,8 +26,7 @@
       flex-direction:column;
     }
 
-    .bg{
-      position:fixed;inset:0;z-index:-2;
+    .bg{position:fixed;inset:0;z-index:-2;
       background:url('assets/img/bg-texture.jpg') center/cover no-repeat;
       filter:contrast(1.02) brightness(.8);
     }
@@ -40,24 +39,19 @@
       border-bottom:1px solid rgba(255,255,255,.06);
     }
     .nav{
-      max-width:100%;
-      margin:0 20px;
-      display:flex;
-      align-items:center;
+      width:100%;
+      display:flex;align-items:center;
       padding:14px 40px;
     }
     .logo{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      text-decoration:none;
-      color:#fff;
-      margin-right:auto;   /* logo bien a la izquierda */
+      display:flex;align-items:center;gap:14px;
+      text-decoration:none;color:#fff;
+      margin-right:auto;
     }
     .logo img{height:50px;width:50px;object-fit:contain}
     .brand{font-weight:800}
     .pill{
-      margin-left:auto;    /* pill bien a la derecha */
+      margin-left:auto;
       display:inline-flex;align-items:center;gap:10px;
       padding:10px 14px;border-radius:999px;
       background:rgba(255,255,255,.08);
@@ -102,14 +96,10 @@
       align-items:center;
       padding:28px 40px;
     }
-    .foot small{
-      margin-left:0; /* más pegado a la izquierda */
-      color:#b5b5b5;
-    }
+    .foot small{margin-left:0;color:#b5b5b5}
     .socials{
       display:flex;gap:12px;
-      margin-left:auto;
-      margin-right:100px; /* redes más a la derecha */
+      margin-left:auto;margin-right:100px;
     }
     .socials a{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:8px}
     .socials a.facebook { background:#1877F2; }
@@ -131,8 +121,19 @@
     .whatsapp-fab:hover {transform: translateY(-2px);}
     .whatsapp-fab svg {width: 36px; height: 36px;fill: #fff;display: block;}
 
+    /* ===== MOBILE FIX ===== */
     @media (max-width: 680px){
-      .socials{margin-right:84px;} /* que no tape WhatsApp en mobile */
+      .nav{padding:12px}
+      .logo img{height:42px;width:42px}
+      .brand{font-size:.95rem}
+      .pill{padding:8px 10px;font-size:.8rem}
+      .hero{margin:24px auto 0;padding:0 14px 18px}
+      .brands{margin:22px auto 96px;padding:0 14px}
+      .brand-grid{grid-template-columns:1fr;gap:16px}
+      .brand-card{padding:18px;border-radius:16px}
+      .brand-card .brand-logo{height:78px}
+      .foot{padding:16px 12px}
+      .socials{margin-right:72px;gap:10px}
     }
 
     html { -webkit-text-size-adjust: 100%; }
