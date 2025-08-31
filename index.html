@@ -76,11 +76,14 @@
     .brand-card:hover{transform:translateY(-2px)}
     .brand-card .brand-logo{width:clamp(140px,40vw,220px);height:100px;object-fit:contain;display:block;}
     .brand-card small{font-weight:600;color:#333}
-    /* Dymatize igual que los otros */
-    .brand-card.brand--dymatize .brand-logo{
-      filter: grayscale(1) brightness(0) contrast(120%);
-      height:100px;max-width:220px;
-    }
+    /* Dymatize: igualar tono con Star y ENA */
+.brand-card.brand--dymatize .brand-logo{
+  filter: grayscale(1) brightness(0) contrast(120%);
+  height:100px;
+  max-width:220px;
+  opacity:0.85;   /* 👈 un poquito más transparente */
+}
+
 
     /* FOOTER */
     footer{
