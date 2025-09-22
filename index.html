@@ -71,55 +71,22 @@
     .hero h1{font-size:clamp(2.4rem,4vw,3.6rem);font-weight:800;line-height:1.1}
     .hero p{color:var(--muted);margin-top:12px}
 
-/* MARCAS */
-.brands {
-  max-width: 1200px;
-  margin: 36px auto 90px;
-  padding: 0 20px;
-}
-.brand-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 👈 ahora 2 columnas */
-  gap: 28px;
-  justify-content: center; /* 👈 centra la grilla */
-}
-.brand-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 24px;
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  text-decoration: none;
-  color: #111;
-  transition: .2s;
-}
-.brand-card:hover {
-  transform: translateY(-2px);
-}
-.brand-card .brand-logo {
-  width: clamp(140px, 40vw, 220px);
-  height: 100px;
-  object-fit: contain;
-  display: block;
-}
-.brand-card small {
-  font-weight: 600;
-  color: #333;
-}
-/* Dymatize: igualar tono con Star */
-.brand-card.brand--dymatize .brand-logo {
-  filter: grayscale(1) brightness(0) contrast(120%);
-  height: 100px;
-  max-width: 220px;
-  opacity: 0.85;
-}
+<!-- MARCAS -->
+<section class="brands">
+  <div class="brand-grid">
+    <!-- ⭐ STAR NUTRITION -->
+    <a class="brand-card" href="star.html">
+      <img class="brand-logo" src="assets/img/star.jpg" alt="Star Nutrition">
+      <small>Ver catálogo</small>
+    </a>
 
-
-
+    <!-- 💪 DYMATIZE -->
+    <a class="brand-card brand--dymatize" href="dymatize.html">
+      <img class="brand-logo" src="assets/img/dymatize.jpg" alt="Dymatize">
+      <small>Ver catálogo</small>
+    </a>
+  </div>
+</section>
 }
 
 
