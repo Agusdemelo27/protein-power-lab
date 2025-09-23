@@ -166,12 +166,6 @@
     margin-top:10px;font-weight:900;
     font-size:1.1rem;color:#fff
   }
-  .price .nostock {
-    color:#ffcf9e;
-    background:rgba(255,106,0,.14);
-    padding:3px 8px;border-radius:8px;
-    border:1px solid rgba(255,106,0,.3)
-  }
 
   @media(min-width:768px){
     .card{grid-column:span 6}
@@ -295,8 +289,8 @@
 <script>
   const IMG_BASE='assets/img/';
   const PRODUCTS=[
-    {cat:'proteina', name:'ENA Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana)', price:null, img:'ena_Whey_Protein_2LB_vainilla_chocolate_frutilla_cookies_banana.jpg', desc:'Excelente disolución.'},
-    {cat:'creatina', name:'ENA Creatina 300g', price:null, img:'ena_Creatina_300g.jpg', desc:'Pura y micronizada.'}
+    {cat:'proteina', name:'ENA Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana)', price:54000, img:'ena_Whey_Protein_2LB_vainilla_chocolate_frutilla_cookies_banana.jpg', desc:'Excelente disolución.'},
+    {cat:'creatina', name:'ENA Creatina 300g', price:32000, img:'ena_Creatina_300g.jpg', desc:'Pura y micronizada.'}
   ];
   const q=document.getElementById('q'), cat=document.getElementById('cat'), sort=document.getElementById('sort');
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18});
