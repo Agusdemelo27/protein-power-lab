@@ -220,27 +220,6 @@
   }
   .whatsapp-fab:hover{transform:translateY(-2px)}
   .whatsapp-fab svg{width:36px;height:36px;fill:#fff;display:block}
-
-  /* Más aire lateral en desktop */
-  @media (min-width: 1024px){
-    main{padding-left:56px;padding-right:56px}
-    .filters{margin-left:4px}
-  }
-  @media (min-width: 1440px){
-    main{max-width:1320px;padding-left:64px;padding-right:64px}
-  }
-  @media (min-width: 1680px){
-    main{max-width:1380px;padding-left:72px;padding-right:72px}
-  }
-
-  /* Mobile */
-  @media (max-width:680px){
-    .nav{padding:12px}
-    .logo img{height:42px;width:42px}
-    .right .back{padding:8px 12px}
-    .foot{padding:16px 12px}
-    .socials{margin-right:72px;gap:10px}
-  }
 </style>
 </head>
 <body>
@@ -273,9 +252,6 @@
       <option value="todas">Todas las categorías</option>
       <option value="creatina">Creatina</option>
       <option value="proteina">Proteína</option>
-      <option value="pre">Pre-entreno</option>
-      <option value="multi">Multivitamínico</option>
-      <option value="salud">Salud</option>
     </select>
     <select id="sort" class="select">
       <option value="rec">Orden: recomendado</option>
@@ -293,21 +269,6 @@
   <section class="group" id="g-proteina">
     <h2>Proteína <span class="chip" id="c-proteina">0</span></h2>
     <div class="grid" data-cat="proteina"></div>
-  </section>
-
-  <section class="group" id="g-pre">
-    <h2>Pre-entreno <span class="chip" id="c-pre">0</span></h2>
-    <div class="grid" data-cat="pre"></div>
-  </section>
-
-  <section class="group" id="g-multi">
-    <h2>Multivitamínico <span class="chip" id="c-multi">0</span></h2>
-    <div class="grid" data-cat="multi"></div>
-  </section>
-
-  <section class="group" id="g-salud">
-    <h2>Salud <span class="chip" id="c-salud">0</span></h2>
-    <div class="grid" data-cat="salud"></div>
   </section>
 </main>
 
@@ -335,13 +296,11 @@
   const IMG_BASE='assets/img/';
   const PRODUCTS=[
     {cat:'proteina', name:'ENA Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana)', price:null, img:'ena_Whey_Protein_2LB_vainilla_chocolate_frutilla_cookies_banana.jpg', desc:'Excelente disolución.'},
-    {cat:'creatina', name:'ENA Creatina 300g', price:null, img:'ena_Creatina_300g.jpg', desc:'Pura y micronizada.'},
-    {cat:'salud', name:'ENA Colágeno 407g', price:null, img:'ena_Colágeno_407g.jpg', desc:'Soporte articular y piel.'},
-    {cat:'multi', name:'ENA Multivitamínico 60caps', price:null, img:'ena_Multivitamínico_60caps.jpg', desc:'Vitaminas y minerales clave.'}
+    {cat:'creatina', name:'ENA Creatina 300g', price:null, img:'ena_Creatina_300g.jpg', desc:'Pura y micronizada.'}
   ];
   const q=document.getElementById('q'), cat=document.getElementById('cat'), sort=document.getElementById('sort');
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18});
-  const label=c=>({creatina:'Creatina',proteina:'Proteína',pre:'Pre-entreno',multi:'Multivitamínico',salud:'Salud'}[c]||c);
+  const label=c=>({creatina:'Creatina',proteina:'Proteína'}[c]||c);
   const pesos=v=>v.toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});
   function card(p){
     const priceHtml=(p.price&&p.price>0)
@@ -367,7 +326,7 @@
     if(sort.value==='precioAsc')data.sort((a,b)=>(a.price||1e12)-(b.price||1e12));
     if(sort.value==='precioDesc')data.sort((a,b)=>(b.price||-1)-(a.price||-1));
     if(sort.value==='az')data.sort((a,b)=>a.name.localeCompare(b.name));
-    const counts={creatina:0,proteina:0,pre:0,multi:0,salud:0};
+    const counts={creatina:0,proteina:0};
     data.forEach(p=>counts[p.cat]++);
     Object.keys(counts).forEach(k=>{
       const el=document.getElementById('c-'+k);
