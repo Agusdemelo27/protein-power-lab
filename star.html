@@ -68,9 +68,9 @@
   .whatsapp-fab svg{width:36px;height:36px;fill:#fff;display:block}
 </style>
 </head>
-
 <body>
-<div class="bg"></div>
+
+<div class="bg" aria-hidden="true"></div>
 
 <header>
   <nav class="nav">
@@ -116,7 +116,6 @@
   <section class="group" id="g-multi"><h2>Multivitamínico <span class="chip" id="c-multi">0</span></h2><div class="grid" data-cat="multi"></div></section>
   <section class="group" id="g-salud"><h2>Salud <span class="chip" id="c-salud">0</span></h2><div class="grid" data-cat="salud"></div></section>
 </main>
-
 <footer>
   <div class="foot">
     <small>© 2025 Power Lab. Todos los derechos reservados. · Contacto: proteinpowerlab@gmail.com</small>
@@ -138,113 +137,97 @@
 </a>
 
 <script>
-  const IMG_BASE='assets/img/';
+const IMG_BASE='assets/img/';
+const PRODUCTS=[
+  {cat:'creatina', name:'Creatina 150g', price:20000, img:'Creatina_150g.jpg', desc:'Pura y micronizada.'},
+  {cat:'creatina', name:'Creatina 300g (doypack)', price:34000, img:'Creatina_300g_doypack.jpg', desc:'Pura y micronizada.'},
+  {cat:'creatina', name:'Creatina 300g (pote)', price:37000, img:'Creatina_300g_pote.jpg', desc:'Pura y micronizada.'},
+  {cat:'creatina', name:'Creatina 500g', price:52000, img:'Creatina_500g.jpg', desc:'Pura y micronizada.'},
+  {cat:'creatina', name:'Creatina 1kg', price:85000, img:'Creatina_1kg.jpg', desc:'Pura y micronizada.'},
 
-  const PRODUCTS=[
-    {cat:'creatina', name:'Creatina 150g', price:20000, img:'Creatina_150g.jpg', desc:'Pura y micronizada.'},
-    {cat:'creatina', name:'Creatina 300g (doypack)', price:34000, img:'Creatina_300g_doypack.jpg', desc:'Pura y micronizada.'},
-    {cat:'creatina', name:'Creatina 300g (pote)', price:37000, img:'Creatina_300g_pote.jpg', desc:'Pura y micronizada.'},
-    {cat:'creatina', name:'Creatina 500g', price:52000, img:'Creatina_500g.jpg', desc:'Pura y micronizada.'},
-    {cat:'creatina', name:'Creatina 1kg', price:85000, img:'Creatina_1kg.jpg', desc:'Pura y micronizada.'},
+  {cat:'proteina', name:'Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana)', price:48000, img:'Whey_Protein_2LB_vainilla_chocolate_frutilla_cookies_banana.jpg', desc:'Excelente disolución.'},
 
-    {cat:'proteina', name:'Whey Protein 2LB (vainilla, chocolate, frutilla, cookies, banana)', price:48000, img:'Whey_Protein_2LB_vainilla_chocolate_frutilla_cookies_banana.jpg', desc:'Excelente disolución.'},
+  {cat:'pre', name:'Pump V8 285g (acai, lima limon, grape, watermelon)', price:38000, img:'Pump_V8_285g_acai_lima_limon_grape_watermelon.jpg', desc:'Energía y enfoque para tu sesión.'},
+  {cat:'pre', name:'Pump 3D Ripped 315g (lemon, strawberry lemon)', price:null, img:'Pump_3D_Ripped_315g_lemon_strawberry_lemon.jpg', desc:'Energía y enfoque. 3D Ripped.'},
 
-    {cat:'pre', name:'Pump V8 285g (acai, lima limon, grape, watermelon)', price:38000, img:'Pump_V8_285g_acai_lima_limon_grape_watermelon.jpg', desc:'Energía y enfoque.'},
-    {cat:'pre', name:'Pump 3D Ripped 315g (lemon, strawberry lemon)', price:null, img:'Pump_3D_Ripped_315g_lemon_strawberry_lemon.jpg', desc:'Energía y enfoque. 3D Ripped.'},
+  {cat:'amino', name:'Mtor BCAA 270g', price:30000, img:'https://raw.githubusercontent.com/Agusdemelo27/protein-power-lab/main/assets/img/Mtor_BCAA_270g.jpg', desc:'BCAA 2:1:1.'},
+  {cat:'amino', name:"EAA's Essential Aminos 360g", price:40000, img:'https://raw.githubusercontent.com/Agusdemelo27/protein-power-lab/main/assets/img/EAA%C2%B4s_Essential_Aminos_360gr.jpg', desc:'Aminoácidos esenciales 9/9.'},
 
-    {cat:'amino', name:'Mtor BCAA 270g', price:30000, img:'https://raw.githubusercontent.com/Agusdemelo27/protein-power-lab/main/assets/img/Mtor_BCAA_270g.jpg', desc:'BCAA 2:1:1.'},
-    {cat:'amino', name:"EAA's Essential Aminos 360g", price:40000, img:'https://raw.githubusercontent.com/Agusdemelo27/protein-power-lab/main/assets/img/EAA%C2%B4s_Essential_Aminos_360gr.jpg', desc:'Aminoácidos esenciales 9/9.'},
+  {cat:'amino', name:'L-Glutamina 300g', price:null, img:'L_Glutamina.jpg', desc:'Sin stock.'},
 
-    {cat:'multi', name:'All in One Vitamin 60caps', price:null, img:'All_in_One_Vitamin_60caps.jpg', desc:'Vitaminas y minerales clave.'},
+  {cat:'multi', name:'All in One Vitamin 60caps', price:null, img:'All_in_One_Vitamin_60caps.jpg', desc:'Vitaminas y minerales clave.'},
+  {cat:'multi', name:'ZMA 90caps', price:null, img:'ZMA.jpg', desc:'Sin stock.'},
 
-    {cat:'salud', name:'Omega3 60caps', price:32000, img:'Omega3_60caps.jpg', desc:'EPA/DHA.'},
-    {cat:'salud', name:'Magnesio sin sabor 60caps', price:17500, img:'Magnesio_sin_sabor_60caps.jpg', desc:'Apoyo muscular.'},
-    {cat:'salud', name:'Colágeno Hidrolizado', price:21000, img:'colageno.jpg', desc:'Colágeno hidrolizado.'},
-    {cat:'salud', name:'L-Glutamine 300g', price:null, img:'L-glutamine-300g.jpg', desc:'Glutamina pura micronizada.'},
-    {cat:'salud', name:'ZMA', price:null, img:'ZMA.jpg', desc:'Fórmula ZMA.'}
-  ];
+  {cat:'salud', name:'Omega3 60caps', price:32000, img:'Omega3_60caps.jpg', desc:'EPA/DHA.'},
+  {cat:'salud', name:'Magnesio sin sabor 60caps', price:17500, img:'Magnesio_sin_sabor_60caps.jpg', desc:'Apoyo muscular.'},
+  {cat:'salud', name:'Colágeno Hidrolizado 300g (limón / frutos rojos)', price:21000, img:'Colageno.jpg', desc:'Sabores: limón y frutos rojos.'}
+];
 
-  const q=document.getElementById('q'); 
-  const cat=document.getElementById('cat'); 
-  const sort=document.getElementById('sort');
+const q=document.getElementById('q');
+const cat=document.getElementById('cat');
+const sort=document.getElementById('sort');
 
-  const io=new IntersectionObserver((es)=>es.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('in');io.unobserve(e.target)
-    }
-  }),{threshold:.18});
+const io=new IntersectionObserver((es)=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+}),{threshold:.18});
 
-  const label=c=>({
-    creatina:'Creatina',
-    proteina:'Proteína',
-    pre:'Pre-entreno',
-    amino:'Aminoácidos',
-    multi:'Multivitamínico',
-    salud:'Salud'
-  }[c]||c);
+const label=c=>({creatina:'Creatina',proteina:'Proteína',pre:'Pre-entreno',amino:'Aminoácidos',multi:'Multivitamínico',salud:'Salud'}[c]||c);
 
-  const pesos=v=>v.toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});
+const pesos=v=>v.toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});
 
-  function card(p){
-    const priceHtml=(p.price&&p.price>0)
-      ? `<div class="price">${pesos(p.price)}</div>`
-      : `<div class="price"><span class="nostock">Sin stock</span></div>`;
+function card(p){
+  const priceHtml=(p.price&&p.price>0)?
+    `<div class="price">${pesos(p.price)}</div>`:
+    `<div class="price"><span class="nostock">Sin stock</span></div>`;
+  const src=/^https?:/i.test(p.img)?p.img:(IMG_BASE+p.img);
+  const el=document.createElement('article'); el.className='card';
+  el.innerHTML=`
+    <div class="media"><img loading="lazy" src="${src}" alt="${p.name}"></div>
+    <div class="body">
+      <span class="badge">${label(p.cat)}</span>
+      <h3>${p.name}</h3>
+      <p>${p.desc||''}</p>
+      ${priceHtml}
+    </div>`;
+  io.observe(el);
+  return el;
+}
 
-    const src=/^https?:/i.test(p.img)?p.img:(IMG_BASE+p.img);
+function render(){
+  document.querySelectorAll('.grid').forEach(g=>g.innerHTML='');
+  const term=(q.value||'').trim().toLowerCase();
+  const catVal=cat.value;
 
-    const el=document.createElement('article');
-    el.className='card';
+  let data=PRODUCTS.filter(p=>{
+    const byCat=(catVal==='todas')||(p.cat===catVal);
+    const byTerm=!term||p.name.toLowerCase().includes(term)||(p.desc||'').toLowerCase().includes(term);
+    return byCat&&byTerm;
+  });
 
-    el.innerHTML=`
-      <div class="media">
-        <img loading="lazy" src="${src}" alt="${p.name}">
-      </div>
-      <div class="body">
-        <span class="badge">${label(p.cat)}</span>
-        <h3>${p.name}</h3>
-        <p>${p.desc||''}</p>
-        ${priceHtml}
-      </div>
-    `;
+  if(sort.value==='precioAsc')data.sort((a,b)=>(a.price||1e12)-(b.price||1e12));
+  if(sort.value==='precioDesc')data.sort((a,b)=>(b.price||-1)-(a.price||-1));
+  if(sort.value==='az')data.sort((a,b)=>a.name.localeCompare(b.name));
 
-    io.observe(el); 
-    return el;
-  }
+  const counts={creatina:0,proteina:0,pre:0,amino:0,multi:0,salud:0};
+  data.forEach(p=>counts[p.cat]++);
 
-  function render(){
-    document.querySelectorAll('.grid').forEach(g=>g.innerHTML='');
-    const term=(q.value||'').trim().toLowerCase();
-    const catVal=cat.value;
+  Object.keys(counts).forEach(k=>{
+    const el=document.getElementById('c-'+k);
+    if(el) el.textContent=counts[k];
+    const sec=document.getElementById('g-'+k);
+    if(sec) sec.style.display=counts[k]?'':'none';
+  });
 
-    let data=PRODUCTS.filter(p=>{
-      const byCat=(catVal==='todas')||(p.cat===catVal);
-      const byTerm=!term||p.name.toLowerCase().includes(term)||(p.desc||'').toLowerCase().includes(term);
-      return byCat&&byTerm;
-    });
+  data.forEach(p=>{
+    const g=document.querySelector(`.grid[data-cat="${p.cat}"]`);
+    if(g) g.appendChild(card(p));
+  });
+}
 
-    if(sort.value==='precioAsc')data.sort((a,b)=>(a.price||1e12)-(b.price||1e12));
-    if(sort.value==='precioDesc')data.sort((a,b)=>(b.price||-1)-(a.price||-1));
-    if(sort.value==='az')data.sort((a,b)=>a.name.localeCompare(b.name));
-
-    const counts={creatina:0,proteina:0,pre:0,amino:0,multi:0,salud:0};
-    data.forEach(p=>counts[p.cat]++);
-    Object.keys(counts).forEach(k=>{
-      const el=document.getElementById('c-'+k); 
-      if(el) el.textContent=counts[k];
-      const sec=document.getElementById('g-'+k); 
-      if(sec) sec.style.display=counts[k]?'':'none';
-    });
-
-    data.forEach(p=>{
-      const g=document.querySelector(`.grid[data-cat="${p.cat}"]`);
-      if(g) g.appendChild(card(p));
-    });
-  }
-
-  q.addEventListener('input',render); 
-  cat.addEventListener('change',render); 
-  sort.addEventListener('change',render); 
-  render();
+q.addEventListener('input',render);
+cat.addEventListener('change',render);
+sort.addEventListener('change',render);
+render();
 </script>
 
 </body>
