@@ -138,32 +138,43 @@ h1 {
 /* ---------- FOOTER ---------- */
 footer {
   background: #0a0a0a;
-  padding: 50px 20px;
+  padding: 60px 20px;
   text-align: center;
-  margin-top: 70px;
+  margin-top: 80px;
   border-top: 1px solid #1f1f1f;
+  box-shadow: 0 -10px 25px #000;
 }
 
 .footer-title {
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 25px;
+  color: #ff004c;
+  text-shadow: 0 0 12px #ff004c;
+}
+
+/* ICONOS REDES */
+.social-icons {
+  margin-bottom: 25px;
 }
 
 .social-icons img {
-  width: 40px;
-  margin: 0 12px;
-  transition: .2s;
+  width: 50px;
+  margin: 0 15px;
+  transition: .25s;
+  filter: drop-shadow(0 0 6px #ff004c);
 }
 
 .social-icons img:hover {
-  transform: scale(1.18);
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 10px #ff2b6d);
 }
 
 .copy {
   margin-top: 20px;
   opacity: .7;
   font-size: .9rem;
+  letter-spacing: .5px;
 }
 
 /* ---------- WHATSAPP FLOTANTE ---------- */
@@ -171,16 +182,18 @@ footer {
   position: fixed;
   bottom: 25px;
   right: 25px;
-  z-index: 99;
+  z-index: 999;
 }
 
 .whatsapp-float img {
   width: 75px;
   transition: .2s;
+  filter: drop-shadow(0 0 6px #25d366);
 }
 
 .whatsapp-float img:hover {
   transform: scale(1.18);
+  filter: drop-shadow(0 0 12px #25d366);
 }
 </style>
 </head>
@@ -239,9 +252,9 @@ footer {
   <p class="footer-title">Seguinos en nuestras redes</p>
 
   <div class="social-icons">
-    <a href="#"><img src="assets/img/ig.png"></a>
-    <a href="#"><img src="assets/img/tiktok.png"></a>
-    <a href="#"><img src="assets/img/facebook.png"></a>
+    <a href="https://instagram.com"><img src="assets/img/ig.png"></a>
+    <a href="https://tiktok.com"><img src="assets/img/tiktok.png"></a>
+    <a href="https://facebook.com"><img src="assets/img/facebook.png"></a>
   </div>
 
   <p class="copy">© 2025 PowerLab · Todos los derechos reservados</p>
