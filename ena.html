@@ -40,7 +40,6 @@ body {
              linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.6))
 }
 
-/* Header */
 header {
   position:sticky;top:0;z-index:50;
   background:rgba(14,14,15,.6);
@@ -62,7 +61,6 @@ header {
 }
 .right .back:hover{transform:translateY(-1px)}
 
-/* Contenido */
 main {max-width:1200px;margin:26px auto 80px;padding:0 20px}
 
 .title { display:flex;gap:14px;align-items:center; margin:4px 0 14px }
@@ -134,16 +132,12 @@ main {max-width:1200px;margin:26px auto 80px;padding:0 20px}
   object-fit:contain;background:#fff
 }
 
-.body{padding:18px}
-
-/* ✔ badge eliminado */
-.badge{display:none!important}
-
-/* ✔ Alinear precios y sin stock al fondo */
+/* ✔ MODIFICADO PARA ALINEAR LOS PRECIOS */
 .body{
   display:flex;
   flex-direction:column;
-  min-height:160px;
+  min-height:200px;    /* ← ANTES ERA 160px */
+  justify-content:space-between;  /* ← NUEVO */
 }
 
 .price, .nostock{
@@ -168,7 +162,6 @@ main {max-width:1200px;margin:26px auto 80px;padding:0 20px}
   font-weight:800;
 }
 
-/* responsive */
 @media(min-width:768px){
   .card{grid-column:span 6}
   .media img{height:240px}
@@ -178,7 +171,6 @@ main {max-width:1200px;margin:26px auto 80px;padding:0 20px}
   .media img{height:220px}
 }
 
-/* Footer */
 footer {
   border-top:1px solid rgba(255,255,255,.08);
   background:rgba(10,10,10,.9);
@@ -213,7 +205,6 @@ footer {
 }
 .whatsapp-fab:hover{transform:translateY(-2px)}
 .whatsapp-fab svg{width:36px;height:36px;fill:#fff;display:block}
-
 </style>
 </head>
 
