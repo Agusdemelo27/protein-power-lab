@@ -58,6 +58,10 @@ header{
 main{
   max-width:1400px !important;
   margin:26px 0 80px !important;
+
+  /* ✔ MODIFICADO PARA IR MÁS A LA IZQUIERDA COMO STAR */
+  margin-left:10px !important;
+
   padding:0 20px !important;
   display:flex;
   flex-direction:column;
@@ -116,7 +120,7 @@ main{
   width:100%;
 }
 
-/* --- CARDS GRANDE (ESTILO STAR) --- */
+/* --- CARDS --- */
 .card{
   grid-column:span 12 !important;
   background:rgba(25,25,26,.9);
@@ -130,7 +134,11 @@ main{
   transition: transform .5s, opacity .5s;
   display:flex;
   flex-direction:column;
+
+  /* ✔ ANCHURA MÁS GRANDE COMO STAR */
+  max-width:460px;
 }
+
 .card.in{transform:translateY(0);opacity:1}
 
 @media(min-width:768px){
