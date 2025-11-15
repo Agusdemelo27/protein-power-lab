@@ -40,6 +40,7 @@ body {
              linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.6))
 }
 
+/* Header */
 header {
   position:sticky;top:0;z-index:50;
   background:rgba(14,14,15,.6);
@@ -61,6 +62,7 @@ header {
 }
 .right .back:hover{transform:translateY(-1px)}
 
+/* Contenido */
 main {max-width:1200px;margin:26px auto 80px;padding:0 20px}
 
 .title { display:flex;gap:14px;align-items:center; margin:4px 0 14px }
@@ -132,16 +134,11 @@ main {max-width:1200px;margin:26px auto 80px;padding:0 20px}
   object-fit:contain;background:#fff
 }
 
-/* ✔ MODIFICADO PARA ALINEAR LOS PRECIOS */
 .body{
+  padding:18px;
   display:flex;
   flex-direction:column;
-  min-height:200px;    /* ← ANTES ERA 160px */
-  justify-content:space-between;  /* ← NUEVO */
-}
-
-.price, .nostock{
-  margin-top:auto;
+  min-height:160px;
 }
 
 .body h3 {
@@ -150,18 +147,30 @@ main {max-width:1200px;margin:26px auto 80px;padding:0 20px}
 }
 .body p{color:#dcdcdc;font-size:.98rem}
 
-.price { margin-top:10px;font-weight:900; font-size:1.1rem;color:#fff }
+/* ✔ precios centrados */
+.price, .nostock {
+  margin-top:auto;
+  text-align:center;
+  width:100%;
+}
+
+.price { 
+  font-weight:900; 
+  font-size:1.1rem;
+  color:#fff;
+}
 
 .nostock {
   color:#ffcf9e;
   background:rgba(255,106,0,.14);
   padding:3px 8px;
   border-radius:8px;
-  border:1px solid rgba(255,106,0,.3);
+  border:1px solid rgba(255,255,255,.3);
   display:inline-block;
   font-weight:800;
 }
 
+/* responsive */
 @media(min-width:768px){
   .card{grid-column:span 6}
   .media img{height:240px}
@@ -171,6 +180,7 @@ main {max-width:1200px;margin:26px auto 80px;padding:0 20px}
   .media img{height:220px}
 }
 
+/* Footer */
 footer {
   border-top:1px solid rgba(255,255,255,.08);
   background:rgba(10,10,10,.9);
@@ -205,6 +215,7 @@ footer {
 }
 .whatsapp-fab:hover{transform:translateY(-2px)}
 .whatsapp-fab svg{width:36px;height:36px;fill:#fff;display:block}
+
 </style>
 </head>
 
@@ -239,7 +250,7 @@ footer {
       <option value="todas">Todas las categorías</option>
       <option value="creatina">Creatina</option>
       <option value="proteina">Proteína</option>
-      <option value="vitaminas">Multivitamínico</option>
+      <option value="vitaminas">Vitaminas</option>
     </select>
 
     <select id="sort" class="select">
@@ -310,9 +321,9 @@ const PRODUCTS=[
 
   /* NUEVOS AGREGADOS */
   {
-    cat:'Multivitamínico',
+    cat:'vitaminas',
     name:'ENA Multivitamínico',
-    price:0,                       // SIN STOCK
+    price:0,
     img:'MultiVitaminico.jpg',
     desc:'Multivitamínico completo ENA.'
   },
@@ -320,7 +331,7 @@ const PRODUCTS=[
   {
     cat:'proteina',
     name:'ENA Whey Protein 1LB (500g)',
-    price:37000,                   // $37.000
+    price:37000,
     img:'Prote_500g.jpg',
     desc:'Presentación 1LB (500g).'
   }
@@ -339,29 +350,26 @@ const io=new IntersectionObserver((es)=>
   }),{threshold:.18}
 );
 
-const label=c=>({creatina:'Creatina',proteina:'Proteína',vitaminas:'Vitaminas'}[c]||c);
-
 const pesos=v=>v.toLocaleString('es-AR',{
   style:'currency',
   currency:'ARS',
   maximumFractionDigits:0
 });
 
-/* CARD */
 function card(p){
   const priceHtml = (p.price && p.price > 0)
-    ? `<div class="price">${pesos(p.price)}</div>`
-    : `<div class="price"><span class="nostock">Sin stock</span></div>`;
+    ? `<div class=\"price\">${pesos(p.price)}</div>`
+    : `<div class=\"price\"><span class=\"nostock\">Sin stock</span></div>`;
 
   const src = /^https?:/i.test(p.img) ? p.img : (IMG_BASE + p.img);
   const el=document.createElement('article');
   el.className='card';
 
   el.innerHTML = `
-    <div class="media">
-      <img loading="lazy" src="${src}" alt="${p.name}">
+    <div class=\"media\">
+      <img loading=\"lazy\" src=\"${src}\" alt=\"${p.name}\">
     </div>
-    <div class="body">
+    <div class=\"body\">
       <h3>${p.name}</h3>
       <p>${p.desc || ''}</p>
       ${priceHtml}
@@ -399,7 +407,7 @@ function render(){
   });
 
   data.forEach(p=>{
-    const g=document.querySelector(`.grid[data-cat="${p.cat}"]`);
+    const g=document.querySelector(`.grid[data-cat=\"${p.cat}\"]`);
     if(g) g.appendChild(card(p));
   });
 }
@@ -414,3 +422,4 @@ render();
 
 </body>
 </html>
+
