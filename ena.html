@@ -31,35 +31,18 @@ body{
   background: radial-gradient(1100px 520px at 50% 0, rgba(255,106,0,.16), transparent 60%),
               linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.6))
 }
+/* HEADER */
 header{
   position:sticky;top:0;z-index:50;
   background:rgba(14,14,15,.6);
   backdrop-filter:blur(6px);
   border-bottom:1px solid rgba(255,255,255,.06)
 }
-.nav{
-  width:100%;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:12px 20px;
-}
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  text-decoration:none;
-  color:#fff;
-}
-.logo img{
-  height:50px;
-  width:50px;
-  border-radius:10px;
-  object-fit:cover;
-  border:1px solid rgba(255,255,255,.1);
-  background:#000;
-}
-.brand{font-weight:800;font-size:1.4rem}
+.nav{width:100%;display:flex;align-items:center;gap:12px;padding:12px 20px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;margin-right:auto}
+.logo img{height:40px;width:40px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,.1);background:#000}
+.brand{font-weight:800}
+.pill{display:none!important}
 .right{margin-left:auto;font-size:0}
 .right .back{
   font-size:.95rem;display:inline-flex;align-items:center;
@@ -68,6 +51,8 @@ header{
   box-shadow:0 6px 18px rgba(255,106,0,.3)
 }
 .right .back:hover{transform:translateY(-1px)}
+
+/* CONTENIDO */
 main{
   max-width:1200px;
   margin:26px auto 80px;
