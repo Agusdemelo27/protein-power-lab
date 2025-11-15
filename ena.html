@@ -54,7 +54,7 @@ header{
 .right .back:hover{transform:translateY(-1px)}
 
 /* CONTENIDO */
-main{max-width:1200px;margin:26px auto 80px;padding:0 20px}
+main{max-width:1200px;margin:26px auto 80px;padding:0 20px;display:flex;justify-content:flex-start;}
 .title{display:flex;gap:14px;align-items:center;margin:4px 0 14px}
 .title img{height:42px;width:42px;object-fit:contain}
 .title h1{font-size:clamp(1.55rem,3vw,2.2rem);line-height:1.1;font-weight:800}
@@ -106,11 +106,11 @@ main{max-width:1200px;margin:26px auto 80px;padding:0 20px}
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:220px;
+  min-height:260px;
 }
 .media img{
   width:100%;
-  height:220px;
+  height:260px;
   object-fit:contain;
   background:#fff;
 }
@@ -121,21 +121,21 @@ main{max-width:1200px;margin:26px auto 80px;padding:0 20px}
   flex-direction:column;
   flex-grow:1;
   justify-content:space-between;
-  min-height:170px;
+  min-height:180px;
 }
 
-.body h3{font-size:1.12rem;color:#fff;margin:4px 0 6px;font-weight:800}
-.body p{color:#dcdcdc;font-size:.98rem}
+.body h3{font-size:1.2rem;color:#fff;margin:4px 0 6px;font-weight:800}
+.body p{color:#dcdcdc;font-size:1rem}
 
 .price{
   margin-top:auto;
-  font-weight:900;font-size:1.1rem;color:#fff
+  font-weight:900;font-size:1.15rem;color:#fff
 }
 .stock{
   margin-top:auto;
   color:#ff6161;
   font-weight:800;
-  font-size:1.05rem;
+  font-size:1.1rem;
 }
 
 @media(min-width:768px){
@@ -173,12 +173,11 @@ footer{
 </head>
 
 <body>
-
 <div class="bg" aria-hidden="true"></div>
 
 <header>
 <nav class="nav">
-<a class="logo" href="index.html"><img src="assets/img/logo.jpg" alt=""><span class="brand">ENA</span></a>
+<a class="logo" href="index.html"><img src="assets/img/ena.jpg" alt=""><span class="brand">ENA</span></a>
 <div class="right">
 <button class="back" onclick="location.href='index.html#marcas'">Volver</button>
 </div>
@@ -186,9 +185,9 @@ footer{
 </header>
 
 <main>
-
+<div style="flex:1;">
 <div class="title">
-<img src="assets/img/ena_logo.jpg" alt="ENA">
+<img src="assets/img/ena.jpg" alt="ENA">
 <div>
 <h1>Catálogo · ENA</h1>
 <small>Elegí tu producto. Precios en ARS.</small>
@@ -214,7 +213,7 @@ footer{
 <section class="group" id="g-creatina"><h2>Creatina <span class="chip" id="c-creatina">0</span></h2><div class="grid" data-cat="creatina"></div></section>
 <section class="group" id="g-proteina"><h2>Proteína <span class="chip" id="c-proteina">0</span></h2><div class="grid" data-cat="proteina"></div></section>
 <section class="group" id="g-multi"><h2>Multivitamínico <span class="chip" id="c-multi">0</span></h2><div class="grid" data-cat="multi"></div></section>
-
+</div>
 </main>
 
 <footer>
@@ -247,35 +246,26 @@ const PRODUCTS=[
 const q=document.getElementById('q');
 const cat=document.getElementById('cat');
 const sort=document.getElementById('sort');
-
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18});
 
 function pesos(v){return v.toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});}
 function card(p){
   let priceHtml=p.price && p.price>0?`<div class="price">${pesos(p.price)}</div>`:`<div class="stock">SIN STOCK</div>`;
   const src=/^https?:/i.test(p.img)?p.img:(IMG_BASE+p.img);
-  const el=document.createElement('article');
-  el.className='card';
-  el.innerHTML=`<div class="media"><img loading="lazy" src="${src}" alt="${p.name}"></div>
-  <div class="body"><h3>${p.name}</h3><p>${p.desc||''}</p>${priceHtml}</div>`;
-  io.observe(el);
-  return el;
+  const el=document.createElement('article');el.className='card';
+  el.innerHTML=`<div class="media"><img loading="lazy" src="${src}" alt="${p.name}"></div><div class="body"><h3>${p.name}</h3><p>${p.desc||''}</p>${priceHtml}</div>`;
+  io.observe(el);return el;
 }
 
 function render(){
   document.querySelectorAll('.grid').forEach(g=>g.innerHTML='');
   const term=(q.value||'').trim().toLowerCase();
   const c=cat.value;
-  let data=PRODUCTS.filter(p=>{
-    const okCat=(c==='todas')||(p.cat===c);
-    const okTerm=!term||p.name.toLowerCase().includes(term)||(p.desc||'').toLowerCase().includes(term);
-    return okCat&&okTerm;
-  });
+  let data=PRODUCTS.filter(p=>{const okCat=(c==='todas')||(p.cat===c);const okTerm=!term||p.name.toLowerCase().includes(term)||(p.desc||'').toLowerCase().includes(term);return okCat&&okTerm;});
   if(sort.value==='precioAsc') data.sort((a,b)=>(a.price||1e12)-(b.price||1e12));
   if(sort.value==='precioDesc') data.sort((a,b)=>(b.price||-1)-(a.price||-1));
   if(sort.value==='az') data.sort((a,b)=>a.name.localeCompare(b.name));
-  const counts={creatina:0,proteina:0,multi:0};
-  data.forEach(p=>counts[p.cat]++);
+  const counts={creatina:0,proteina:0,multi:0};data.forEach(p=>counts[p.cat]++);
   Object.keys(counts).forEach(k=>{document.getElementById('c-'+k).textContent=counts[k];document.getElementById('g-'+k).style.display=counts[k]?'':'none';});
   data.forEach(p=>{const g=document.querySelector(`.grid[data-cat="${p.cat}"]`);if(g) g.appendChild(card(p));});
 }
@@ -283,7 +273,6 @@ function render(){
 q.addEventListener('input',render);
 cat.addEventListener('change',render);
 sort.addEventListener('change',render);
-
 render();
 </script>
 
