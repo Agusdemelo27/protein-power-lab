@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Catálogo · ENA</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --bg:#0e0e0f;
@@ -32,18 +31,35 @@ body{
   background: radial-gradient(1100px 520px at 50% 0, rgba(255,106,0,.16), transparent 60%),
               linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.6))
 }
-
-/* HEADER */
 header{
   position:sticky;top:0;z-index:50;
   background:rgba(14,14,15,.6);
   backdrop-filter:blur(6px);
   border-bottom:1px solid rgba(255,255,255,.06)
 }
-.nav{width:100%;display:flex;align-items:center;gap:12px;padding:12px 20px}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;margin-right:auto}
-.logo img{height:40px;width:40px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,.1);background:#000}
-.brand{font-weight:800}
+.nav{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 20px;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:#fff;
+}
+.logo img{
+  height:50px;
+  width:50px;
+  border-radius:10px;
+  object-fit:cover;
+  border:1px solid rgba(255,255,255,.1);
+  background:#000;
+}
+.brand{font-weight:800;font-size:1.4rem}
 .right{margin-left:auto;font-size:0}
 .right .back{
   font-size:.95rem;display:inline-flex;align-items:center;
@@ -52,15 +68,37 @@ header{
   box-shadow:0 6px 18px rgba(255,106,0,.3)
 }
 .right .back:hover{transform:translateY(-1px)}
-
-/* CONTENIDO */
-main{max-width:1200px;margin:26px auto 80px;padding:0 20px;display:flex;justify-content:flex-start;}
-.title{display:flex;gap:14px;align-items:center;margin:4px 0 14px}
-.title img{height:42px;width:42px;object-fit:contain}
-.title h1{font-size:clamp(1.55rem,3vw,2.2rem);line-height:1.1;font-weight:800}
+main{
+  max-width:1200px;
+  margin:26px auto 80px;
+  padding:0 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+.title{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  margin:4px 0 14px
+}
+.title img{
+  height:50px;
+  width:50px;
+  object-fit:contain;
+}
+.title h1{
+  font-size:clamp(1.55rem,3vw,2.2rem);
+  line-height:1.1;
+  font-weight:800;
+}
 .title small{color:var(--muted)}
-
-.filters{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 8px}
+.filters{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:18px 0 8px;
+}
 .input,.select{
   background:#fffaf6;color:#111;border:1px solid rgba(255,106,0,.25);
   border-radius:12px;padding:12px 14px;font-weight:700;min-width:220px;
@@ -68,8 +106,7 @@ main{max-width:1200px;margin:26px auto 80px;padding:0 20px;display:flex;justify-
 }
 .input::placeholder{color:#6b6b6b}
 .input:focus,.select:focus{outline:none;box-shadow:0 0 0 3px rgba(255,106,0,.25)}
-
-.group{margin:30px 0 36px}
+.group{margin:30px 0 36px;width:100%}
 .group h2{font-weight:900;letter-spacing:.3px;margin:0 0 14px;position:relative}
 .group h2::after{
   content:"";position:absolute;left:0;bottom:-6px;
@@ -81,15 +118,13 @@ main{max-width:1200px;margin:26px auto 80px;padding:0 20px;display:flex;justify-
   background:rgba(255,106,0,.12);color:#ffd9c2;font-size:.8rem;
   border:1px solid rgba(255,106,0,.24)
 }
-
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;width:100%}
 .card{
   grid-column:span 12;
   background:rgba(25,25,26,.9);
   border:1px solid rgba(255,255,255,.08);
   border-radius:var(--radius);
-  box-shadow:var(--shadow);
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
   overflow:hidden;
   transform:translateY(10px);
   opacity:0;
@@ -97,9 +132,7 @@ main{max-width:1200px;margin:26px auto 80px;padding:0 20px;display:flex;justify-
   display:flex;
   flex-direction:column;
 }
-
 .card.in{transform:translateY(0);opacity:1}
-
 .media{
   background:#0f0f10;
   border-bottom:1px solid rgba(255,255,255,.06);
@@ -114,7 +147,6 @@ main{max-width:1200px;margin:26px auto 80px;padding:0 20px;display:flex;justify-
   object-fit:contain;
   background:#fff;
 }
-
 .body{
   padding:18px;
   display:flex;
@@ -123,10 +155,8 @@ main{max-width:1200px;margin:26px auto 80px;padding:0 20px;display:flex;justify-
   justify-content:space-between;
   min-height:180px;
 }
-
 .body h3{font-size:1.2rem;color:#fff;margin:4px 0 6px;font-weight:800}
 .body p{color:#dcdcdc;font-size:1rem}
-
 .price{
   margin-top:auto;
   font-weight:900;font-size:1.15rem;color:#fff
@@ -137,14 +167,8 @@ main{max-width:1200px;margin:26px auto 80px;padding:0 20px;display:flex;justify-
   font-weight:800;
   font-size:1.1rem;
 }
-
-@media(min-width:768px){
-  .card{grid-column:span 6}
-}
-@media(min-width:1200px){
-  .card{grid-column:span 4}
-}
-
+@media(min-width:768px){.card{grid-column:span 6}}
+@media(min-width:1200px){.card{grid-column:span 4}}
 footer{
   border-top:1px solid rgba(255,255,255,.08);
   background:rgba(10,10,10,.9);
@@ -160,7 +184,6 @@ footer{
 .socials a.facebook svg{fill:#fff;width:24px;height:24px}
 .socials a.instagram{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
 .socials a.instagram svg{fill:#fff;width:24px;height:24px}
-
 .whatsapp-fab{
   position:fixed;right:18px;bottom:18px;z-index:9999;
   width:68px;height:68px;border-radius:50%;background:#25D366;
@@ -171,21 +194,19 @@ footer{
 .whatsapp-fab svg{width:36px;height:36px;fill:#fff;display:block}
 </style>
 </head>
-
 <body>
 <div class="bg" aria-hidden="true"></div>
 
 <header>
 <nav class="nav">
-<a class="logo" href="index.html"><img src="assets/img/ena.jpg" alt=""><span class="brand">ENA</span></a>
-<div class="right">
-<button class="back" onclick="location.href='index.html#marcas'">Volver</button>
-</div>
+  <a class="logo" href="index.html"><img src="assets/img/ena.jpg" alt="ENA"><span class="brand">ENA</span></a>
+  <div class="right">
+    <button class="back" onclick="location.href='index.html#marcas'">Volver</button>
+  </div>
 </nav>
 </header>
 
 <main>
-<div style="flex:1;">
 <div class="title">
 <img src="assets/img/ena.jpg" alt="ENA">
 <div>
@@ -213,7 +234,6 @@ footer{
 <section class="group" id="g-creatina"><h2>Creatina <span class="chip" id="c-creatina">0</span></h2><div class="grid" data-cat="creatina"></div></section>
 <section class="group" id="g-proteina"><h2>Proteína <span class="chip" id="c-proteina">0</span></h2><div class="grid" data-cat="proteina"></div></section>
 <section class="group" id="g-multi"><h2>Multivitamínico <span class="chip" id="c-multi">0</span></h2><div class="grid" data-cat="multi"></div></section>
-</div>
 </main>
 
 <footer>
@@ -231,7 +251,9 @@ footer{
 </footer>
 
 <a href="https://wa.me/5491171484334" target="_blank" class="whatsapp-fab">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M16.003 3c-7.168 0-13 5.832-13 13 0 2.294.61 4.534 1.767 6.503L3 29l6.68-1.74A12.9 12.9 0 0 0 16.003 29c7.168 0 13-5.832 13-13s-5.832-13-13-13zm0 23.64a10.57 10.57 0 0 1-5.378-1.48l-.385-.228-3.965 1.034 1.06-3.87-.25-.397A10.56 10.56 0 0 1 5.43 16c0-5.832 4.74-10.57 10.573-10.57 2.823 0 5.474 1.1 7.467 3.095a10.55 10.55 0 0 1 3.106 7.475c0 5.833-4.74 10.57-10.573 10.57zm5.79-7.94c-.316-.158-1.868-.922-2.156-1.026-.29-.105-.5-.158-.71.158-.21.316-.815 1.027-1 1.238-.184.21-.368.237-.684.079-.316-.158-1.333-.492-2.54-1.571-.94-.84-1.574-1.876-1.758-2.192-.184-.316-.02-.486.138-.644.143-.142.316-.368.474-.552.158-.184.21-.316.316-.526.105-.21.052-.395-.026-.553-.079-.158-.71-1.71-.974-2.34-.256-.61-.518-.526-.71-.537-.184-.009-.395-.011-.605-.011-.21 0-.553.079-.843.395-.29.316-1.105 1.08-1.105 2.635s1.132 3.056 1.29 3.272c.158.21 2.23 3.403 5.402 4.77.754.325 1.342.518 1.8.663.756.24 1.444.206 1.987.125.606-.09 1.868-.762 2.133-1.497.263-.737.263-1.368.184-1.496-.079-.13-.29-.21-.605-.368z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<path d="M16.003 3c-7.168 0-13 5.832-13 13 0 2.294.61 4.534 1.767 6.503L3 29l6.68-1.74A12.9 12.9 0 0 0 16.003 29c7.168 0 13-5.832 13-13s-5.832-13-13-13zm0 23.64a10.57 10.57 0 0 1-5.378-1.48l-.385-.228-3.965 1.034 1.06-3.87-.25-.397A10.56 10.56 0 0 1 5.43 16c0-5.832 4.74-10.57 10.573-10.57 2.823 0 5.474 1.1 7.467 3.095a10.55 10.55 0 0 1 3.106 7.475c0 5.833-4.74 10.57-10.573 10.57zm5.79-7.94c-.316-.158-1.868-.922-2.156-1.026-.29-.105-.5-.158-.71.158-.21.316-.815 1.027-1 1.238-.184.21-.368.237-.684.079-.316-.158-1.333-.492-2.54-1.571-.94-.84-1.574-1.876-1.758-2.192-.184-.316-.02-.486.138-.644.143-.142.316-.368.474-.552.158-.184.21-.316.316-.526.105-.21.052-.395-.026-.553-.079-.158-.71-1.71-.974-2.34-.256-.61-.518-.526-.71-.537-.184-.009-.395-.011-.605-.011-.21 0-.553.079-.843.395-.29.316-1.105 1.08-1.105 2.635s1.132 3.056 1.29 3.272c.158.21 2.23 3.403 5.402 4.77.754.325 1.342.518 1.8.663.756.24 1.444.206 1.987.125.606-.09 1.868-.762 2.133-1.497.263-.737.263-1.368.184-1.496-.079-.13-.29-.21-.605-.368z"/>
+</svg>
 </a>
 
 <script>
@@ -249,6 +271,7 @@ const sort=document.getElementById('sort');
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18});
 
 function pesos(v){return v.toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});}
+
 function card(p){
   let priceHtml=p.price && p.price>0?`<div class="price">${pesos(p.price)}</div>`:`<div class="stock">SIN STOCK</div>`;
   const src=/^https?:/i.test(p.img)?p.img:(IMG_BASE+p.img);
