@@ -25,7 +25,7 @@ body {
   overflow-x:hidden;
   min-height:100vh;
   display:flex;
-  flex-direction:column
+  flex-direction:column;
 }
 
 .bg {
@@ -127,7 +127,7 @@ main {max-width:1200px;margin:26px auto 80px;padding:0 20px}
   background:#0f0f10;
   border-bottom:1px solid rgba(255,255,255,.06);
   display:flex;align-items:center;justify-content:center;
-  min-height:220px 
+  min-height:220px;
 }
 .media img {
   display:block;width:100%;height:260px;
@@ -158,6 +158,17 @@ main {max-width:1200px;margin:26px auto 80px;padding:0 20px}
 
 .price { margin-top:10px;font-weight:900; font-size:1.1rem;color:#fff }
 
+.nostock {
+  color:#ffcf9e;
+  background:rgba(255,106,0,.14);
+  padding:3px 8px;
+  border-radius:8px;
+  border:1px solid rgba(255,106,0,.3);
+  display:inline-block;
+  font-weight:800;
+}
+
+/* responsive */
 @media(min-width:768px){
   .card{grid-column:span 6}
   .media img{height:240px}
@@ -237,6 +248,7 @@ footer {
       <option value="todas">Todas las categorías</option>
       <option value="creatina">Creatina</option>
       <option value="proteina">Proteína</option>
+      <option value="vitaminas">Vitaminas</option>
     </select>
 
     <select id="sort" class="select">
@@ -256,6 +268,12 @@ footer {
     <h2>Proteína <span class="chip" id="c-proteina">0</span></h2>
     <div class="grid" data-cat="proteina"></div>
   </section>
+
+  <section class="group" id="g-vitaminas">
+    <h2>Vitaminas <span class="chip" id="c-vitaminas">0</span></h2>
+    <div class="grid" data-cat="vitaminas"></div>
+  </section>
+
 </main>
 
 <footer>
@@ -297,6 +315,23 @@ const PRODUCTS=[
     price:32000,
     img:'ena_Creatina_300g.jpg',
     desc:'Pura y micronizada.'
+  },
+
+  /* NUEVOS AGREGADOS */
+  {
+    cat:'vitaminas',
+    name:'ENA Multivitamínico',
+    price:0,                       // SIN STOCK
+    img:'MultiVitaminico.jpg',
+    desc:'Multivitamínico completo ENA.'
+  },
+
+  {
+    cat:'proteina',
+    name:'ENA Whey Protein 1LB (500g)',
+    price:37000,                   // $37.000
+    img:'Prote_500g.jpg',
+    desc:'Presentación 1LB (500g).'
   }
 ];
 
@@ -313,7 +348,7 @@ const io=new IntersectionObserver((es)=>
   }),{threshold:.18}
 );
 
-const label=c=>({creatina:'Creatina',proteina:'Proteína'}[c]||c);
+const label=c=>({creatina:'Creatina',proteina:'Proteína',vitaminas:'Vitaminas'}[c]||c);
 
 const pesos=v=>v.toLocaleString('es-AR',{
   style:'currency',
@@ -321,18 +356,19 @@ const pesos=v=>v.toLocaleString('es-AR',{
   maximumFractionDigits:0
 });
 
-/* ✔ CARD corregida */
+/* CARD */
 function card(p){
   const priceHtml = (p.price && p.price > 0)
     ? `<div class="price">${pesos(p.price)}</div>`
     : `<div class="price"><span class="nostock">Sin stock</span></div>`;
 
+  const src = /^https?:/i.test(p.img) ? p.img : (IMG_BASE + p.img);
   const el=document.createElement('article');
   el.className='card';
 
   el.innerHTML = `
     <div class="media">
-      <img loading="lazy" src="${IMG_BASE+p.img}" alt="${p.name}">
+      <img loading="lazy" src="${src}" alt="${p.name}">
     </div>
     <div class="body">
       <h3>${p.name}</h3>
@@ -361,7 +397,7 @@ function render(){
   if(sort.value==='precioDesc') data.sort((a,b)=>(b.price||-1)-(a.price||-1));
   if(sort.value==='az') data.sort((a,b)=>a.name.localeCompare(b.name));
 
-  const counts={creatina:0,proteina:0};
+  const counts={creatina:0,proteina:0,vitaminas:0};
   data.forEach(p=>counts[p.cat]++);
 
   Object.keys(counts).forEach(k=>{
