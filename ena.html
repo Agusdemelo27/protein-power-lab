@@ -32,6 +32,7 @@ body{
   background: radial-gradient(1100px 520px at 50% 0, rgba(255,106,0,.16), transparent 60%),
               linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.6))
 }
+
 /* HEADER */
 header{
   position:sticky;top:0;z-index:50;
@@ -54,37 +55,13 @@ header{
 .right .back:hover{transform:translateY(-1px)}
 
 /* CONTENIDO */
-main{
-  max-width:1200px;
-margin: 26px auto 50px ;
-  padding:0 20px;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-}
-.title{
-  display:flex;
-  gap:14px;
-  align-items:center;
-  margin:4px 0 14px
-}
-.title img{
-  height:50px;
-  width:50px;
-  object-fit:contain;
-}
-.title h1{
-  font-size:clamp(1.55rem,3vw,2.2rem);
-  line-height:1.1;
-  font-weight:800;
-}
+main{max-width:1200px;margin:26px auto 80px;padding:0 20px}
+.title{display:flex;gap:14px;align-items:center;margin:4px 0 14px}
+.title img{height:42px;width:42px;object-fit:contain}
+.title h1{font-size:clamp(1.55rem,3vw,2.2rem);line-height:1.1;font-weight:800}
 .title small{color:var(--muted)}
-.filters{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin:18px 0 8px;
-}
+
+.filters{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 8px}
 .input,.select{
   background:#fffaf6;color:#111;border:1px solid rgba(255,106,0,.25);
   border-radius:12px;padding:12px 14px;font-weight:700;min-width:220px;
@@ -92,7 +69,8 @@ margin: 26px auto 50px ;
 }
 .input::placeholder{color:#6b6b6b}
 .input:focus,.select:focus{outline:none;box-shadow:0 0 0 3px rgba(255,106,0,.25)}
-.group{margin:30px 0 36px;width:100%}
+
+.group{margin:30px 0 36px}
 .group h2{font-weight:900;letter-spacing:.3px;margin:0 0 14px;position:relative}
 .group h2::after{
   content:"";position:absolute;left:0;bottom:-6px;
@@ -104,57 +82,59 @@ margin: 26px auto 50px ;
   background:rgba(255,106,0,.12);color:#ffd9c2;font-size:.8rem;
   border:1px solid rgba(255,106,0,.24)
 }
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;width:100%}
+
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+
 .card{
-  grid-column:span 12;
-  background:rgba(25,25,26,.9);
+  grid-column:span 12;background:rgba(25,25,26,.9);
   border:1px solid rgba(255,255,255,.08);
-  border-radius:var(--radius);
-  box-shadow:0 20px 60px rgba(0,0,0,.55);
-  overflow:hidden;
-  transform:translateY(10px);
-  opacity:0;
-  transition: transform .5s, opacity .5s;
-  display:flex;
-  flex-direction:column;
+  border-radius:var(--radius);box-shadow:var(--shadow);
+  overflow:hidden;transform:translateY(10px);opacity:0;
+  transition:transform .5s,opacity .5s
 }
 .card.in{transform:translateY(0);opacity:1}
-.media{
-  background:#0f0f10;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:260px;
-}
-.media img{
-  width:100%;
-  height:260px;
-  object-fit:contain;
-  background:#fff;
-}
+
+.media{background:#0f0f10;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;min-height:220px}
+.media img{display:block;width:100%;height:260px;object-fit:contain;background:#fff}
+
 .body{
   padding:18px;
   display:flex;
   flex-direction:column;
-  flex-grow:1;
-  justify-content:space-between;
-  min-height:180px;
+  min-height:165px; /* para alinear */
 }
-.body h3{font-size:1.2rem;color:#fff;margin:4px 0 6px;font-weight:800}
-.body p{color:#dcdcdc;font-size:1rem}
+
+/* OCULTAR BADGE */
+.badge{display:none !important}
+
+.body h3{font-size:1.12rem;color:#fff;margin:4px 0 6px;font-weight:800}
+.body p{color:#dcdcdc;font-size:.98rem}
+
 .price{
   margin-top:auto;
-  font-weight:900;font-size:1.15rem;color:#fff
+  font-weight:900;font-size:1.1rem;color:#fff
 }
+.price .nostock{
+  color:#ffcf9e;background:rgba(255,106,0,.14);
+  padding:3px 8px;border-radius:8px;border:1px solid rgba(255,106,0,.3)
+}
+
 .stock{
   margin-top:auto;
   color:#ff6161;
   font-weight:800;
-  font-size:1.1rem;
+  font-size:1.05rem;
 }
-@media(min-width:768px){.card{grid-column:span 6}}
-@media(min-width:1200px){.card{grid-column:span 4}}
+
+@media(min-width:768px){
+  .card{grid-column:span 6}
+  .media img{height:240px}
+}
+@media(min-width:1200px){
+  .card{grid-column:span 4}
+  .media img{height:220px}
+}
+
 footer{
   border-top:1px solid rgba(255,255,255,.08);
   background:rgba(10,10,10,.9);
@@ -170,6 +150,7 @@ footer{
 .socials a.facebook svg{fill:#fff;width:24px;height:24px}
 .socials a.instagram{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
 .socials a.instagram svg{fill:#fff;width:24px;height:24px}
+
 .whatsapp-fab{
   position:fixed;right:18px;bottom:18px;z-index:9999;
   width:68px;height:68px;border-radius:50%;background:#25D366;
@@ -180,7 +161,9 @@ footer{
 .whatsapp-fab svg{width:36px;height:36px;fill:#fff;display:block}
 </style>
 </head>
+
 <body>
+
 <div class="bg" aria-hidden="true"></div>
 
 <header>
