@@ -152,7 +152,7 @@
 <script>
   const IMG_BASE = 'assets/img/';
   const PRODUCTS = [
-    {cat:'Proteína',name:'ISO100 Hydrolyzed 5lb (Vainilla Gourmet)',price:400000,img:'iso-100-proteina.jpg',desc:'Proteína de suero 100% aislada e hidrolizada. 2,3 kg (5LB).'}
+    {cat:'proteina',name:'ISO100 Hydrolyzed 5lb (Vainilla Gourmet)',price:400000,img:'iso-100-proteina.jpg',desc:'Proteína de suero 100% aislada e hidrolizada. 2,3 kg (5LB).'}
   ];
   const q=document.getElementById('q'); const cat=document.getElementById('cat'); const sort=document.getElementById('sort');
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18});
